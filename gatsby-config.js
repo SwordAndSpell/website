@@ -1,8 +1,34 @@
+// Node modules.
+const ABILITY_FEATURES = require("sns-data/data/ABILITY_FEATURES.json")
+const BACKGROUNDS = require("sns-data/data/BACKGROUNDS.json")
+const CORE_ABILITIES = require("sns-data/data/CORE_ABILITIES.json")
+const CORE_IDENTITIES = require("sns-data/data/CORE_IDENTITIES.json")
+const FEATURE_OPTIONS = require("sns-data/data/FEATURE_OPTIONS.json")
+const IDENTITY_FEATURES = require("sns-data/data/IDENTITY_FEATURES.json")
+const LANGUAGES = require("sns-data/data/LANGUAGES.json")
+const PERKS = require("sns-data/data/PERKS.json")
+const RACES = require("sns-data/data/RACES.json")
+const SUBRACES = require("sns-data/data/SUBRACES.json")
+
 module.exports = {
   siteMetadata: {
     title: `Sword and Spell`,
     description: `The main wiki website for the game Sword and Spell.`,
     author: `@SwordAndSpell`,
+    // Raw CMS Data Start
+    // ========
+    ABILITY_FEATURES,
+    BACKGROUNDS,
+    CORE_ABILITIES,
+    CORE_IDENTITIES,
+    FEATURE_OPTIONS,
+    IDENTITY_FEATURES,
+    LANGUAGES,
+    PERKS,
+    RACES,
+    SUBRACES,
+    // ========
+    // Raw CMS Data End
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
