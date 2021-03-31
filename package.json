@@ -19,6 +19,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "sns-data": "git+https://github.com/SwordAndSpell/data.git",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
