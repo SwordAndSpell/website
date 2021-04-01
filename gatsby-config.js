@@ -17,10 +17,6 @@ module.exports = {
     author: `@SwordAndSpell`,
     navItems: [
       {
-        link: "/index",
-        label: "Home",
-      },
-      {
         link: "/races",
         label: "Races",
       },
