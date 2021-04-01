@@ -9,7 +9,7 @@ const Wrapper = styled.section`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 20px 0 0;
+  margin: 90px 0 0;
   text-align: center;
 
   li {
