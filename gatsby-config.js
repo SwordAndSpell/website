@@ -15,6 +15,48 @@ module.exports = {
     title: `Sword and Spell`,
     description: `The main wiki website for the game Sword and Spell.`,
     author: `@SwordAndSpell`,
+    navItems: [
+      {
+        link: "/ability-features",
+        label: "Ability Features",
+      },
+      {
+        link: "/backgrounds",
+        label: "Backgrounds",
+      },
+      {
+        link: "/core-abilities",
+        label: "Core Abilities",
+      },
+      {
+        link: "/core-identities",
+        label: "Core Identities",
+      },
+      {
+        link: "/feature-options",
+        label: "Feature Options",
+      },
+      {
+        link: "/identity-features",
+        label: "Identity Features",
+      },
+      {
+        link: "/languages",
+        label: "Languages",
+      },
+      {
+        link: "/perks",
+        label: "Perks",
+      },
+      {
+        link: "/races",
+        label: "Races",
+      },
+      {
+        link: "/subraces",
+        label: "Subraces",
+      },
+    ],
     // Raw CMS Data Start
     // ========
     ABILITY_FEATURES,

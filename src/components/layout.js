@@ -2,7 +2,6 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import styled from "styled-components"
 // Relative imports.
 import Footer from "./Footer"
 import TopNav from "./TopNav"

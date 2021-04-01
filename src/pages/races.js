@@ -1,7 +1,6 @@
 // Node modules.
 import * as React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import { useStaticQuery, graphql } from "gatsby"
 import get from "lodash/get"
 import map from "lodash/map"
 // Relative imports.
@@ -50,8 +49,8 @@ const RacesPage = () => {
           const hitPoints = get(race, "hitPoints")
           const languages = get(race, "languages")
           const ability = get(race, "ability")
-          const subraces = get(race, "subraces")
-          const generalPerks = get(race, "generalPerks")
+          // const subraces = get(race, "subraces")
+          // const generalPerks = get(race, "generalPerks")
 
           return (
             <li key={name}>
