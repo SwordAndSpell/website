@@ -17,44 +17,40 @@ module.exports = {
     author: `@SwordAndSpell`,
     navItems: [
       {
-        link: "/ability-features",
-        label: "Ability Features",
+        link: "/races",
+        label: "Races",
       },
       {
         link: "/backgrounds",
         label: "Backgrounds",
       },
       {
-        link: "/core-abilities",
-        label: "Core Abilities",
-      },
-      {
         link: "/core-identities",
         label: "Core Identities",
-      },
-      {
-        link: "/feature-options",
-        label: "Feature Options",
       },
       {
         link: "/identity-features",
         label: "Identity Features",
       },
       {
-        link: "/languages",
-        label: "Languages",
+        link: "/ability-features",
+        label: "Ability Features",
       },
       {
-        link: "/perks",
-        label: "Perks",
+        link: "/spells",
+        label: "Spells",
       },
       {
-        link: "/races",
-        label: "Races",
+        link: "/rules",
+        label: "Rules",
       },
       {
-        link: "/subraces",
-        label: "Subraces",
+        link: "/leveling-chart",
+        label: "Leveling Chart",
+      },
+      {
+        link: "/appendix",
+        label: "Appendix",
       },
     ],
     // Raw CMS Data Start

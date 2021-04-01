@@ -7,8 +7,13 @@ export const Header = styled.header`
   border-bottom: 1px solid #d5d5d5;
   display: flex;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
   transition: box-shadow 0.2s ease, border-bottom 0.2s ease;
+  width: 100%;
+  z-index: 1;
 
   &:hover {
     border-bottom: 1px solid transparent;
@@ -23,7 +28,7 @@ export const Header = styled.header`
     }
 
     h1 {
-      display: none;
+      font-size: 1.6rem;
     }
   }
 
@@ -67,7 +72,7 @@ export const NavItems = styled.ul`
   overflow-x: none;
   overflow-y: auto;
   position: fixed;
-  top: 60px;
+  top: 70px;
   width: 100%;
   z-index: 1;
 
