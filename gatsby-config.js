@@ -17,6 +17,10 @@ module.exports = {
     author: `@SwordAndSpell`,
     navItems: [
       {
+        link: "/index",
+        label: "Home",
+      },
+      {
         link: "/races",
         label: "Races",
       },
@@ -45,12 +49,16 @@ module.exports = {
         label: "Rules",
       },
       {
-        link: "/leveling-chart",
-        label: "Leveling Chart",
+        link: "/spellcasting-charts",
+        label: "Spellcasting Charts",
       },
       {
-        link: "/appendix",
-        label: "Appendix",
+        link: "/summoning-stat-blocks",
+        label: "Summoning Stat Blocks",
+      },
+      {
+        link: "/shapechange-forms",
+        label: "Shapechange Forms",
       },
     ],
     // Raw CMS Data Start
