@@ -142,6 +142,8 @@ const Wrapper = styled.section`
 
       .perk,
       .subrace {
+        white-space: pre-line;
+
         h5 {
           color: #512bfccc;
           font-size: 1.5rem;
@@ -156,6 +158,10 @@ const Wrapper = styled.section`
       .subrace h5 {
         color: #831fbbcc;
       }
+    }
+
+    .perks {
+      margin-bottom: 20px;
     }
   }
 `
