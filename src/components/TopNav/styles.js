@@ -96,5 +96,11 @@ export const NavItems = styled.ul`
     color: #ffffff;
     font-size: 1.2rem;
     width: 100%;
+
+    &.active {
+      background: #21d4fd;
+      color: #4f4f4f;
+      font-weight: 700;
+    }
   }
 `

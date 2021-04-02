@@ -51,7 +51,13 @@ const TopNav = ({ siteTitle }) => {
       {/* Nav Items */}
       <NavItems className={showNavItems ? "expanded" : ""}>
         {map(queryResult?.site?.siteMetadata?.navItems, navItem => (
-          <Link key={navItem?.link} to={navItem?.link}>
+          <Link
+            className={
+              navItem?.link === window.location.pathname ? "active" : ""
+            }
+            key={navItem?.link}
+            to={navItem?.link}
+          >
             <li>{navItem?.label}</li>
           </Link>
         ))}
