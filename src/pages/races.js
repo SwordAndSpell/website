@@ -75,15 +75,18 @@ const Wrapper = styled.section`
         bottom: 0;
         color: #ffffff;
         display: flex;
-        font-size: 3rem;
+        font-size: 2.5rem;
         justify-content: space-between;
-        padding: 0 20px;
+        line-height: 40px;
+        padding: 10px 20px;
         position: absolute;
+        text-align: left;
         width: 100%;
       }
 
       .chevron {
         height: 35px;
+        margin-left: 20px;
         transition: transform 0.5s ease;
 
         path {
@@ -223,7 +226,7 @@ const RacesPage = () => {
 
   // Start with them all races being collapsed.
   const [collapsedRaceIDs, setCollapsedRaceIDs] = useState(
-    RACES?.map(race => race?.id)
+    map(RACES, race => race?.id)
   )
 
   // Start with all perks + subraces being expanded.
