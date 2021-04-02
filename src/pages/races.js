@@ -425,13 +425,16 @@ const RacesPage = () => {
                         const name = perk?.name
                         const requirements = perk?.requirements
 
+                        // Derive the composite ID.
+                        const racePerkID = `${id}--${perkID}`
+
                         return (
                           <button
                             className="perk"
-                            key={`${id}-${perkID}`}
+                            key={racePerkID}
                             onClick={() =>
                               onCollapseToggle(
-                                perkID,
+                                racePerkID,
                                 collapsedPerkIDs,
                                 setCollapsedPerkIDs
                               )
@@ -442,7 +445,7 @@ const RacesPage = () => {
                             <h5>{name}</h5>
 
                             {/* Perk Info */}
-                            {!collapsedPerkIDs?.includes(perkID) && (
+                            {!collapsedPerkIDs?.includes(racePerkID) && (
                               <>
                                 {requirements && (
                                   <p className="requirements">
