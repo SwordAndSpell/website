@@ -131,6 +131,9 @@ const Wrapper = styled.section`
 
     .perks,
     .subraces {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
       padding: 0 20px;
 
       header {
@@ -235,7 +238,7 @@ const RacesPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Races" />
       <Wrapper>
         <h2>Races</h2>
         <ul>
