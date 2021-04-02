@@ -25,17 +25,32 @@ const Wrapper = styled.section`
 
   h3 {
     align-items: center;
-    background: rgba(81, 43, 252, 0.8);
-    // bottom: 0;
+    background: rgba(164, 0, 255, 0.8);
+    bottom: 0;
     color: #ffffff;
     display: flex;
     font-size: 2.5rem;
     justify-content: space-between;
     line-height: 40px;
     padding: 10px 20px;
-    // position: absolute;
     text-align: left;
     width: 100%;
+  }
+  .filter-button {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(81, 43, 252, 0.8);
+
+    &.inactive-button {
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #000000;
+    }
+    &.active-button {
+      background: rgba(81, 43, 252, 0.8);
+      color: #ffffff;
+    }
   }
 
   .chevron {
@@ -89,6 +104,12 @@ const AbilityFeaturesPage = () => {
       site {
         siteMetadata {
           ABILITY_FEATURES {
+            relevantStyles
+            requirements
+            name
+            level
+            id
+            description
           }
         }
       }
@@ -98,13 +119,18 @@ const AbilityFeaturesPage = () => {
   // Derive Races and Perks data from the graphql query above.
   const ABILITIES = queryResult?.site?.siteMetadata?.ABILITY_FEATURES
 
-  const [activeFilters, setActiveFilters] = useState([])
-  const [collapsedHeadings, setCollapsedHeadings] = useState([
-    "1",
-    "3",
-    "5",
-    "7",
+  const [activeFilters, setActiveFilters] = useState([
+    "Dual Weilding",
+    "Daggers / Finesse",
+    "Fencing",
+    "Two-Handed",
+    "Weapon and Shield",
+    "Brawling / Grappling",
+    "Spellcasting",
+    "Polearms",
+    "Ranged",
   ])
+  const [collapsedHeadings, setCollapsedHeadings] = useState(["3", "5", "7"])
   const [collapsedAbilityIDs, setCollapsedAbilityIDs] = useState([])
 
   const level1Abilities = filter(ABILITIES, ability => ability.level === 1)
@@ -112,7 +138,6 @@ const AbilityFeaturesPage = () => {
   const level5Abilities = filter(ABILITIES, ability => ability.level === 5)
   const level7Abilities = filter(ABILITIES, ability => ability.level === 7)
 
-  console.log(activeFilters)
   return (
     <Layout>
       <SEO title="Ability Features" />
@@ -121,6 +146,11 @@ const AbilityFeaturesPage = () => {
         <section className="buttons">
           <button
             type="button"
+            className={`filter-button ${
+              activeFilters?.includes("Dual Weilding")
+                ? "active-button"
+                : "inactive-button"
+            }`}
             onClick={() =>
               onFilterToggle("Dual Weilding", activeFilters, setActiveFilters)
             }
@@ -129,6 +159,11 @@ const AbilityFeaturesPage = () => {
           </button>
           <button
             type="button"
+            className={`filter-button ${
+              activeFilters?.includes("Daggers / Finesse")
+                ? "active-button"
+                : "inactive-button"
+            }`}
             onClick={() =>
               onFilterToggle(
                 "Daggers / Finesse",
@@ -141,6 +176,11 @@ const AbilityFeaturesPage = () => {
           </button>
           <button
             type="button"
+            className={`filter-button ${
+              activeFilters?.includes("Fencing")
+                ? "active-button"
+                : "inactive-button"
+            }`}
             onClick={() =>
               onFilterToggle("Fencing", activeFilters, setActiveFilters)
             }
@@ -149,6 +189,11 @@ const AbilityFeaturesPage = () => {
           </button>
           <button
             type="button"
+            className={`filter-button ${
+              activeFilters?.includes("Two-Handed")
+                ? "active-button"
+                : "inactive-button"
+            }`}
             onClick={() =>
               onFilterToggle("Two-Handed", activeFilters, setActiveFilters)
             }
@@ -157,6 +202,11 @@ const AbilityFeaturesPage = () => {
           </button>
           <button
             type="button"
+            className={`filter-button ${
+              activeFilters?.includes("Weapon and Shield")
+                ? "active-button"
+                : "inactive-button"
+            }`}
             onClick={() =>
               onFilterToggle(
                 "Weapon and Shield",
@@ -169,6 +219,11 @@ const AbilityFeaturesPage = () => {
           </button>
           <button
             type="button"
+            className={`filter-button ${
+              activeFilters?.includes("Brawling / Grappling")
+                ? "active-button"
+                : "inactive-button"
+            }`}
             onClick={() =>
               onFilterToggle(
                 "Brawling / Grappling",
@@ -181,6 +236,11 @@ const AbilityFeaturesPage = () => {
           </button>
           <button
             type="button"
+            className={`filter-button ${
+              activeFilters?.includes("Spellcasting")
+                ? "active-button"
+                : "inactive-button"
+            }`}
             onClick={() =>
               onFilterToggle("Spellcasting", activeFilters, setActiveFilters)
             }
@@ -189,6 +249,11 @@ const AbilityFeaturesPage = () => {
           </button>
           <button
             type="button"
+            className={`filter-button ${
+              activeFilters?.includes("Polearms")
+                ? "active-button"
+                : "inactive-button"
+            }`}
             onClick={() =>
               onFilterToggle("Polearms", activeFilters, setActiveFilters)
             }
@@ -197,6 +262,11 @@ const AbilityFeaturesPage = () => {
           </button>
           <button
             type="button"
+            className={`filter-button ${
+              activeFilters?.includes("Ranged")
+                ? "active-button"
+                : "inactive-button"
+            }`}
             onClick={() =>
               onFilterToggle("Ranged", activeFilters, setActiveFilters)
             }
@@ -233,33 +303,35 @@ const AbilityFeaturesPage = () => {
                   )
 
                   return (
-                    <button
-                      className="ability"
-                      key={`${id}`}
-                      onClick={() =>
-                        onCollapseToggle(
-                          id,
-                          collapsedAbilityIDs,
-                          setCollapsedAbilityIDs
-                        )
-                      }
-                      type="button"
-                    >
-                      {/* Subrace Name */}
-                      <h5>{name}</h5>
+                    relevant && (
+                      <button
+                        className="ability"
+                        key={`filter-button ${id}`}
+                        onClick={() =>
+                          onCollapseToggle(
+                            id,
+                            collapsedAbilityIDs,
+                            setCollapsedAbilityIDs
+                          )
+                        }
+                        type="button"
+                      >
+                        {/* Subrace Name */}
+                        <h5>{name}</h5>
 
-                      {/* Subrace Info */}
-                      {!collapsedAbilityIDs?.includes(id) && relevant && (
-                        <>
-                          {requirements && (
-                            <p className="requirements">
-                              <strong>Requirements:</strong> {requirements}
-                            </p>
-                          )}
-                          <p>{description}</p>
-                        </>
-                      )}
-                    </button>
+                        {/* Subrace Info */}
+                        {!collapsedAbilityIDs?.includes(id) && (
+                          <>
+                            {requirements && (
+                              <p className="requirements">
+                                <strong>Requirements:</strong> {requirements}
+                              </p>
+                            )}
+                            <p>{description}</p>
+                          </>
+                        )}
+                      </button>
+                    )
                   )
                 })}
               </>
@@ -278,6 +350,54 @@ const AbilityFeaturesPage = () => {
                 }`}
               />
             </h3>
+            {!collapsedHeadings?.includes("3") && (
+              <>
+                {map(level3Abilities, ability => {
+                  // Derive ability properties.
+                  const name = ability?.name
+                  const id = ability?.id
+                  const description = ability?.description
+                  const requirements = ability?.requirements
+                  const relevantStyles = ability?.relevantStyles
+
+                  const relevant = activeFilters.some(style =>
+                    relevantStyles.includes(style)
+                  )
+
+                  return (
+                    relevant && (
+                      <button
+                        className="ability"
+                        key={`filter-button ${id}`}
+                        onClick={() =>
+                          onCollapseToggle(
+                            id,
+                            collapsedAbilityIDs,
+                            setCollapsedAbilityIDs
+                          )
+                        }
+                        type="button"
+                      >
+                        {/* Subrace Name */}
+                        <h5>{name}</h5>
+
+                        {/* Subrace Info */}
+                        {!collapsedAbilityIDs?.includes(id) && (
+                          <>
+                            {requirements && (
+                              <p className="requirements">
+                                <strong>Requirements:</strong> {requirements}
+                              </p>
+                            )}
+                            <p>{description}</p>
+                          </>
+                        )}
+                      </button>
+                    )
+                  )
+                })}
+              </>
+            )}
           </li>
           <li>
             <h3
@@ -292,6 +412,54 @@ const AbilityFeaturesPage = () => {
                 }`}
               />
             </h3>
+            {!collapsedHeadings?.includes("5") && (
+              <>
+                {map(level5Abilities, ability => {
+                  // Derive ability properties.
+                  const name = ability?.name
+                  const id = ability?.id
+                  const description = ability?.description
+                  const requirements = ability?.requirements
+                  const relevantStyles = ability?.relevantStyles
+
+                  const relevant = activeFilters.some(style =>
+                    relevantStyles.includes(style)
+                  )
+
+                  return (
+                    relevant && (
+                      <button
+                        className="ability"
+                        key={`filter-button ${id}`}
+                        onClick={() =>
+                          onCollapseToggle(
+                            id,
+                            collapsedAbilityIDs,
+                            setCollapsedAbilityIDs
+                          )
+                        }
+                        type="button"
+                      >
+                        {/* Subrace Name */}
+                        <h5>{name}</h5>
+
+                        {/* Subrace Info */}
+                        {!collapsedAbilityIDs?.includes(id) && (
+                          <>
+                            {requirements && (
+                              <p className="requirements">
+                                <strong>Requirements:</strong> {requirements}
+                              </p>
+                            )}
+                            <p>{description}</p>
+                          </>
+                        )}
+                      </button>
+                    )
+                  )
+                })}
+              </>
+            )}
           </li>
           <li>
             <h3
@@ -306,6 +474,54 @@ const AbilityFeaturesPage = () => {
                 }`}
               />
             </h3>
+            {!collapsedHeadings?.includes("7") && (
+              <>
+                {map(level7Abilities, ability => {
+                  // Derive ability properties.
+                  const name = ability?.name
+                  const id = ability?.id
+                  const description = ability?.description
+                  const requirements = ability?.requirements
+                  const relevantStyles = ability?.relevantStyles
+
+                  const relevant = activeFilters.some(style =>
+                    relevantStyles.includes(style)
+                  )
+
+                  return (
+                    relevant && (
+                      <button
+                        className="ability"
+                        key={`filter-button ${id}`}
+                        onClick={() =>
+                          onCollapseToggle(
+                            id,
+                            collapsedAbilityIDs,
+                            setCollapsedAbilityIDs
+                          )
+                        }
+                        type="button"
+                      >
+                        {/* Subrace Name */}
+                        <h5>{name}</h5>
+
+                        {/* Subrace Info */}
+                        {!collapsedAbilityIDs?.includes(id) && (
+                          <>
+                            {requirements && (
+                              <p className="requirements">
+                                <strong>Requirements:</strong> {requirements}
+                              </p>
+                            )}
+                            <p>{description}</p>
+                          </>
+                        )}
+                      </button>
+                    )
+                  )
+                })}
+              </>
+            )}
           </li>
         </ul>
       </Wrapper>
