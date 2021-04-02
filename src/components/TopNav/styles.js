@@ -52,6 +52,7 @@ export const Header = styled.header`
     border: none;
     background: transparent;
     outline: none;
+    height: 40px;
 
     .burger {
       height: 40px;
