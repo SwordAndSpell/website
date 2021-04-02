@@ -56,6 +56,18 @@ module.exports = {
         link: "/shapechange-forms",
         label: "Shapechange Forms",
       },
+      {
+        link: "/weapons",
+        label: "Weapons",
+      },
+      {
+        link: "/armor",
+        label: "Armor",
+      },
+      {
+        link: "/runes",
+        label: "Runes",
+      },
     ],
     // Raw CMS Data Start
     // ========
