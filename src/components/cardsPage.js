@@ -26,6 +26,7 @@ export const Wrapper = styled.section`
     align-items: center;
     display: flex;
     flex-flow: row wrap;
+    width: 100%;
   }
 
   li {
@@ -54,6 +55,7 @@ export const Wrapper = styled.section`
       position: relative;
       outline: none;
       width: 100%;
+      min-height: 60px;
 
       img {
         width: 100%;
@@ -141,7 +143,7 @@ export const Wrapper = styled.section`
       }
 
       .collapsible {
-        text-align: left;
+        text-align: center;
         white-space: pre-line;
         width: 100%;
 
