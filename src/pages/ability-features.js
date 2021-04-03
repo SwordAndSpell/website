@@ -10,63 +10,7 @@ import Layout from "../components/layout"
 import Chevron from "../components/icons/Chevron"
 import SEO from "../components/seo"
 import defaultRaceImage from "../images/defaultRace.png"
-
-const Wrapper = styled.section`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin: 90px 0 0;
-  text-align: center;
-
-  h2 {
-    text-align: center;
-    width: 100%;
-  }
-
-  h3 {
-    align-items: center;
-    background: rgba(164, 0, 255, 0.8);
-    bottom: 0;
-    color: #ffffff;
-    display: flex;
-    font-size: 2.5rem;
-    justify-content: space-between;
-    line-height: 40px;
-    padding: 10px 20px;
-    text-align: left;
-    width: 100%;
-  }
-  .filter-button {
-    padding: 8px;
-    margin: 5px;
-    border-radius: 5px;
-    border: 1px solid rgba(81, 43, 252, 0.8);
-
-    &.inactive-button {
-      background: #ffffff;
-      color: #000000;
-      border: 1px solid #000000;
-    }
-    &.active-button {
-      background: rgba(81, 43, 252, 0.8);
-      color: #ffffff;
-    }
-  }
-
-  .chevron {
-    height: 35px;
-    margin-left: 20px;
-    transition: transform 0.5s ease;
-
-    path {
-      fill: #ffffff;
-    }
-
-    &.expanded {
-      transform: rotate(180deg);
-    }
-  }
-`
+import { Wrapper } from "../components/cardsPage"
 
 const fadeIn = keyframes`
   0% {
@@ -274,252 +218,329 @@ const AbilityFeaturesPage = () => {
             Ranged
           </button>
         </section>
+
+        {/* begin headings for abilities */}
         <ul>
-          <li>
-            <h3
+          <li key={"level1Abilities"}>
+            {/*  NAME */}
+            {/* ===== */}
+            <header
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  onCollapseToggle("1", collapsedHeadings, setCollapsedHeadings)
+                }
+              }}
               onClick={() =>
                 onCollapseToggle("1", collapsedHeadings, setCollapsedHeadings)
               }
+              role="button"
+              tabIndex="0"
             >
-              Level 1 Abilities
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("1") ? " expanded" : ""
-                }`}
-              />
-            </h3>
+              <h3>
+                Level 1 Abilities
+                <Chevron
+                  className={`chevron${
+                    !collapsedHeadings?.includes("1") ? " expanded" : ""
+                  }`}
+                />
+              </h3>
+            </header>
+
+            {/* NAME end */}
+            {/* ======== */}
+
             {!collapsedHeadings?.includes("1") && (
               <>
-                {map(level1Abilities, ability => {
-                  // Derive ability properties.
-                  const name = ability?.name
-                  const id = ability?.id
-                  const description = ability?.description
-                  const requirements = ability?.requirements
-                  const relevantStyles = ability?.relevantStyles
+                <section className="collapsibles">
+                  {map(level1Abilities, ability => {
+                    // Derive ability properties.
+                    const name = ability?.name
+                    const id = ability?.id
+                    const description = ability?.description
+                    const requirements = ability?.requirements
+                    const relevantStyles = ability?.relevantStyles
 
-                  const relevant = activeFilters.some(style =>
-                    relevantStyles.includes(style)
-                  )
-
-                  return (
-                    relevant && (
-                      <button
-                        className="ability"
-                        key={`filter-button ${id}`}
-                        onClick={() =>
-                          onCollapseToggle(
-                            id,
-                            collapsedAbilityIDs,
-                            setCollapsedAbilityIDs
-                          )
-                        }
-                        type="button"
-                      >
-                        {/* Subrace Name */}
-                        <h5>{name}</h5>
-
-                        {/* Subrace Info */}
-                        {!collapsedAbilityIDs?.includes(id) && (
-                          <>
-                            {requirements && (
-                              <p className="requirements">
-                                <strong>Requirements:</strong> {requirements}
-                              </p>
-                            )}
-                            <p>{description}</p>
-                          </>
-                        )}
-                      </button>
+                    const relevant = activeFilters.some(style =>
+                      relevantStyles.includes(style)
                     )
-                  )
-                })}
+
+                    return (
+                      relevant && (
+                        <button
+                          className="collapsible"
+                          key={`filter-button ${id}`}
+                          onClick={() =>
+                            onCollapseToggle(
+                              id,
+                              collapsedAbilityIDs,
+                              setCollapsedAbilityIDs
+                            )
+                          }
+                          type="button"
+                        >
+                          {/* Ability Name */}
+                          <h5>{name}</h5>
+
+                          {/* Ability Info */}
+                          {collapsedAbilityIDs?.includes(id) && (
+                            <>
+                              {requirements && (
+                                <p className="requirements">
+                                  <strong>Requirements:</strong> {requirements}
+                                </p>
+                              )}
+                              <p>{description}</p>
+                            </>
+                          )}
+                        </button>
+                      )
+                    )
+                  })}
+                </section>
               </>
             )}
           </li>
-          <li>
-            <h3
+
+          <li key={"level3Abilities"}>
+            {/*  NAME */}
+            {/* ===== */}
+            <header
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  onCollapseToggle("3", collapsedHeadings, setCollapsedHeadings)
+                }
+              }}
               onClick={() =>
                 onCollapseToggle("3", collapsedHeadings, setCollapsedHeadings)
               }
+              role="button"
+              tabIndex="0"
             >
-              Level 3 Abilities
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("3") ? " expanded" : ""
-                }`}
-              />
-            </h3>
+              <h3>
+                Level 3 Abilities
+                <Chevron
+                  className={`chevron${
+                    !collapsedHeadings?.includes("3") ? " expanded" : ""
+                  }`}
+                />
+              </h3>
+            </header>
+
+            {/* NAME end */}
+            {/* ======== */}
+
             {!collapsedHeadings?.includes("3") && (
               <>
-                {map(level3Abilities, ability => {
-                  // Derive ability properties.
-                  const name = ability?.name
-                  const id = ability?.id
-                  const description = ability?.description
-                  const requirements = ability?.requirements
-                  const relevantStyles = ability?.relevantStyles
+                <section className="collapsibles">
+                  {map(level3Abilities, ability => {
+                    // Derive ability properties.
+                    const name = ability?.name
+                    const id = ability?.id
+                    const description = ability?.description
+                    const requirements = ability?.requirements
+                    const relevantStyles = ability?.relevantStyles
 
-                  const relevant = activeFilters.some(style =>
-                    relevantStyles.includes(style)
-                  )
-
-                  return (
-                    relevant && (
-                      <button
-                        className="ability"
-                        key={`filter-button ${id}`}
-                        onClick={() =>
-                          onCollapseToggle(
-                            id,
-                            collapsedAbilityIDs,
-                            setCollapsedAbilityIDs
-                          )
-                        }
-                        type="button"
-                      >
-                        {/* Subrace Name */}
-                        <h5>{name}</h5>
-
-                        {/* Subrace Info */}
-                        {!collapsedAbilityIDs?.includes(id) && (
-                          <>
-                            {requirements && (
-                              <p className="requirements">
-                                <strong>Requirements:</strong> {requirements}
-                              </p>
-                            )}
-                            <p>{description}</p>
-                          </>
-                        )}
-                      </button>
+                    const relevant = activeFilters.some(style =>
+                      relevantStyles.includes(style)
                     )
-                  )
-                })}
+
+                    return (
+                      relevant && (
+                        <button
+                          className="collapsible"
+                          key={`filter-button ${id}`}
+                          onClick={() =>
+                            onCollapseToggle(
+                              id,
+                              collapsedAbilityIDs,
+                              setCollapsedAbilityIDs
+                            )
+                          }
+                          type="button"
+                        >
+                          {/* Ability Name */}
+                          <h5>{name}</h5>
+
+                          {/* Ability Info */}
+                          {collapsedAbilityIDs?.includes(id) && (
+                            <>
+                              {requirements && (
+                                <p className="requirements">
+                                  <strong>Requirements:</strong> {requirements}
+                                </p>
+                              )}
+                              <p>{description}</p>
+                            </>
+                          )}
+                        </button>
+                      )
+                    )
+                  })}
+                </section>
               </>
             )}
           </li>
-          <li>
-            <h3
+
+          <li key={"level5Abilities"}>
+            {/*  NAME */}
+            {/* ===== */}
+            <header
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  onCollapseToggle("5", collapsedHeadings, setCollapsedHeadings)
+                }
+              }}
               onClick={() =>
                 onCollapseToggle("5", collapsedHeadings, setCollapsedHeadings)
               }
+              role="button"
+              tabIndex="0"
             >
-              Level 5 Abilities
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("5") ? " expanded" : ""
-                }`}
-              />
-            </h3>
+              <h3>
+                Level 5 Abilities
+                <Chevron
+                  className={`chevron${
+                    !collapsedHeadings?.includes("5") ? " expanded" : ""
+                  }`}
+                />
+              </h3>
+            </header>
+
+            {/* NAME end */}
+            {/* ======== */}
+
             {!collapsedHeadings?.includes("5") && (
               <>
-                {map(level5Abilities, ability => {
-                  // Derive ability properties.
-                  const name = ability?.name
-                  const id = ability?.id
-                  const description = ability?.description
-                  const requirements = ability?.requirements
-                  const relevantStyles = ability?.relevantStyles
+                <section className="collapsibles">
+                  {map(level5Abilities, ability => {
+                    // Derive ability properties.
+                    const name = ability?.name
+                    const id = ability?.id
+                    const description = ability?.description
+                    const requirements = ability?.requirements
+                    const relevantStyles = ability?.relevantStyles
 
-                  const relevant = activeFilters.some(style =>
-                    relevantStyles.includes(style)
-                  )
-
-                  return (
-                    relevant && (
-                      <button
-                        className="ability"
-                        key={`filter-button ${id}`}
-                        onClick={() =>
-                          onCollapseToggle(
-                            id,
-                            collapsedAbilityIDs,
-                            setCollapsedAbilityIDs
-                          )
-                        }
-                        type="button"
-                      >
-                        {/* Subrace Name */}
-                        <h5>{name}</h5>
-
-                        {/* Subrace Info */}
-                        {!collapsedAbilityIDs?.includes(id) && (
-                          <>
-                            {requirements && (
-                              <p className="requirements">
-                                <strong>Requirements:</strong> {requirements}
-                              </p>
-                            )}
-                            <p>{description}</p>
-                          </>
-                        )}
-                      </button>
+                    const relevant = activeFilters.some(style =>
+                      relevantStyles.includes(style)
                     )
-                  )
-                })}
+
+                    return (
+                      relevant && (
+                        <button
+                          className="collapsible"
+                          key={`filter-button ${id}`}
+                          onClick={() =>
+                            onCollapseToggle(
+                              id,
+                              collapsedAbilityIDs,
+                              setCollapsedAbilityIDs
+                            )
+                          }
+                          type="button"
+                        >
+                          {/* Ability Name */}
+                          <h5>{name}</h5>
+
+                          {/* Ability Info */}
+                          {collapsedAbilityIDs?.includes(id) && (
+                            <>
+                              {requirements && (
+                                <p className="requirements">
+                                  <strong>Requirements:</strong> {requirements}
+                                </p>
+                              )}
+                              <p>{description}</p>
+                            </>
+                          )}
+                        </button>
+                      )
+                    )
+                  })}
+                </section>
               </>
             )}
           </li>
-          <li>
-            <h3
+
+          <li key={"level7Abilities"}>
+            {/*  NAME */}
+            {/* ===== */}
+            <header
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  onCollapseToggle("7", collapsedHeadings, setCollapsedHeadings)
+                }
+              }}
               onClick={() =>
                 onCollapseToggle("7", collapsedHeadings, setCollapsedHeadings)
               }
+              role="button"
+              tabIndex="0"
             >
-              Level 7 Abilities
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("7") ? " expanded" : ""
-                }`}
-              />
-            </h3>
+              <h3>
+                Level 7 Abilities
+                <Chevron
+                  className={`chevron${
+                    !collapsedHeadings?.includes("7") ? " expanded" : ""
+                  }`}
+                />
+              </h3>
+            </header>
+
+            {/* NAME end */}
+            {/* ======== */}
+
             {!collapsedHeadings?.includes("7") && (
               <>
-                {map(level7Abilities, ability => {
-                  // Derive ability properties.
-                  const name = ability?.name
-                  const id = ability?.id
-                  const description = ability?.description
-                  const requirements = ability?.requirements
-                  const relevantStyles = ability?.relevantStyles
+                <section className="collapsibles">
+                  {map(level7Abilities, ability => {
+                    // Derive ability properties.
+                    const name = ability?.name
+                    const id = ability?.id
+                    const description = ability?.description
+                    const requirements = ability?.requirements
+                    const relevantStyles = ability?.relevantStyles
 
-                  const relevant = activeFilters.some(style =>
-                    relevantStyles.includes(style)
-                  )
-
-                  return (
-                    relevant && (
-                      <button
-                        className="ability"
-                        key={`filter-button ${id}`}
-                        onClick={() =>
-                          onCollapseToggle(
-                            id,
-                            collapsedAbilityIDs,
-                            setCollapsedAbilityIDs
-                          )
-                        }
-                        type="button"
-                      >
-                        {/* Subrace Name */}
-                        <h5>{name}</h5>
-
-                        {/* Subrace Info */}
-                        {!collapsedAbilityIDs?.includes(id) && (
-                          <>
-                            {requirements && (
-                              <p className="requirements">
-                                <strong>Requirements:</strong> {requirements}
-                              </p>
-                            )}
-                            <p>{description}</p>
-                          </>
-                        )}
-                      </button>
+                    const relevant = activeFilters.some(style =>
+                      relevantStyles.includes(style)
                     )
-                  )
-                })}
+
+                    return (
+                      relevant && (
+                        <button
+                          className="collapsible"
+                          key={`filter-button ${id}`}
+                          onClick={() =>
+                            onCollapseToggle(
+                              id,
+                              collapsedAbilityIDs,
+                              setCollapsedAbilityIDs
+                            )
+                          }
+                          type="button"
+                        >
+                          {/* Ability Name */}
+                          <h5>{name}</h5>
+
+                          {/* Ability Info */}
+                          {collapsedAbilityIDs?.includes(id) && (
+                            <>
+                              {requirements && (
+                                <p className="requirements">
+                                  <strong>Requirements:</strong> {requirements}
+                                </p>
+                              )}
+                              <p>{description}</p>
+                            </>
+                          )}
+                        </button>
+                      )
+                    )
+                  })}
+                </section>
               </>
             )}
           </li>

@@ -10178,9 +10178,9 @@ potrace@^2.1.8:
     jimp "^0.14.0"
 
 prebuild-install@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-6.0.1.tgz#5902172f7a40eb67305b96c2a695db32636ee26d"
-  integrity sha512-7GOJrLuow8yeiyv75rmvZyeMGzl8mdEX5gY69d6a6bHWmiPevwqFw+tQavhK0EYMaSg3/KD24cWqeQv1EWsqDQ==
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-6.1.0.tgz#cee5bfb0317475450d05dbec821be23d9a7c2c32"
+  integrity sha512-ht3ts5ewK1V0RqqelVVBcZh94WEtk/WCWlIzeuztMLdNe+5/65jPGr3sgQKY6tJhX3ib7glckPYazjkW/K0D/g==
   dependencies:
     detect-libc "^1.0.3"
     expand-template "^2.0.3"
