@@ -63,6 +63,7 @@ const Wrapper = styled.section`
       display: flex;
       flex-direction: column;
       position: relative;
+      outline: none;
       width: 100%;
 
       img {
@@ -116,9 +117,13 @@ const Wrapper = styled.section`
       margin: 10px;
 
       .label {
-        color: #999999;
-        font-size: 0.7rem;
+        font-size: 1rem;
+        font-weight: bold;
         margin: 0;
+
+        &:first-of-type {
+          margin: 20px 0;
+        }
       }
 
       .value {
@@ -126,6 +131,7 @@ const Wrapper = styled.section`
         font-size: 1.2rem;
         margin: 0;
         white-space: pre-line;
+        text-align: left;
       }
     }
 
@@ -135,6 +141,7 @@ const Wrapper = styled.section`
       flex-direction: column;
       margin-bottom: 20px;
       padding: 0 20px;
+      width: 100%;
 
       header {
         margin: 0 0 20px;
@@ -148,25 +155,27 @@ const Wrapper = styled.section`
 
       .core-ability {
         white-space: pre-line;
+        text-align: left;
 
         h5 {
           color: #512bfccc;
           font-size: 1.5rem;
+          text-align: center;
         }
       }
     }
   }
 `
 
-const onCollapseToggle = (id, collapsedIDs, setCollapsedIDs) => {
+const onCollapseToggle = (id, expandedIDs, setExpandedIDs) => {
   // Expand the ID.
-  if (collapsedIDs?.includes(id)) {
-    setCollapsedIDs(filter(collapsedIDs, collapsedID => collapsedID !== id))
+  if (expandedIDs?.includes(id)) {
+    setExpandedIDs(filter(expandedIDs, expandedID => expandedID !== id))
     return
   }
 
   // Collapse the ID.
-  setCollapsedIDs(uniq([...collapsedIDs, id]))
+  setExpandedIDs(uniq([...expandedIDs, id]))
 }
 
 const CoreIdentitiesPage = () => {
@@ -197,13 +206,9 @@ const CoreIdentitiesPage = () => {
   const CORE_IDENTITIES = queryResult?.site?.siteMetadata?.CORE_IDENTITIES
   const CORE_ABILITIES = queryResult?.site?.siteMetadata?.CORE_ABILITIES
 
-  // Start with them all races being collapsed.
-  const [collapsedCoreIdentityIDs, setCollapsedCoreIdentityIDs] = useState(
-    map(CORE_IDENTITIES, coreIdentity => coreIdentity?.id)
-  )
-
-  // Start with all perks + coreAbilities being expanded.
-  const [collapsedCoreAbilityIDs, setCollapsedCoreAbilityIDs] = useState([])
+  // Start with all identities + abilities being expanded.
+  const [expandedCoreIdentityIDs, setExpandedCoreIdentityIDs] = useState([])
+  const [expandedCoreAbilityIDs, setExpandedCoreAbilityIDs] = useState([])
 
   return (
     <Layout>
@@ -228,20 +233,32 @@ const CoreIdentitiesPage = () => {
             )
 
             // Derive if the details are expanded.
-            const isExpanded = !collapsedCoreIdentityIDs?.includes(id)
+            const isExpanded = expandedCoreIdentityIDs?.includes(id)
 
             return (
               <li key={name}>
                 {/* NAME */}
                 {/* ============ */}
                 <header
+                  onKeyDown={event => {
+                    // On enter, toggle expanded/expanded.
+                    if (event.keyCode === 13) {
+                      onCollapseToggle(
+                        id,
+                        expandedCoreIdentityIDs,
+                        setExpandedCoreIdentityIDs
+                      )
+                    }
+                  }}
                   onClick={() =>
                     onCollapseToggle(
                       id,
-                      collapsedCoreIdentityIDs,
-                      setCollapsedCoreIdentityIDs
+                      expandedCoreIdentityIDs,
+                      setExpandedCoreIdentityIDs
                     )
                   }
+                  role="button"
+                  tabIndex="0"
                 >
                   <img alt={`${name} core identity`} src={imageURL} />
                   <h3>
@@ -258,8 +275,6 @@ const CoreIdentitiesPage = () => {
                   <>
                     {/* CORE STATS */}
                     {/* ========== */}
-                    <h4>Core Stats</h4>
-
                     <section className="fields">
                       <section className="field-group">
                         <p className="label">Health at Level 1</p>
@@ -308,8 +323,8 @@ const CoreIdentitiesPage = () => {
                               onClick={() =>
                                 onCollapseToggle(
                                   coreIdentityAbilityID,
-                                  collapsedCoreAbilityIDs,
-                                  setCollapsedCoreAbilityIDs
+                                  expandedCoreAbilityIDs,
+                                  setExpandedCoreAbilityIDs
                                 )
                               }
                               type="button"
@@ -318,7 +333,7 @@ const CoreIdentitiesPage = () => {
                               <h5>{name}</h5>
 
                               {/* CoreAbility Info */}
-                              {!collapsedCoreAbilityIDs?.includes(
+                              {expandedCoreAbilityIDs?.includes(
                                 coreIdentityAbilityID
                               ) && <p>{description}</p>}
                             </button>

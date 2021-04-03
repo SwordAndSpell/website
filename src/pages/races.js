@@ -63,6 +63,7 @@ const Wrapper = styled.section`
       display: flex;
       flex-direction: column;
       position: relative;
+      outline: none;
       width: 100%;
 
       img {
@@ -135,6 +136,7 @@ const Wrapper = styled.section`
       display: flex;
       flex-direction: column;
       padding: 0 20px;
+      width: 100%;
 
       header {
         margin: 0 0 20px;
@@ -148,11 +150,14 @@ const Wrapper = styled.section`
 
       .perk,
       .subrace {
+        text-align: left;
         white-space: pre-line;
+        width: 100%;
 
         h5 {
           color: #512bfccc;
           font-size: 1.5rem;
+          text-align: center;
         }
 
         .requirements {
@@ -172,15 +177,15 @@ const Wrapper = styled.section`
   }
 `
 
-const onCollapseToggle = (id, collapsedIDs, setCollapsedIDs) => {
-  // Expand the ID.
-  if (collapsedIDs?.includes(id)) {
-    setCollapsedIDs(filter(collapsedIDs, collapsedID => collapsedID !== id))
+const onExpandedToggle = (id, expandedIDs, setExpandedIDs) => {
+  // Collapse the ID.
+  if (expandedIDs?.includes(id)) {
+    setExpandedIDs(filter(expandedIDs, expandedID => expandedID !== id))
     return
   }
 
-  // Collapse the ID.
-  setCollapsedIDs(uniq([...collapsedIDs, id]))
+  // Expand the ID.
+  setExpandedIDs(uniq([...expandedIDs, id]))
 }
 
 const RacesPage = () => {
@@ -227,14 +232,10 @@ const RacesPage = () => {
   const SUBRACES = queryResult?.site?.siteMetadata?.SUBRACES
   const PERKS = queryResult?.site?.siteMetadata?.PERKS
 
-  // Start with them all races being collapsed.
-  const [collapsedRaceIDs, setCollapsedRaceIDs] = useState(
-    map(RACES, race => race?.id)
-  )
-
-  // Start with all perks + subraces being expanded.
-  const [collapsedPerkIDs, setCollapsedPerkIDs] = useState([])
-  const [collapsedSubraceIDs, setCollapsedSubraceIDs] = useState([])
+  // Start with races, perks, subraces being collapsed.
+  const [expandedRaceIDs, setExpandedRaceIDs] = useState([])
+  const [expandedPerkIDs, setExpandedPerkIDs] = useState([])
+  const [expandedSubraceIDs, setExpandedSubraceIDs] = useState([])
 
   return (
     <Layout>
@@ -262,16 +263,24 @@ const RacesPage = () => {
             const subraces = filter(SUBRACES, subrace => subrace.raceID === id)
 
             // Derive if the details are expanded.
-            const isExpanded = !collapsedRaceIDs?.includes(id)
+            const isExpanded = expandedRaceIDs?.includes(id)
 
             return (
               <li key={name}>
                 {/* IMAGE + NAME */}
                 {/* ============ */}
                 <header
+                  onKeyDown={event => {
+                    // On enter, toggle expanded/expanded.
+                    if (event.keyCode === 13) {
+                      onExpandedToggle(id, expandedRaceIDs, setExpandedRaceIDs)
+                    }
+                  }}
                   onClick={() =>
-                    onCollapseToggle(id, collapsedRaceIDs, setCollapsedRaceIDs)
+                    onExpandedToggle(id, expandedRaceIDs, setExpandedRaceIDs)
                   }
+                  role="button"
+                  tabIndex="0"
                 >
                   <img alt={`${name} race`} src={imageURL} />
                   <h3>
@@ -365,7 +374,6 @@ const RacesPage = () => {
                           const subraceID = subrace?.id
                           const name = subrace?.name
                           const penalty = subrace?.penalty
-                          const raceID = subrace?.raceID
                           const requirements = subrace?.requirements
 
                           return (
@@ -373,10 +381,10 @@ const RacesPage = () => {
                               className="subrace"
                               key={`${id}-${subraceID}`}
                               onClick={() =>
-                                onCollapseToggle(
+                                onExpandedToggle(
                                   subraceID,
-                                  collapsedSubraceIDs,
-                                  setCollapsedSubraceIDs
+                                  expandedSubraceIDs,
+                                  setExpandedSubraceIDs
                                 )
                               }
                               type="button"
@@ -385,12 +393,17 @@ const RacesPage = () => {
                               <h5>{name}</h5>
 
                               {/* Subrace Info */}
-                              {!collapsedSubraceIDs?.includes(subraceID) && (
+                              {expandedSubraceIDs?.includes(subraceID) && (
                                 <>
                                   {requirements && (
                                     <p className="requirements">
                                       <strong>Requirements:</strong>{" "}
                                       {requirements}
+                                    </p>
+                                  )}
+                                  {penalty && (
+                                    <p className="requirements">
+                                      <strong>Penalty:</strong> {penalty}
                                     </p>
                                   )}
                                   <p>{description}</p>
@@ -433,10 +446,10 @@ const RacesPage = () => {
                             className="perk"
                             key={racePerkID}
                             onClick={() =>
-                              onCollapseToggle(
+                              onExpandedToggle(
                                 racePerkID,
-                                collapsedPerkIDs,
-                                setCollapsedPerkIDs
+                                expandedPerkIDs,
+                                setExpandedPerkIDs
                               )
                             }
                             type="button"
@@ -445,7 +458,7 @@ const RacesPage = () => {
                             <h5>{name}</h5>
 
                             {/* Perk Info */}
-                            {!collapsedPerkIDs?.includes(racePerkID) && (
+                            {expandedPerkIDs?.includes(racePerkID) && (
                               <>
                                 {requirements && (
                                   <p className="requirements">
