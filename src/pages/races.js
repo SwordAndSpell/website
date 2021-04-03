@@ -1,7 +1,6 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import styled, { keyframes } from "styled-components"
 import find from "lodash/find"
 import filter from "lodash/filter"
 import map from "lodash/map"
@@ -11,171 +10,7 @@ import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import defaultRaceImage from "../images/defaultRace.png"
-
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`
-
-const Wrapper = styled.section`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin: 90px 0 0;
-  text-align: center;
-
-  h2 {
-    text-align: center;
-    width: 100%;
-  }
-
-  ul {
-    align-items: center;
-    display: flex;
-    flex-flow: row wrap;
-  }
-
-  li {
-    align-items: center;
-    background: #ffffff;
-    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-    margin: 0 20px 50px;
-    width: 100%;
-
-    * {
-      animation: ${fadeIn} 0.5s;
-    }
-
-    &:nth-of-type(even) {
-      h3 {
-        background: rgba(164, 0, 255, 0.8);
-      }
-    }
-
-    header {
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      outline: none;
-      width: 100%;
-
-      img {
-        width: 100%;
-      }
-
-      h3 {
-        align-items: center;
-        background: rgba(81, 43, 252, 0.8);
-        bottom: 0;
-        color: #ffffff;
-        display: flex;
-        font-size: 2.5rem;
-        justify-content: space-between;
-        line-height: 40px;
-        padding: 10px 20px;
-        position: absolute;
-        text-align: left;
-        width: 100%;
-      }
-
-      .chevron {
-        height: 35px;
-        margin-left: 20px;
-        transition: transform 0.5s ease;
-
-        path {
-          fill: #ffffff;
-        }
-
-        &.expanded {
-          transform: rotate(180deg);
-        }
-      }
-    }
-
-    h4 {
-      margin: 20px 0 0;
-    }
-
-    .fields {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      padding: 10px 10px 0;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      margin: 10px;
-
-      .label {
-        color: #999999;
-        font-size: 0.7rem;
-        margin: 0;
-      }
-
-      .value {
-        color: #444444;
-        font-size: 1.2rem;
-        margin: 0;
-        white-space: pre-line;
-      }
-    }
-
-    .perks,
-    .subraces {
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-      padding: 0 20px;
-      width: 100%;
-
-      header {
-        margin: 0 0 20px;
-      }
-
-      .disclaimer {
-        color: #999999;
-        font-size: 0.7rem;
-        margin: 0;
-      }
-
-      .perk,
-      .subrace {
-        text-align: left;
-        white-space: pre-line;
-        width: 100%;
-
-        h5 {
-          color: #512bfccc;
-          font-size: 1.5rem;
-          text-align: center;
-        }
-
-        .requirements {
-          font-size: 0.7rem;
-          margin: 0;
-        }
-      }
-
-      .subrace h5 {
-        color: #831fbbcc;
-      }
-    }
-
-    .perks {
-      margin-bottom: 20px;
-    }
-  }
-`
+import { Wrapper } from "../components/cardsPage"
 
 const onExpandedToggle = (id, expandedIDs, setExpandedIDs) => {
   // Collapse the ID.
@@ -361,7 +196,7 @@ const RacesPage = () => {
                     {/* SUBRACES */}
                     {/* ========== */}
                     {subraces?.length > 0 && (
-                      <section className="subraces">
+                      <section className="collapsibles">
                         <header>
                           <h4>Subraces</h4>
 
@@ -378,7 +213,7 @@ const RacesPage = () => {
 
                           return (
                             <button
-                              className="subrace"
+                              className="collapsible"
                               key={`${id}-${subraceID}`}
                               onClick={() =>
                                 onExpandedToggle(
@@ -419,7 +254,7 @@ const RacesPage = () => {
 
                     {/* PERKS */}
                     {/* ===== */}
-                    <section className="perks">
+                    <section className="collapsibles">
                       <header>
                         <h4>Perks</h4>
 
@@ -443,7 +278,7 @@ const RacesPage = () => {
 
                         return (
                           <button
-                            className="perk"
+                            className="collapsible"
                             key={racePerkID}
                             onClick={() =>
                               onExpandedToggle(
