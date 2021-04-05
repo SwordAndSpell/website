@@ -1,7 +1,6 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import styled, { keyframes } from "styled-components"
 import filter from "lodash/filter"
 import map from "lodash/map"
 import uniq from "lodash/uniq"
@@ -9,17 +8,7 @@ import uniq from "lodash/uniq"
 import Layout from "../components/layout"
 import Chevron from "../components/icons/Chevron"
 import SEO from "../components/seo"
-import defaultRaceImage from "../images/defaultRace.png"
 import { Wrapper } from "../components/cardsPage"
-
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`
 
 const onFilterToggle = (filterToToggle, activeFilters, setActiveFilters) => {
   // Expand the ID.
