@@ -7,7 +7,7 @@ import uniq from "lodash/uniq"
 // Relative imports.
 import Layout from "../components/layout"
 import Chevron from "../components/icons/Chevron"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
 
 const onFilterToggle = (filterToToggle, activeFilters, setActiveFilters) => {
@@ -73,7 +73,7 @@ const AbilityFeaturesPage = () => {
 
   return (
     <Layout>
-      <SEO title="Ability Features" />
+      <Seo title="Ability Features" />
       <Wrapper>
         <h2>Ability Features</h2>
         <section className="buttons">
