@@ -8,7 +8,7 @@ import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import defaultRaceImage from "../images/defaultRace.png"
 import { Wrapper } from "../components/cardsPage"
 
@@ -74,7 +74,7 @@ const RacesPage = () => {
 
   return (
     <Layout>
-      <SEO title="Races" />
+      <Seo title="Races" />
       <Wrapper>
         <h2>Races</h2>
         <ul>
