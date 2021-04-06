@@ -58,7 +58,6 @@ const BackgroundsPage = () => {
             const abilityBoostChoice = background?.abilityBoostChoice
             const freeAbilityBoost = background?.freeAbilityBoost
             const id = background?.id
-            const imageURL = background?.imageURL || defaultBackgroundImage
             const loreAdvantage = background?.loreAdvantage
             const name = background?.name
             const trainedSkill = background?.trainedSkill
@@ -91,7 +90,6 @@ const BackgroundsPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <img alt={`${name} player background`} src={imageURL} />
                   <h3>
                     {name}
                     <Chevron
