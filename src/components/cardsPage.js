@@ -35,7 +35,7 @@ export const Wrapper = styled.section`
     box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
-    margin: 0 20px 50px;
+    margin: 0 20px 20px;
     width: 100%;
 
     * {
@@ -99,7 +99,7 @@ export const Wrapper = styled.section`
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
-      padding: 10px 10px 0;
+      padding: 10px 10px 10px;
     }
 
     .field-group {
