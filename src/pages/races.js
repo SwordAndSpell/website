@@ -62,12 +62,12 @@ const RacesPage = () => {
     }
   `)
 
-  // Derive Races and Perks data from the graphql query above.
+  // Derive data from the graphql query above.
   const RACES = queryResult?.site?.siteMetadata?.RACES
   const SUBRACES = queryResult?.site?.siteMetadata?.SUBRACES
   const PERKS = queryResult?.site?.siteMetadata?.PERKS
 
-  // Start with races, perks, subraces being collapsed.
+  // Start with everything collapsed.
   const [expandedRaceIDs, setExpandedRaceIDs] = useState([])
   const [expandedPerkIDs, setExpandedPerkIDs] = useState([])
   const [expandedSubraceIDs, setExpandedSubraceIDs] = useState([])

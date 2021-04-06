@@ -51,7 +51,7 @@ const CoreIdentitiesPage = () => {
   const CORE_IDENTITIES = queryResult?.site?.siteMetadata?.CORE_IDENTITIES
   const CORE_ABILITIES = queryResult?.site?.siteMetadata?.CORE_ABILITIES
 
-  // Start with all identities + abilities being expanded.
+  // Start with everything collapsed.
   const [expandedCoreIdentityIDs, setExpandedCoreIdentityIDs] = useState([])
   const [expandedCoreAbilityIDs, setExpandedCoreAbilityIDs] = useState([])
 
@@ -144,7 +144,7 @@ const CoreIdentitiesPage = () => {
                     {/* CORE STATS end */}
                     {/* ========== */}
 
-                    {/* CORE_IDENTITIES */}
+                    {/* CORE ABILITIES */}
                     {/* ========== */}
                     {coreAbilities?.length > 0 && (
                       <section className="collapsibles">
@@ -186,7 +186,7 @@ const CoreIdentitiesPage = () => {
                         })}
                       </section>
                     )}
-                    {/* CORE_IDENTITIES end */}
+                    {/* CORE ABILITIES end */}
                     {/* ========== */}
                   </>
                 )}
