@@ -31,6 +31,25 @@ const onCollapseToggle = (id, collapsedIDs, setCollapsedIDs) => {
   setCollapsedIDs(uniq([...collapsedIDs, id]))
 }
 
+const toggleAllFilters = (activeFilters, setActiveFilters) => {
+  if (activeFilters.length > 0) {
+    setActiveFilters([])
+    return
+  }
+  setActiveFilters([
+    "Dual Weilding",
+    "Daggers / Finesse",
+    "Fencing",
+    "Two-Handed",
+    "Weapon and Shield",
+    "Brawling / Grappling",
+    "Spellcasting",
+    "Polearms",
+    "Ranged",
+  ])
+  return
+}
+
 const AbilityFeaturesPage = () => {
   const queryResult = useStaticQuery(graphql`
     query {
@@ -63,7 +82,12 @@ const AbilityFeaturesPage = () => {
     "Polearms",
     "Ranged",
   ])
-  const [collapsedHeadings, setCollapsedHeadings] = useState(["3", "5", "7"])
+  const [collapsedHeadings, setCollapsedHeadings] = useState([
+    "1",
+    "3",
+    "5",
+    "7",
+  ])
   const [collapsedAbilityIDs, setCollapsedAbilityIDs] = useState([])
 
   const level1Abilities = filter(ABILITIES, ability => ability.level === 1)
@@ -77,6 +101,25 @@ const AbilityFeaturesPage = () => {
       <Wrapper>
         <h2>Ability Features</h2>
         <section className="buttons">
+          <button
+            type="button"
+            className={`filter-button ${
+              activeFilters?.includes("Dual Weilding") &&
+              activeFilters?.includes("Daggers / Finesse") &&
+              activeFilters?.includes("Fencing") &&
+              activeFilters?.includes("Two-Handed") &&
+              activeFilters?.includes("Weapon and Shield") &&
+              activeFilters?.includes("Brawling / Grappling") &&
+              activeFilters?.includes("Spellcasting") &&
+              activeFilters?.includes("Polearms") &&
+              activeFilters?.includes("Ranged")
+                ? "active-button"
+                : "inactive-button"
+            }`}
+            onClick={() => toggleAllFilters(activeFilters, setActiveFilters)}
+          >
+            All
+          </button>
           <button
             type="button"
             className={`filter-button ${

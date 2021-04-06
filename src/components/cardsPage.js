@@ -170,4 +170,21 @@ export const Wrapper = styled.section`
       }
     }
   }
+
+  .filter-button {
+    background: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #512bfccc;
+    box-shadow: 0 1px 1px 0 rgb(0, 0, 0, 0.4);
+    margin: 5px;
+    padding: 10px 15px;
+
+    &.active-button {
+      background: #512bfccc;
+      color: #ffffff;
+    }
+
+    &.inactive-button {
+    }
+  }
 `
