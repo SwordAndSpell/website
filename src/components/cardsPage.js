@@ -57,6 +57,27 @@ export const Wrapper = styled.section`
       width: 100%;
       min-height: 60px;
 
+      &.no-background-image {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 5px 20px 5px 0;
+
+        h3 {
+          background: #ffffff;
+          color: #8471ff;
+          position: initial;
+          font-size: 2rem;
+        }
+
+        .chevron {
+          position: initial;
+
+          path {
+            fill: #8471ff;
+          }
+        }
+      }
+
       img {
         width: 100%;
       }
@@ -77,9 +98,13 @@ export const Wrapper = styled.section`
       }
 
       .chevron {
+        flex-shrink: 0;
         height: 35px;
         margin-left: 20px;
         transition: transform 0.5s ease;
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
 
         path {
           fill: #ffffff;

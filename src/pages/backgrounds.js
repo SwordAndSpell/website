@@ -70,6 +70,7 @@ const BackgroundsPage = () => {
                 {/* NAME */}
                 {/* ============ */}
                 <header
+                  className="no-background-image"
                   onKeyDown={event => {
                     // On enter, toggle expanded/expanded.
                     if (event.keyCode === 13) {
@@ -90,12 +91,10 @@ const BackgroundsPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>
-                    {name}
-                    <Chevron
-                      className={`chevron${isExpanded ? " expanded" : ""}`}
-                    />
-                  </h3>
+                  <h3>{name}</h3>
+                  <Chevron
+                    className={`chevron${isExpanded ? " expanded" : ""}`}
+                  />
                 </header>
                 {/* IMAGE + NAME end */}
                 {/* ============ */}

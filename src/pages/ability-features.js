@@ -257,6 +257,7 @@ const AbilityFeaturesPage = () => {
             {/*  NAME */}
             {/* ===== */}
             <header
+              className="no-background-image"
               onKeyDown={event => {
                 // On enter, toggle expanded/expanded.
                 if (event.keyCode === 13) {
@@ -269,14 +270,12 @@ const AbilityFeaturesPage = () => {
               role="button"
               tabIndex="0"
             >
-              <h3>
-                Level 1 Abilities
-                <Chevron
-                  className={`chevron${
-                    !collapsedHeadings?.includes("1") ? " expanded" : ""
-                  }`}
-                />
-              </h3>
+              <h3>Level 1 Abilities</h3>
+              <Chevron
+                className={`chevron${
+                  !collapsedHeadings?.includes("1") ? " expanded" : ""
+                }`}
+              />
             </header>
 
             {/* NAME end */}
@@ -338,6 +337,7 @@ const AbilityFeaturesPage = () => {
             {/*  NAME */}
             {/* ===== */}
             <header
+              className="no-background-image"
               onKeyDown={event => {
                 // On enter, toggle expanded/expanded.
                 if (event.keyCode === 13) {
@@ -350,14 +350,12 @@ const AbilityFeaturesPage = () => {
               role="button"
               tabIndex="0"
             >
-              <h3>
-                Level 3 Abilities
-                <Chevron
-                  className={`chevron${
-                    !collapsedHeadings?.includes("3") ? " expanded" : ""
-                  }`}
-                />
-              </h3>
+              <h3>Level 3 Abilities</h3>
+              <Chevron
+                className={`chevron${
+                  !collapsedHeadings?.includes("3") ? " expanded" : ""
+                }`}
+              />
             </header>
 
             {/* NAME end */}
@@ -419,6 +417,7 @@ const AbilityFeaturesPage = () => {
             {/*  NAME */}
             {/* ===== */}
             <header
+              className="no-background-image"
               onKeyDown={event => {
                 // On enter, toggle expanded/expanded.
                 if (event.keyCode === 13) {
@@ -431,14 +430,12 @@ const AbilityFeaturesPage = () => {
               role="button"
               tabIndex="0"
             >
-              <h3>
-                Level 5 Abilities
-                <Chevron
-                  className={`chevron${
-                    !collapsedHeadings?.includes("5") ? " expanded" : ""
-                  }`}
-                />
-              </h3>
+              <h3>Level 5 Abilities</h3>
+              <Chevron
+                className={`chevron${
+                  !collapsedHeadings?.includes("5") ? " expanded" : ""
+                }`}
+              />
             </header>
 
             {/* NAME end */}
@@ -500,6 +497,7 @@ const AbilityFeaturesPage = () => {
             {/*  NAME */}
             {/* ===== */}
             <header
+              className="no-background-image"
               onKeyDown={event => {
                 // On enter, toggle expanded/expanded.
                 if (event.keyCode === 13) {
@@ -512,14 +510,12 @@ const AbilityFeaturesPage = () => {
               role="button"
               tabIndex="0"
             >
-              <h3>
-                Level 7 Abilities
-                <Chevron
-                  className={`chevron${
-                    !collapsedHeadings?.includes("7") ? " expanded" : ""
-                  }`}
-                />
-              </h3>
+              <h3>Level 7 Abilities</h3>
+              <Chevron
+                className={`chevron${
+                  !collapsedHeadings?.includes("7") ? " expanded" : ""
+                }`}
+              />
             </header>
 
             {/* NAME end */}

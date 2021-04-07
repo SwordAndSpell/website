@@ -106,12 +106,10 @@ const CoreIdentitiesPage = () => {
                   tabIndex="0"
                 >
                   <img alt={`${name} core identity`} src={imageURL} />
-                  <h3>
-                    {name}
-                    <Chevron
-                      className={`chevron${isExpanded ? " expanded" : ""}`}
-                    />
-                  </h3>
+                  <h3>{name}</h3>
+                  <Chevron
+                    className={`chevron${isExpanded ? " expanded" : ""}`}
+                  />
                 </header>
                 {/* IMAGE + NAME end */}
                 {/* ============ */}
