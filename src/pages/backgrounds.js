@@ -1,7 +1,6 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import find from "lodash/find"
 import filter from "lodash/filter"
 import map from "lodash/map"
 import uniq from "lodash/uniq"
@@ -9,7 +8,6 @@ import uniq from "lodash/uniq"
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import defaultBackgroundImage from "../images/defaultBackground.jpg"
 import { Wrapper } from "../components/cardsPage"
 
 const onCollapseToggle = (id, expandedIDs, setExpandedIDs) => {

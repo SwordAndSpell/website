@@ -1,5 +1,6 @@
 // Node modules.
 import styled, { keyframes } from "styled-components"
+import times from "lodash/times"
 
 const fadeIn = keyframes`
   0% {
@@ -7,6 +8,18 @@ const fadeIn = keyframes`
   }
   100% {
     opacity: 1;
+  }
+`
+
+const activeFilter = keyframes`
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0% 50%;
   }
 `
 
@@ -20,6 +33,14 @@ export const Wrapper = styled.section`
   h2 {
     text-align: center;
     width: 100%;
+
+    &.category {
+      border-top: 3px solid #999999;
+      border-bottom: 3px solid #999999;
+      color: #999999;
+      padding: 10px 20px;
+      margin: 20px 0 10px;
+    }
   }
 
   ul {
@@ -66,10 +87,11 @@ export const Wrapper = styled.section`
           background: #ffffff;
           color: #8471ff;
           position: initial;
-          font-size: 2rem;
+          font-size: 1.5rem;
         }
 
         .chevron {
+          height: 25px;
           position: initial;
 
           path {
@@ -125,6 +147,10 @@ export const Wrapper = styled.section`
       flex-flow: row wrap;
       justify-content: center;
       padding: 10px 10px 10px;
+
+      &.column {
+        flex-direction: column;
+      }
     }
 
     .field-group {
@@ -196,20 +222,28 @@ export const Wrapper = styled.section`
     }
   }
 
-  .filter-button {
-    background: #ffffff;
-    border-radius: 5px;
-    border: 1px solid #512bfccc;
-    box-shadow: 0 1px 1px 0 rgb(0, 0, 0, 0.4);
-    margin: 5px;
-    padding: 10px 15px;
+  .filters {
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0 20px;
+    margin: 10px 0 0;
 
-    &.active-button {
-      background: #512bfccc;
-      color: #ffffff;
-    }
+    .filter-button {
+      background: #ffffff;
+      border-radius: 5px;
+      border: 1px solid #999999;
+      box-shadow: 0 1px 1px 0 rgb(0, 0, 0, 0.4);
+      color: #999999;
+      margin: 5px;
+      padding: 10px 15px;
+      font-size: 0.9rem;
 
-    &.inactive-button {
+      &.active-button {
+        background: #6d56ff;
+        border: 1px solid transparent;
+        color: #ffffff;
+      }
     }
   }
 `

@@ -16,6 +16,7 @@ const onFilterToggle = (filterToToggle, activeFilters, setActiveFilters) => {
     setActiveFilters(filter(activeFilters, filter => filter !== filterToToggle))
     return
   }
+
   // toggle the filter
   setActiveFilters(uniq([...activeFilters, filterToToggle]))
 }
@@ -36,8 +37,9 @@ const toggleAllFilters = (activeFilters, setActiveFilters) => {
     setActiveFilters([])
     return
   }
+
   setActiveFilters([
-    "Dual Weilding",
+    "Dual Wielding",
     "Daggers / Finesse",
     "Fencing",
     "Two-Handed",
@@ -72,7 +74,7 @@ const AbilityFeaturesPage = () => {
   const ABILITIES = queryResult?.site?.siteMetadata?.ABILITY_FEATURES
 
   const [activeFilters, setActiveFilters] = useState([
-    "Dual Weilding",
+    "Dual Wielding",
     "Daggers / Finesse",
     "Fencing",
     "Two-Handed",
@@ -100,11 +102,13 @@ const AbilityFeaturesPage = () => {
       <Seo title="Ability Features" />
       <Wrapper>
         <h2>Ability Features</h2>
-        <section className="buttons">
+
+        {/* Filters */}
+        <section className="filters">
           <button
             type="button"
             className={`filter-button ${
-              activeFilters?.includes("Dual Weilding") &&
+              activeFilters?.includes("Dual Wielding") &&
               activeFilters?.includes("Daggers / Finesse") &&
               activeFilters?.includes("Fencing") &&
               activeFilters?.includes("Two-Handed") &&
@@ -123,15 +127,15 @@ const AbilityFeaturesPage = () => {
           <button
             type="button"
             className={`filter-button ${
-              activeFilters?.includes("Dual Weilding")
+              activeFilters?.includes("Dual Wielding")
                 ? "active-button"
                 : "inactive-button"
             }`}
             onClick={() =>
-              onFilterToggle("Dual Weilding", activeFilters, setActiveFilters)
+              onFilterToggle("Dual Wielding", activeFilters, setActiveFilters)
             }
           >
-            Dual Weilding
+            Dual Wielding
           </button>
           <button
             type="button"
