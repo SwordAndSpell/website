@@ -175,18 +175,18 @@ const RacesPage = () => {
                           <p className="value">{burrowSpeed}</p>
                         </section>
                       )}
-                    </section>
 
-                    {ability && (
+                      {ability && (
+                        <section className="field-group">
+                          <p className="label">Ability</p>
+                          <p className="value">{ability}</p>
+                        </section>
+                      )}
+
                       <section className="field-group">
-                        <p className="label">Ability</p>
-                        <p className="value">{ability}</p>
+                        <p className="label">Languages</p>
+                        <p className="value">{languages}</p>
                       </section>
-                    )}
-
-                    <section className="field-group">
-                      <p className="label">Languages</p>
-                      <p className="value">{languages}</p>
                     </section>
                     {/* CORE STATS end */}
                     {/* ========== */}

@@ -133,7 +133,8 @@ export const Wrapper = styled.section`
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
-      padding: 10px 10px 10px;
+      padding: 0 10px 10px;
+      width: 100%;
 
       &.column {
         flex-direction: column;
@@ -143,10 +144,10 @@ export const Wrapper = styled.section`
     .field-group {
       display: flex;
       flex-direction: column;
-      margin: 10px;
+      margin: 10px 10px 0;
 
       h4 {
-        margin: 10px 0 20px;
+        margin: 0 0 10px;
       }
 
       .label {
@@ -171,7 +172,7 @@ export const Wrapper = styled.section`
       width: 100%;
 
       header {
-        margin: 0 0 20px;
+        margin: 0;
       }
 
       .disclaimer {
@@ -181,6 +182,7 @@ export const Wrapper = styled.section`
       }
 
       .collapsible {
+        padding: 5px 0;
         text-align: center;
         white-space: pre-line;
         width: 100%;
@@ -191,9 +193,22 @@ export const Wrapper = styled.section`
           text-align: center;
         }
 
+        p {
+          margin: 10px 0;
+          text-align: left;
+        }
+
         .requirements {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
           font-size: 0.7rem;
-          margin: 0;
+          margin: 10px 0 0;
+          text-align: center;
+
+          &:last-of-type {
+            margin-bottom: 10px;
+          }
         }
       }
 
