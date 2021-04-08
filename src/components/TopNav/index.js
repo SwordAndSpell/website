@@ -2,11 +2,12 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import map from "lodash/map"
 // Relative imports.
 import Burger from "../icons/Burger"
 import logo from "../../images/logo.svg"
 import { Header, NavItems } from "./styles"
+
+const isBrowser = typeof window !== "undefined"
 
 const TopNav = ({ siteTitle }) => {
   const [showNavItems, setShowNavItems] = useState(false)
@@ -50,10 +51,12 @@ const TopNav = ({ siteTitle }) => {
 
       {/* Nav Items */}
       <NavItems className={showNavItems ? "expanded" : ""}>
-        {map(queryResult?.site?.siteMetadata?.navItems, navItem => (
+        {queryResult?.site?.siteMetadata?.navItems?.map(navItem => (
           <Link
             className={
-              navItem?.link === window.location.pathname ? "active" : ""
+              isBrowser && navItem?.link === window.location.pathname
+                ? "active"
+                : ""
             }
             key={navItem?.link}
             to={navItem?.link}

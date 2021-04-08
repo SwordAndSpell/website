@@ -73,6 +73,7 @@ export const NavItems = styled.ul`
   overflow-x: none;
   overflow-y: auto;
   position: fixed;
+  padding: 0 0 10px;
   top: 70px;
   width: 100%;
   z-index: 1;
