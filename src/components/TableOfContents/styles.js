@@ -11,7 +11,7 @@ export const Wrapper = styled.section`
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 10px 0;
+    margin: 0 0 10px;
     padding: 0 20px;
     width: 100%;
 
