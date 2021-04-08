@@ -10,6 +10,24 @@ const LANGUAGES = require("sns-data/data/LANGUAGES.json")
 const PERKS = require("sns-data/data/PERKS.json")
 const RACES = require("sns-data/data/RACES.json")
 const SUBRACES = require("sns-data/data/SUBRACES.json")
+// Charts.
+const ABILITY_MODIFIERS = require("sns-data/data/CHARTS/ABILITY_MODIFIERS")
+const EXAMPLE_DCS = require("sns-data/data/CHARTS/EXAMPLE_DCS")
+const LEVELING = require("sns-data/data/CHARTS/LEVELING")
+const SKILLS_QUICK_REFERENCE = require("sns-data/data/CHARTS/SKILLS_QUICK_REFERENCE")
+const SPELL_POINT_COSTS = require("sns-data/data/CHARTS/SPELL_POINT_COSTS")
+const UNIVERSAL_SPELL_CHARGES = require("sns-data/data/CHARTS/UNIVERSAL_SPELL_CHARGES")
+const UNIVERSAL_SPELL_POINTS = require("sns-data/data/CHARTS/UNIVERSAL_SPELL_POINTS")
+// Gear.
+const ARMOR_RUNES = require("sns-data/data/GEAR/ARMOR_RUNES.json")
+const HEAVY_ARMOR = require("sns-data/data/GEAR/HEAVY_ARMOR.json")
+const LIGHT_ARMOR = require("sns-data/data/GEAR/LIGHT_ARMOR.json")
+const MARTIAL_WEAPONS = require("sns-data/data/GEAR/MARTIAL_WEAPONS.json")
+const MEDIUM_ARMOR = require("sns-data/data/GEAR/MEDIUM_ARMOR.json")
+const SHIELDS = require("sns-data/data/GEAR/SHIELDS.json")
+const SIMPLE_WEAPONS = require("sns-data/data/GEAR/SIMPLE_WEAPONS.json")
+const WEAPON_PROPERTIES = require("sns-data/data/GEAR/WEAPON_PROPERTIES.json")
+const WEAPON_RUNES = require("sns-data/data/GEAR/WEAPON_RUNES.json")
 
 module.exports = {
   siteMetadata: {
@@ -50,6 +68,10 @@ module.exports = {
         label: "Spellcasting Charts",
       },
       {
+        link: "/reference-charts",
+        label: "Reference Charts",
+      },
+      {
         link: "/summoning-stat-blocks",
         label: "Summoning Stat Blocks",
       },
@@ -72,6 +94,7 @@ module.exports = {
     ],
     // Raw CMS Data Start
     // ========
+    // Main.
     ABILITY_FEATURES,
     BACKGROUNDS,
     CORE_ABILITIES,
@@ -83,6 +106,24 @@ module.exports = {
     PERKS,
     RACES,
     SUBRACES,
+    // Charts.
+    ABILITY_MODIFIERS,
+    EXAMPLE_DCS,
+    LEVELING,
+    SKILLS_QUICK_REFERENCE,
+    SPELL_POINT_COSTS,
+    UNIVERSAL_SPELL_CHARGES,
+    UNIVERSAL_SPELL_POINTS,
+    // Gear.
+    ARMOR_RUNES,
+    HEAVY_ARMOR,
+    LIGHT_ARMOR,
+    MARTIAL_WEAPONS,
+    MEDIUM_ARMOR,
+    SHIELDS,
+    SIMPLE_WEAPONS,
+    WEAPON_PROPERTIES,
+    WEAPON_RUNES,
     // ========
     // Raw CMS Data End
   },

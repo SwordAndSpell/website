@@ -2,6 +2,7 @@
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import filter from "lodash/filter"
+import forEach from "lodash/forEach"
 import find from "lodash/find"
 import map from "lodash/map"
 import reduce from "lodash/reduce"
@@ -58,12 +59,15 @@ const IdentityFeaturesPage = () => {
   const identitiesLookup = reduce(
     IDENTITY_FEATURES,
     (accumulator, identityFeature) => {
-      if (accumulator?.[identityFeature?.identity]) {
-        accumulator?.[identityFeature?.identity]?.push(identityFeature)
-        return accumulator
-      }
+      forEach(identityFeature?.identity, identity => {
+        if (accumulator?.[identityFeature?.identity]) {
+          accumulator?.[identityFeature?.identity]?.push(identityFeature)
+          return
+        }
 
-      accumulator[identityFeature?.identity] = [identityFeature]
+        accumulator[identityFeature?.identity] = [identityFeature]
+      })
+
       return accumulator
     },
     {}
