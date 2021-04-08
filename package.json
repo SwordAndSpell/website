@@ -21,7 +21,6 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-select": "^4.3.0",
-    "react-vis": "^1.11.7",
     "sns-data": "git+https://github.com/SwordAndSpell/data.git",
     "styled-components": "^5.2.3",
     "uuid": "^8.3.2"

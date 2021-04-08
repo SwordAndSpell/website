@@ -86,10 +86,6 @@ export const NavItems = styled.ul`
     margin: 0;
     padding: 20px;
     width: 100%;
-
-    &:last-of-type {
-      border-bottom: none;
-    }
   }
 
   a {
@@ -102,6 +98,10 @@ export const NavItems = styled.ul`
       background: #21d4fd;
       color: #4f4f4f;
       font-weight: 700;
+    }
+
+    &:last-of-type {
+      border-bottom: none;
     }
   }
 `

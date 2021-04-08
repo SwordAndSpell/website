@@ -56,28 +56,8 @@ module.exports = {
         label: "Ability Features",
       },
       {
-        link: "/spells",
-        label: "Spells",
-      },
-      {
-        link: "/rules",
-        label: "Rules",
-      },
-      {
-        link: "/spellcasting-charts",
-        label: "Spellcasting Charts",
-      },
-      {
         link: "/reference-charts",
         label: "Reference Charts",
-      },
-      {
-        link: "/summoning-stat-blocks",
-        label: "Summoning Stat Blocks",
-      },
-      {
-        link: "/shapechange-forms",
-        label: "Shapechange Forms",
       },
       {
         link: "/armor",
@@ -87,6 +67,26 @@ module.exports = {
         link: "/weapons",
         label: "Weapons",
       },
+      // {
+      //   link: "/spells",
+      //   label: "Spells",
+      // },
+      // {
+      //   link: "/rules",
+      //   label: "Rules",
+      // },
+      // {
+      //   link: "/spellcasting-charts",
+      //   label: "Spellcasting Charts",
+      // },
+      // {
+      //   link: "/summoning-stat-blocks",
+      //   label: "Summoning Stat Blocks",
+      // },
+      // {
+      //   link: "/shapechange-forms",
+      //   label: "Shapechange Forms",
+      // },
     ],
     // Raw CMS Data Start
     // ========
