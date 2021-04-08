@@ -1,25 +1,13 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import filter from "lodash/filter"
-import map from "lodash/map"
-import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import TableOfContents from "../components/TableOfContents"
 import { Wrapper } from "../components/cardsPage"
-
-const onExpandedToggle = (id, expandedIDs, setExpandedIDs) => {
-  // Collapse the ID.
-  if (expandedIDs?.includes(id)) {
-    setExpandedIDs(filter(expandedIDs, expandedID => expandedID !== id))
-    return
-  }
-
-  // Expand the ID.
-  setExpandedIDs(uniq([...expandedIDs, id]))
-}
+import { onExpandedToggle } from "../utils"
 
 const ArmorPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -97,9 +85,14 @@ const ArmorPage = () => {
       <Wrapper>
         <h2>Armors / Armor Runes</h2>
 
-        <h2 className="category">Light Armor</h2>
+        {/* Table of Contents */}
+        <TableOfContents />
+
+        <h2 className="category" id="Light Armor">
+          Light Armor
+        </h2>
         <ul>
-          {map(LIGHT_ARMOR, item => {
+          {LIGHT_ARMOR?.map(item => {
             // Derive item properties.
             const id = item?.id
             const name = item?.name
@@ -137,7 +130,7 @@ const ArmorPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>{name}</h3>
+                  <h3 id={name}>{name}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -176,9 +169,11 @@ const ArmorPage = () => {
           })}
         </ul>
 
-        <h2 className="category">Medium Armor</h2>
+        <h2 className="category" id="Medium Armor">
+          Medium Armor
+        </h2>
         <ul>
-          {map(MEDIUM_ARMOR, item => {
+          {MEDIUM_ARMOR?.map(item => {
             // Derive item properties.
             const id = item?.id
             const name = item?.name
@@ -216,7 +211,7 @@ const ArmorPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>{name}</h3>
+                  <h3 id={name}>{name}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -255,9 +250,11 @@ const ArmorPage = () => {
           })}
         </ul>
 
-        <h2 className="category">Heavy Armor</h2>
+        <h2 className="category" id="Heavy Armor">
+          Heavy Armor
+        </h2>
         <ul>
-          {map(HEAVY_ARMOR, item => {
+          {HEAVY_ARMOR?.map(item => {
             // Derive item properties.
             const id = item?.id
             const name = item?.name
@@ -295,7 +292,7 @@ const ArmorPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>{name}</h3>
+                  <h3 id={name}>{name}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -334,9 +331,11 @@ const ArmorPage = () => {
           })}
         </ul>
 
-        <h2 className="category">Shields</h2>
+        <h2 className="category" id="Shields">
+          Shields
+        </h2>
         <ul>
-          {map(SHIELDS, item => {
+          {SHIELDS?.map(item => {
             // Derive item properties.
             const id = item?.id
             const name = item?.name
@@ -372,7 +371,7 @@ const ArmorPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>{name}</h3>
+                  <h3 id={name}>{name}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -403,9 +402,11 @@ const ArmorPage = () => {
           })}
         </ul>
 
-        <h2 className="category">Armor Runes</h2>
+        <h2 className="category" id="Armor Runes">
+          Armor Runes
+        </h2>
         <ul>
-          {map(ARMOR_RUNES, item => {
+          {ARMOR_RUNES?.map(item => {
             // Derive item properties.
             const id = item?.id
             const name = item?.name
@@ -441,7 +442,7 @@ const ArmorPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>{name}</h3>
+                  <h3 id={name}>{name}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />

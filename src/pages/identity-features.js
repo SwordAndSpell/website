@@ -1,29 +1,16 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import filter from "lodash/filter"
 import forEach from "lodash/forEach"
 import find from "lodash/find"
-import map from "lodash/map"
 import reduce from "lodash/reduce"
-import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import TableOfContents from "../components/TableOfContents"
 import { Wrapper } from "../components/cardsPage"
-
-const onCollapseToggle = (id, expandedIDs, setExpandedIDs) => {
-  // Expand the ID.
-  if (expandedIDs?.includes(id)) {
-    setExpandedIDs(filter(expandedIDs, expandedID => expandedID !== id))
-    return
-  }
-
-  // Collapse the ID.
-  setExpandedIDs(uniq([...expandedIDs, id]))
-}
+import { onCollapseToggle } from "../utils"
 
 const IdentityFeaturesPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -89,13 +76,13 @@ const IdentityFeaturesPage = () => {
         <TableOfContents />
 
         {/* Identity Categories */}
-        {map(identitiesLookup, (identityFeatures, identity) => (
+        {identitiesLookup?.map((identityFeatures, identity) => (
           <>
             <h2 className="category" id={identity}>
               {identity}
             </h2>
             <ul>
-              {map(identityFeatures, identityFeature => {
+              {identityFeatures?.map(identityFeature => {
                 // Derive identityFeature properties.
                 const firstLevelSpells = identityFeature?.firstLevelSpells
                 const secondLevelSpells = identityFeature?.secondLevelSpells
@@ -109,12 +96,13 @@ const IdentityFeaturesPage = () => {
                 const requirementIDs = identityFeature?.requirementIDs
 
                 // Derive requirements.
-                const requirements = map(
-                  requirementIDs,
-                  requirementID =>
-                    find(IDENTITY_FEATURE_REQUIREMENTS, ["id", requirementID])
-                      ?.name
-                )?.sort()
+                const requirements = requirementIDs
+                  ?.map(
+                    requirementID =>
+                      find(IDENTITY_FEATURE_REQUIREMENTS, ["id", requirementID])
+                        ?.name
+                  )
+                  ?.sort()
 
                 // Derive if the details are expanded.
                 const isExpanded = expandedIdentityFeatureIDs?.includes(id)

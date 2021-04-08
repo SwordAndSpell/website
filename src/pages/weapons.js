@@ -1,25 +1,12 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import filter from "lodash/filter"
-import map from "lodash/map"
-import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
-
-const onExpandedToggle = (id, expandedIDs, setExpandedIDs) => {
-  // Collapse the ID.
-  if (expandedIDs?.includes(id)) {
-    setExpandedIDs(filter(expandedIDs, expandedID => expandedID !== id))
-    return
-  }
-
-  // Expand the ID.
-  setExpandedIDs(uniq([...expandedIDs, id]))
-}
+import { onExpandedToggle } from "../utils"
 
 const WeaponsPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -83,7 +70,7 @@ const WeaponsPage = () => {
 
         <h2 className="category">Martial Weapons</h2>
         <ul>
-          {map(MARTIAL_WEAPONS, item => {
+          {MARTIAL_WEAPONS?.map(item => {
             // Derive item properties.
             const id = item?.id
             const name = item?.name
@@ -152,7 +139,7 @@ const WeaponsPage = () => {
 
         <h2 className="category">Simple Weapons</h2>
         <ul>
-          {map(SIMPLE_WEAPONS, item => {
+          {SIMPLE_WEAPONS?.map(item => {
             // Derive item properties.
             const id = item?.id
             const name = item?.name
@@ -221,7 +208,7 @@ const WeaponsPage = () => {
 
         <h2 className="category">Weapon Properties</h2>
         <ul>
-          {map(WEAPON_PROPERTIES, item => {
+          {WEAPON_PROPERTIES?.map(item => {
             // Derive item properties.
             const id = item?.id
             const name = item?.name
@@ -275,7 +262,7 @@ const WeaponsPage = () => {
 
         <h2 className="category">Weapon Runes</h2>
         <ul>
-          {map(WEAPON_RUNES, item => {
+          {WEAPON_RUNES?.map(item => {
             // Derive item properties.
             const id = item?.id
             const name = item?.name

@@ -2,26 +2,13 @@
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import find from "lodash/find"
-import filter from "lodash/filter"
-import map from "lodash/map"
-import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import defaultCoreIdentityImage from "../images/defaultCoreIdentity.jpg"
 import { Wrapper } from "../components/cardsPage"
-
-const onCollapseToggle = (id, expandedIDs, setExpandedIDs) => {
-  // Expand the ID.
-  if (expandedIDs?.includes(id)) {
-    setExpandedIDs(filter(expandedIDs, expandedID => expandedID !== id))
-    return
-  }
-
-  // Collapse the ID.
-  setExpandedIDs(uniq([...expandedIDs, id]))
-}
+import { onCollapseToggle } from "../utils"
 
 const CoreIdentitiesPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -61,7 +48,7 @@ const CoreIdentitiesPage = () => {
       <Wrapper>
         <h2>Core Identities</h2>
         <ul>
-          {map(CORE_IDENTITIES, coreIdentity => {
+          {CORE_IDENTITIES?.map(coreIdentity => {
             // Derive coreIdentity properties.
             const coreAbilityIDs = coreIdentity?.coreAbilityIDs
             const healthAtFirstLevel = coreIdentity?.healthAtFirstLevel
@@ -73,7 +60,7 @@ const CoreIdentitiesPage = () => {
             const startingEquipment = coreIdentity?.startingEquipment
 
             // Derive the coreAbilities.
-            const coreAbilities = map(coreAbilityIDs, coreAbilityID =>
+            const coreAbilities = coreAbilityIDs?.map(coreAbilityID =>
               find(CORE_ABILITIES, ["id", coreAbilityID])
             )
 
@@ -150,7 +137,7 @@ const CoreIdentitiesPage = () => {
                           <h4>Core Abilities</h4>
                         </header>
 
-                        {map(coreAbilities, coreAbility => {
+                        {coreAbilities?.map(coreAbility => {
                           // Derive coreAbility properties.
                           const description = coreAbility?.description
                           const name = coreAbility?.name

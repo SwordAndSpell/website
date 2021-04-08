@@ -1,25 +1,12 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import filter from "lodash/filter"
-import map from "lodash/map"
-import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
-
-const onCollapseToggle = (id, expandedIDs, setExpandedIDs) => {
-  // Expand the ID.
-  if (expandedIDs?.includes(id)) {
-    setExpandedIDs(filter(expandedIDs, expandedID => expandedID !== id))
-    return
-  }
-
-  // Collapse the ID.
-  setExpandedIDs(uniq([...expandedIDs, id]))
-}
+import { onCollapseToggle } from "../utils"
 
 const BackgroundsPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -51,7 +38,7 @@ const BackgroundsPage = () => {
       <Wrapper>
         <h2>Backgrounds</h2>
         <ul>
-          {map(BACKGROUNDS, background => {
+          {BACKGROUNDS?.map(background => {
             // Derive background properties.
             const abilityBoostChoice = background?.abilityBoostChoice
             const freeAbilityBoost = background?.freeAbilityBoost

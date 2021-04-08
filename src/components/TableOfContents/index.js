@@ -38,14 +38,32 @@ const TableOfContents = ({ includedHeaders }) => {
 
   // Do not render this server-side.
   if (isBrowser) {
-    items = [...document.querySelectorAll(includedHeaders?.join(", "))]
-      ?.filter(element => !!element?.id)
-      ?.map(element => ({
-        depth: parseInt(element?.tagName?.replace("H", ""), 10) - 2,
-        element: element,
-        id: element?.id,
-        label: element?.innerText,
-      }))
+    items = [...document.querySelectorAll(includedHeaders?.join(", "))]?.filter(
+      element => !!element?.id
+    )
+
+    // Derive the highest depth.
+    const highestDepth = items?.reduce((highestDepth, item) => {
+      const depth = parseInt(item?.tagName?.replace("H", ""), 10)
+
+      if (typeof highestDepth === "undefined") {
+        return depth
+      }
+
+      if (highestDepth > depth) {
+        highestDepth = depth
+        return highestDepth
+      }
+
+      return highestDepth
+    }, undefined)
+
+    items = items?.map(element => ({
+      depth: parseInt(element?.tagName?.replace("H", ""), 10) - highestDepth,
+      element: element,
+      id: element?.id,
+      label: element?.innerText,
+    }))
   }
 
   // Do not render if there are no items.

@@ -2,8 +2,6 @@
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import find from "lodash/find"
-import filter from "lodash/filter"
-import map from "lodash/map"
 import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
@@ -11,17 +9,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import defaultRaceImage from "../images/defaultRace.png"
 import { Wrapper } from "../components/cardsPage"
-
-const onExpandedToggle = (id, expandedIDs, setExpandedIDs) => {
-  // Collapse the ID.
-  if (expandedIDs?.includes(id)) {
-    setExpandedIDs(filter(expandedIDs, expandedID => expandedID !== id))
-    return
-  }
-
-  // Expand the ID.
-  setExpandedIDs(uniq([...expandedIDs, id]))
-}
+import { onExpandedToggle } from "../utils"
 
 const RacesPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -78,7 +66,7 @@ const RacesPage = () => {
       <Wrapper>
         <h2>Races</h2>
         <ul>
-          {map(RACES, race => {
+          {RACES?.map(race => {
             // Derive race properties.
             const ability = race?.ability
             const burrowSpeed = race?.burrowSpeed
@@ -95,7 +83,7 @@ const RacesPage = () => {
             const swimSpeed = race?.swimSpeed
 
             // Derive the subraces.
-            const subraces = filter(SUBRACES, subrace => subrace.raceID === id)
+            const subraces = SUBRACES?.filter(subrace => subrace.raceID === id)
 
             // Derive if the details are expanded.
             const isExpanded = expandedRaceIDs?.includes(id)
@@ -201,7 +189,7 @@ const RacesPage = () => {
                           <p className="disclaimer">(Choose 1)</p>
                         </header>
 
-                        {map(subraces, subrace => {
+                        {subraces?.map(subrace => {
                           // Derive subrace properties.
                           const description = subrace?.description
                           const subraceID = subrace?.id
@@ -262,7 +250,7 @@ const RacesPage = () => {
                       </header>
 
                       {/* List Perks */}
-                      {map(perkIDs, perkID => {
+                      {perkIDs?.map(perkID => {
                         // Derive the perk.
                         // @WARNING: This could become slower (currently O(n)) as total perk records grow.
                         // Consider using a perks lookup table for O(1) speed if this becomes slow.

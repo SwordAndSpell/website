@@ -1,35 +1,23 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import filter from "lodash/filter"
-import map from "lodash/map"
 import uniq from "lodash/uniq"
 // Relative imports.
-import Layout from "../components/layout"
 import Chevron from "../components/icons/Chevron"
+import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
+import { onCollapseToggle } from "../utils"
 
 const onFilterToggle = (filterToToggle, activeFilters, setActiveFilters) => {
   // Expand the ID.
   if (activeFilters?.includes(filterToToggle)) {
-    setActiveFilters(filter(activeFilters, filter => filter !== filterToToggle))
+    setActiveFilters(activeFilters?.filter(filter => filter !== filterToToggle))
     return
   }
 
   // toggle the filter
   setActiveFilters(uniq([...activeFilters, filterToToggle]))
-}
-
-const onCollapseToggle = (id, collapsedIDs, setCollapsedIDs) => {
-  // Expand the ID.
-  if (collapsedIDs?.includes(id)) {
-    setCollapsedIDs(filter(collapsedIDs, collapsedID => collapsedID !== id))
-    return
-  }
-
-  // Collapse the ID.
-  setCollapsedIDs(uniq([...collapsedIDs, id]))
 }
 
 const toggleAllFilters = (activeFilters, setActiveFilters) => {
@@ -92,10 +80,10 @@ const AbilityFeaturesPage = () => {
   ])
   const [collapsedAbilityIDs, setCollapsedAbilityIDs] = useState([])
 
-  const level1Abilities = filter(ABILITIES, ability => ability.level === 1)
-  const level3Abilities = filter(ABILITIES, ability => ability.level === 3)
-  const level5Abilities = filter(ABILITIES, ability => ability.level === 5)
-  const level7Abilities = filter(ABILITIES, ability => ability.level === 7)
+  const level1Abilities = ABILITIES?.filter(ability => ability.level === 1)
+  const level3Abilities = ABILITIES?.filter(ability => ability.level === 3)
+  const level5Abilities = ABILITIES?.filter(ability => ability.level === 5)
+  const level7Abilities = ABILITIES?.filter(ability => ability.level === 7)
 
   return (
     <Layout>
@@ -274,7 +262,7 @@ const AbilityFeaturesPage = () => {
               role="button"
               tabIndex="0"
             >
-              <h3>Level 1 Abilities</h3>
+              <h3 id="Level 1 Abilities">Level 1 Abilities</h3>
               <Chevron
                 className={`chevron${
                   !collapsedHeadings?.includes("1") ? " expanded" : ""
@@ -288,7 +276,7 @@ const AbilityFeaturesPage = () => {
             {!collapsedHeadings?.includes("1") && (
               <>
                 <section className="collapsibles">
-                  {map(level1Abilities, ability => {
+                  {level1Abilities?.map(ability => {
                     // Derive ability properties.
                     const name = ability?.name
                     const id = ability?.id
@@ -315,7 +303,7 @@ const AbilityFeaturesPage = () => {
                           type="button"
                         >
                           {/* Ability Name */}
-                          <h5>{name}</h5>
+                          <h4 id={name}>{name}</h4>
 
                           {/* Ability Info */}
                           {collapsedAbilityIDs?.includes(id) && (
@@ -354,7 +342,7 @@ const AbilityFeaturesPage = () => {
               role="button"
               tabIndex="0"
             >
-              <h3>Level 3 Abilities</h3>
+              <h3 id="Level 3 Abilities">Level 3 Abilities</h3>
               <Chevron
                 className={`chevron${
                   !collapsedHeadings?.includes("3") ? " expanded" : ""
@@ -368,7 +356,7 @@ const AbilityFeaturesPage = () => {
             {!collapsedHeadings?.includes("3") && (
               <>
                 <section className="collapsibles">
-                  {map(level3Abilities, ability => {
+                  {level3Abilities?.map(ability => {
                     // Derive ability properties.
                     const name = ability?.name
                     const id = ability?.id
@@ -395,7 +383,7 @@ const AbilityFeaturesPage = () => {
                           type="button"
                         >
                           {/* Ability Name */}
-                          <h5>{name}</h5>
+                          <h4 id={name}>{name}</h4>
 
                           {/* Ability Info */}
                           {collapsedAbilityIDs?.includes(id) && (
@@ -434,7 +422,7 @@ const AbilityFeaturesPage = () => {
               role="button"
               tabIndex="0"
             >
-              <h3>Level 5 Abilities</h3>
+              <h3 id="Level 5 Abilities">Level 5 Abilities</h3>
               <Chevron
                 className={`chevron${
                   !collapsedHeadings?.includes("5") ? " expanded" : ""
@@ -448,7 +436,7 @@ const AbilityFeaturesPage = () => {
             {!collapsedHeadings?.includes("5") && (
               <>
                 <section className="collapsibles">
-                  {map(level5Abilities, ability => {
+                  {level5Abilities?.map(ability => {
                     // Derive ability properties.
                     const name = ability?.name
                     const id = ability?.id
@@ -475,7 +463,7 @@ const AbilityFeaturesPage = () => {
                           type="button"
                         >
                           {/* Ability Name */}
-                          <h5>{name}</h5>
+                          <h4 id={name}>{name}</h4>
 
                           {/* Ability Info */}
                           {collapsedAbilityIDs?.includes(id) && (
@@ -514,7 +502,7 @@ const AbilityFeaturesPage = () => {
               role="button"
               tabIndex="0"
             >
-              <h3>Level 7 Abilities</h3>
+              <h3 id="Level 7 Abilities">Level 7 Abilities</h3>
               <Chevron
                 className={`chevron${
                   !collapsedHeadings?.includes("7") ? " expanded" : ""
@@ -528,7 +516,7 @@ const AbilityFeaturesPage = () => {
             {!collapsedHeadings?.includes("7") && (
               <>
                 <section className="collapsibles">
-                  {map(level7Abilities, ability => {
+                  {level7Abilities?.map(ability => {
                     // Derive ability properties.
                     const name = ability?.name
                     const id = ability?.id
@@ -555,7 +543,7 @@ const AbilityFeaturesPage = () => {
                           type="button"
                         >
                           {/* Ability Name */}
-                          <h5>{name}</h5>
+                          <h4 id={name}>{name}</h4>
 
                           {/* Ability Info */}
                           {collapsedAbilityIDs?.includes(id) && (
