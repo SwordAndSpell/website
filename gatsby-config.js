@@ -80,16 +80,12 @@ module.exports = {
         label: "Shapechange Forms",
       },
       {
-        link: "/weapons",
-        label: "Weapons",
-      },
-      {
         link: "/armor",
         label: "Armor",
       },
       {
-        link: "/runes",
-        label: "Runes",
+        link: "/weapons",
+        label: "Weapons",
       },
     ],
     // Raw CMS Data Start
