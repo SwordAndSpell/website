@@ -130,7 +130,7 @@ const RacesPage = () => {
                   <>
                     {/* CORE STATS */}
                     {/* ========== */}
-                    <h4>Core Stats</h4>
+                    <h4>CORE STATS</h4>
 
                     <section className="fields">
                       <section className="field-group">
@@ -196,7 +196,7 @@ const RacesPage = () => {
                     {subraces?.length > 0 && (
                       <section className="collapsibles">
                         <header>
-                          <h4>Subraces</h4>
+                          <h4>SUB RACES</h4>
 
                           <p className="disclaimer">(Choose 1)</p>
                         </header>
@@ -254,7 +254,7 @@ const RacesPage = () => {
                     {/* ===== */}
                     <section className="collapsibles">
                       <header>
-                        <h4>Perks</h4>
+                        <h4>PERKS</h4>
 
                         <p className="disclaimer">
                           (Choose 3 unless specified by your subrace)

@@ -11,6 +11,7 @@ import uniq from "lodash/uniq"
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import TableOfContents from "../components/TableOfContents"
 import { Wrapper } from "../components/cardsPage"
 
 const onCollapseToggle = (id, expandedIDs, setExpandedIDs) => {
@@ -60,12 +61,12 @@ const IdentityFeaturesPage = () => {
     IDENTITY_FEATURES,
     (accumulator, identityFeature) => {
       forEach(identityFeature?.identity, identity => {
-        if (accumulator?.[identityFeature?.identity]) {
-          accumulator?.[identityFeature?.identity]?.push(identityFeature)
+        if (accumulator?.[identity]) {
+          accumulator?.[identity]?.push(identityFeature)
           return
         }
 
-        accumulator[identityFeature?.identity] = [identityFeature]
+        accumulator[identity] = [identityFeature]
       })
 
       return accumulator
@@ -84,9 +85,15 @@ const IdentityFeaturesPage = () => {
       <Wrapper>
         <h2>Identity Features</h2>
 
+        {/* Table of Contents */}
+        <TableOfContents />
+
+        {/* Identity Categories */}
         {map(identitiesLookup, (identityFeatures, identity) => (
           <>
-            <h2 className="category">{identity}</h2>
+            <h2 className="category" id={identity}>
+              {identity}
+            </h2>
             <ul>
               {map(identityFeatures, identityFeature => {
                 // Derive identityFeature properties.
@@ -138,7 +145,7 @@ const IdentityFeaturesPage = () => {
                       role="button"
                       tabIndex="0"
                     >
-                      <h3>{name}</h3>
+                      <h3 id={`${identity}--${name}`}>{name}</h3>
                       <Chevron
                         className={`chevron${isExpanded ? " expanded" : ""}`}
                       />
