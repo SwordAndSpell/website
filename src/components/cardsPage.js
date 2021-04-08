@@ -14,7 +14,8 @@ export const Wrapper = styled.section`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 90px 0 0;
+  margin: 90px 0 0px;
+  padding: 0 0 20px;
   text-align: center;
 
   h2 {
@@ -187,9 +188,11 @@ export const Wrapper = styled.section`
         white-space: pre-line;
         width: 100%;
 
+        h4,
         h5 {
           color: #512bfccc;
-          font-size: 1.5rem;
+          font-size: 1.2rem;
+          margin: 10px 0 0;
           text-align: center;
         }
 
