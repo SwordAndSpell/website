@@ -67,6 +67,72 @@ const WeaponsPage = () => {
       <Seo title="Weapons | Weapon Runes" />
       <Wrapper>
         <h2>Weapons / Weapon Runes</h2>
+        <h2 className="category">Simple Weapons</h2>
+        <ul>
+          {SIMPLE_WEAPONS?.map(item => {
+            // Derive item properties.
+            const id = item?.id
+            const name = item?.name
+            const cost = item?.cost
+            const damage = item?.damage
+            const range = item?.range
+            const weaponProperties = item?.weaponProperties
+
+            // Derive if the item is expanded or not.
+            const isExpanded = expandedSimpleWeaponsIDs?.includes(id)
+
+            return (
+              <li key={id}>
+                <header
+                  className="no-background-image"
+                  onKeyDown={event => {
+                    // On enter, toggle expanded/expanded.
+                    if (event.keyCode === 13) {
+                      onExpandedToggle(
+                        id,
+                        expandedSimpleWeaponsIDs,
+                        setExpandedSimpleWeaponsIDs
+                      )
+                    }
+                  }}
+                  onClick={() =>
+                    onExpandedToggle(
+                      id,
+                      expandedSimpleWeaponsIDs,
+                      setExpandedSimpleWeaponsIDs
+                    )
+                  }
+                  role="button"
+                  tabIndex="0"
+                >
+                  <h3>{name + " - " + cost}</h3>
+                  <Chevron
+                    className={`chevron${isExpanded ? " expanded" : ""}`}
+                  />
+                </header>
+
+                {isExpanded && (
+                  <section className="fields column">
+                    <section className="fields">
+                      <section className="field-group">
+                        <h4>Range</h4>
+                        <p className="value">{range}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Damage</h4>
+                        <p className="value">{damage}</p>
+                      </section>
+                    </section>
+                    <section className="field-group">
+                      <h4>Weapon Properties</h4>
+                      <p className="value">{weaponProperties}</p>
+                    </section>
+                  </section>
+                )}
+              </li>
+            )
+          })}
+        </ul>
 
         <h2 className="category">Martial Weapons</h2>
         <ul>
@@ -106,7 +172,7 @@ const WeaponsPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>{name}</h3>
+                  <h3>{name + " - " + cost}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -114,86 +180,15 @@ const WeaponsPage = () => {
 
                 {isExpanded && (
                   <section className="fields column">
-                    <section className="field-group">
-                      <h4>Cost</h4>
-                      <p className="value">{cost}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Damage</h4>
-                      <p className="value">{damage}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Range</h4>
-                      <p className="value">{range}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Weapon Properties</h4>
-                      <p className="value">{weaponProperties}</p>
-                    </section>
-                  </section>
-                )}
-              </li>
-            )
-          })}
-        </ul>
-
-        <h2 className="category">Simple Weapons</h2>
-        <ul>
-          {SIMPLE_WEAPONS?.map(item => {
-            // Derive item properties.
-            const id = item?.id
-            const name = item?.name
-            const cost = item?.cost
-            const damage = item?.damage
-            const range = item?.range
-            const weaponProperties = item?.weaponProperties
-
-            // Derive if the item is expanded or not.
-            const isExpanded = expandedSimpleWeaponsIDs?.includes(id)
-
-            return (
-              <li key={id}>
-                <header
-                  className="no-background-image"
-                  onKeyDown={event => {
-                    // On enter, toggle expanded/expanded.
-                    if (event.keyCode === 13) {
-                      onExpandedToggle(
-                        id,
-                        expandedSimpleWeaponsIDs,
-                        setExpandedSimpleWeaponsIDs
-                      )
-                    }
-                  }}
-                  onClick={() =>
-                    onExpandedToggle(
-                      id,
-                      expandedSimpleWeaponsIDs,
-                      setExpandedSimpleWeaponsIDs
-                    )
-                  }
-                  role="button"
-                  tabIndex="0"
-                >
-                  <h3>{name}</h3>
-                  <Chevron
-                    className={`chevron${isExpanded ? " expanded" : ""}`}
-                  />
-                </header>
-
-                {isExpanded && (
-                  <section className="fields column">
-                    <section className="field-group">
-                      <h4>Cost</h4>
-                      <p className="value">{cost}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Damage</h4>
-                      <p className="value">{damage}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Range</h4>
-                      <p className="value">{range}</p>
+                    <section className="fields">
+                      <section className="field-group">
+                        <h4>Range</h4>
+                        <p className="value">{range}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Damage</h4>
+                        <p className="value">{damage}</p>
+                      </section>
                     </section>
                     <section className="field-group">
                       <h4>Weapon Properties</h4>
@@ -298,29 +293,26 @@ const WeaponsPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>{name}</h3>
+                  <h3 id={name}>{name + " - " + goldCost}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
                 </header>
-
                 {isExpanded && (
                   <section className="fields column">
-                    <section className="field-group">
-                      <h4>Arcanite Cost</h4>
-                      <p className="value">{arcaniteCost}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Crafting Level Required</h4>
-                      <p className="value">{craftingLevelRequired}</p>
+                    <section className="fields">
+                      <section className="field-group">
+                        <h4>Arcanite Cost</h4>
+                        <p className="value">{arcaniteCost}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Crafting Level Required</h4>
+                        <p className="value">{craftingLevelRequired}</p>
+                      </section>
                     </section>
                     <section className="field-group">
                       <h4>Description</h4>
                       <p className="value">{description}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Gold Cost</h4>
-                      <p className="value">{goldCost}</p>
                     </section>
                   </section>
                 )}
