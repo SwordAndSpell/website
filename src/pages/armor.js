@@ -100,8 +100,8 @@ const ArmorPage = () => {
             const cost = item?.cost
             const defenseBonus = item?.defenseBonus
             const maxDexterityBonus = item?.maxDexterityBonus
-            const movementPenalty = item?.movementPenalty
-            const strengthRequired = item?.strengthRequired
+            const movementPenalty = item?.movementPenalty || "N/A"
+            const strengthRequired = item?.strengthRequired || "N/A"
 
             // Derive if the item is expanded or not.
             const isExpanded = expandedLightArmorIDs?.includes(id)
@@ -130,7 +130,7 @@ const ArmorPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3 id={name}>{name}</h3>
+                  <h3 id={name}>{name + " - " + cost}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -138,29 +138,29 @@ const ArmorPage = () => {
 
                 {isExpanded && (
                   <section className="fields column">
-                    <section className="field-group">
-                      <h4>Armor Value</h4>
-                      <p className="value">{armorValue}</p>
+                    <section className=" fields">
+                      <section className="field-group">
+                        <h4>Defense Bonus</h4>
+                        <p className="value">{defenseBonus}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Max Dex Bonus</h4>
+                        <p className="value">{maxDexterityBonus}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Armor Value</h4>
+                        <p className="value">{armorValue}</p>
+                      </section>
                     </section>
-                    <section className="field-group">
-                      <h4>Cost</h4>
-                      <p className="value">{cost}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Defense Bonus</h4>
-                      <p className="value">{defenseBonus}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Max Dexterity Bonus</h4>
-                      <p className="value">{maxDexterityBonus}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Movement Penalty</h4>
-                      <p className="value">{movementPenalty}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Strength Required</h4>
-                      <p className="value">{strengthRequired}</p>
+                    <section className=" fields">
+                      <section className="field-group">
+                        <h4>Movement Penalty</h4>
+                        <p className="value">{movementPenalty}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Strength Required</h4>
+                        <p className="value">{strengthRequired}</p>
+                      </section>
                     </section>
                   </section>
                 )}
@@ -211,7 +211,7 @@ const ArmorPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3 id={name}>{name}</h3>
+                  <h3 id={name}>{name + " - " + cost}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -219,29 +219,29 @@ const ArmorPage = () => {
 
                 {isExpanded && (
                   <section className="fields column">
-                    <section className="field-group">
-                      <h4>Armor Value</h4>
-                      <p className="value">{armorValue}</p>
+                    <section className=" fields">
+                      <section className="field-group">
+                        <h4>Defense Bonus</h4>
+                        <p className="value">{defenseBonus}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Max Dex Bonus</h4>
+                        <p className="value">{maxDexterityBonus}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Armor Value</h4>
+                        <p className="value">{armorValue}</p>
+                      </section>
                     </section>
-                    <section className="field-group">
-                      <h4>Cost</h4>
-                      <p className="value">{cost}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Defense Bonus</h4>
-                      <p className="value">{defenseBonus}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Max Dexterity Bonus</h4>
-                      <p className="value">{maxDexterityBonus}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Movement Penalty</h4>
-                      <p className="value">{movementPenalty}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Strength Required</h4>
-                      <p className="value">{strengthRequired}</p>
+                    <section className=" fields">
+                      <section className="field-group">
+                        <h4>Movement Penalty</h4>
+                        <p className="value">{movementPenalty}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Strength Required</h4>
+                        <p className="value">{strengthRequired}</p>
+                      </section>
                     </section>
                   </section>
                 )}
@@ -292,7 +292,7 @@ const ArmorPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3 id={name}>{name}</h3>
+                  <h3 id={name}>{name + " - " + cost}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -300,29 +300,29 @@ const ArmorPage = () => {
 
                 {isExpanded && (
                   <section className="fields column">
-                    <section className="field-group">
-                      <h4>Armor Value</h4>
-                      <p className="value">{armorValue}</p>
+                    <section className=" fields">
+                      <section className="field-group">
+                        <h4>Defense Bonus</h4>
+                        <p className="value">{defenseBonus}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Max Dex Bonus</h4>
+                        <p className="value">{maxDexterityBonus}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Armor Value</h4>
+                        <p className="value">{armorValue}</p>
+                      </section>
                     </section>
-                    <section className="field-group">
-                      <h4>Cost</h4>
-                      <p className="value">{cost}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Defense Bonus</h4>
-                      <p className="value">{defenseBonus}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Max Dexterity Bonus</h4>
-                      <p className="value">{maxDexterityBonus}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Movement Penalty</h4>
-                      <p className="value">{movementPenalty}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Strength Required</h4>
-                      <p className="value">{strengthRequired}</p>
+                    <section className=" fields">
+                      <section className="field-group">
+                        <h4>Movement Penalty</h4>
+                        <p className="value">{movementPenalty}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Strength Required</h4>
+                        <p className="value">{strengthRequired}</p>
+                      </section>
                     </section>
                   </section>
                 )}
@@ -341,8 +341,8 @@ const ArmorPage = () => {
             const name = item?.name
             const cost = item?.cost
             const defenseBonus = item?.defenseBonus
-            const specialAbility = item?.specialAbility
-            const strengthRequired = item?.strengthRequired
+            const specialAbility = item?.specialAbility || "N/A"
+            const strengthRequired = item?.strengthRequired || "N/A"
 
             // Derive if the item is expanded or not.
             const isExpanded = expandedShieldsIDs?.includes(id)
@@ -371,7 +371,7 @@ const ArmorPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3 id={name}>{name}</h3>
+                  <h3 id={name}>{name + " - " + cost}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -379,21 +379,19 @@ const ArmorPage = () => {
 
                 {isExpanded && (
                   <section className="fields column">
-                    <section className="field-group">
-                      <h4>Cost</h4>
-                      <p className="value">{cost}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Defense Bonus</h4>
-                      <p className="value">{defenseBonus}</p>
+                    <section className="fields">
+                      <section className="field-group">
+                        <h4>Defense Bonus</h4>
+                        <p className="value">{defenseBonus}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Strength Required</h4>
+                        <p className="value">{strengthRequired}</p>
+                      </section>
                     </section>
                     <section className="field-group">
                       <h4>Special Ability</h4>
                       <p className="value">{specialAbility}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Strength Required</h4>
-                      <p className="value">{strengthRequired}</p>
                     </section>
                   </section>
                 )}
@@ -442,7 +440,7 @@ const ArmorPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3 id={name}>{name}</h3>
+                  <h3 id={name}>{name + " - " + goldCost}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -450,21 +448,19 @@ const ArmorPage = () => {
 
                 {isExpanded && (
                   <section className="fields column">
-                    <section className="field-group">
-                      <h4>Arcanite Cost</h4>
-                      <p className="value">{arcaniteCost}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Crafting Level Required</h4>
-                      <p className="value">{craftingLevelRequired}</p>
+                    <section className="fields">
+                      <section className="field-group">
+                        <h4>Arcanite Cost</h4>
+                        <p className="value">{arcaniteCost}</p>
+                      </section>
+                      <section className="field-group">
+                        <h4>Crafting Level Required</h4>
+                        <p className="value">{craftingLevelRequired}</p>
+                      </section>
                     </section>
                     <section className="field-group">
                       <h4>Description</h4>
                       <p className="value">{description}</p>
-                    </section>
-                    <section className="field-group">
-                      <h4>Gold Cost</h4>
-                      <p className="value">{goldCost}</p>
                     </section>
                   </section>
                 )}
