@@ -7,7 +7,7 @@ import reduce from "lodash/reduce"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import TableOfContents from "../components/TableOfContents"
 import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
@@ -68,7 +68,7 @@ const IdentityFeaturesPage = () => {
 
   return (
     <Layout>
-      <SEO title="Identity Features" />
+      <Seo title="Identity Features" />
       <Wrapper>
         <h2>Identity Features</h2>
 

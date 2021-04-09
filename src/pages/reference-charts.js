@@ -3,7 +3,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 // Relative imports.
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
 
 const ReferenceChartsPage = () => {
@@ -98,7 +98,7 @@ const ReferenceChartsPage = () => {
 
   return (
     <Layout>
-      <SEO title="Reference Charts" />
+      <Seo title="Reference Charts" />
       <Wrapper>
         <h2>Reference Charts</h2>
 

@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from "gatsby"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import TableOfContents from "../components/TableOfContents"
 import { Wrapper } from "../components/cardsPage"
 import { onExpandedToggle } from "../utils"
@@ -81,7 +81,7 @@ const ArmorPage = () => {
 
   return (
     <Layout>
-      <SEO title="Armors | Armor Runes" />
+      <Seo title="Armors | Armor Runes" />
       <Wrapper>
         <h2>Armors / Armor Runes</h2>
 

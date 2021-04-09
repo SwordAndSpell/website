@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from "gatsby"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
 
@@ -34,7 +34,7 @@ const BackgroundsPage = () => {
 
   return (
     <Layout>
-      <SEO title="Backgrounds" />
+      <Seo title="Backgrounds" />
       <Wrapper>
         <h2>Backgrounds</h2>
         <ul>

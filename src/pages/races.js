@@ -2,7 +2,6 @@
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import find from "lodash/find"
-import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
