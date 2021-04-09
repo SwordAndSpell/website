@@ -1,10 +1,13 @@
 // Node modules.
-import React from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import map from "lodash/map"
 // Relative imports.
+import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
+import { onExpandedToggle } from "../utils"
 
 const ReferenceChartsPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -96,32 +99,291 @@ const ReferenceChartsPage = () => {
   const UNIVERSAL_SPELL_POINTS =
     queryResult?.site?.siteMetadata?.UNIVERSAL_SPELL_POINTS
 
+  // Derive state properties.
+  const [isAbilityModifiersExpanded, setIsAbilityModifiersExpanded] = useState(
+    false
+  )
+  const [isExampleDCSExpanded, setIsExampleDCSExpanded] = useState(false)
+  const [isLevelingExpanded, setIsLevelingExpanded] = useState(false)
+  const [
+    isSkillsQuickReferenceExpanded,
+    setIsSkillsQuickReferenceExpanded,
+  ] = useState(false)
+  const [isSpellPointCostsExpanded, setIsSpellPointCostsExpanded] = useState(
+    false
+  )
+  const [
+    isUniversalSpellChargesExpanded,
+    setIsUniversalSpellChargesExpanded,
+  ] = useState(false)
+  const [
+    isUniversalSpellPointsExpanded,
+    setIsUniversalSpellPointsExpanded,
+  ] = useState(false)
+
   return (
     <Layout>
       <Seo title="Reference Charts" />
       <Wrapper>
         <h2>Reference Charts</h2>
 
-        {/* ABILITY_MODIFIERS */}
-        <h2 className="category">Ability Modifiers</h2>
+        <ul>
+          {/* ABILITY_MODIFIERS */}
+          <li>
+            <header
+              className="no-background-image"
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  setIsAbilityModifiersExpanded(!isAbilityModifiersExpanded)
+                }
+              }}
+              onClick={() =>
+                setIsAbilityModifiersExpanded(!isAbilityModifiersExpanded)
+              }
+              role="button"
+              tabIndex="0"
+            >
+              <h3>Ability Modifiers</h3>
+              <Chevron
+                className={`chevron${
+                  isAbilityModifiersExpanded ? " expanded" : ""
+                }`}
+              />
+            </header>
 
-        {/* EXAMPLE_DCS */}
-        <h2 className="category">Example DCs</h2>
+            {isAbilityModifiersExpanded && (
+              <section className="fields">
+                {map(ABILITY_MODIFIERS, (value, key) => (
+                  <section className="field-group" key={key}>
+                    <p className="label">{key}</p>
+                    <p className="value">{value}</p>
+                  </section>
+                ))}
+              </section>
+            )}
+          </li>
 
-        {/* LEVELING */}
-        <h2 className="category">Leveling</h2>
+          {/* ExampleDCS */}
+          <li>
+            <header
+              className="no-background-image"
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  setIsExampleDCSExpanded(!isExampleDCSExpanded)
+                }
+              }}
+              onClick={() => setIsExampleDCSExpanded(!isExampleDCSExpanded)}
+              role="button"
+              tabIndex="0"
+            >
+              <h3>Example DCS</h3>
+              <Chevron
+                className={`chevron${isExampleDCSExpanded ? " expanded" : ""}`}
+              />
+            </header>
 
-        {/* SKILLS_QUICK_REFERENCE */}
-        <h2 className="category">Skills Quick Reference</h2>
+            {isExampleDCSExpanded && (
+              <section className="fields">
+                {map(EXAMPLE_DCS, (value, key) => (
+                  <section className="field-group" key={key}>
+                    <p className="label">{key}</p>
+                    <p className="value">{value}</p>
+                  </section>
+                ))}
+              </section>
+            )}
+          </li>
 
-        {/* SPELL_POINT_COSTS */}
-        <h2 className="category">Spell Point Costs</h2>
+          {/* Leveling */}
+          <li>
+            <header
+              className="no-background-image"
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  setIsLevelingExpanded(!isLevelingExpanded)
+                }
+              }}
+              onClick={() => setIsLevelingExpanded(!isLevelingExpanded)}
+              role="button"
+              tabIndex="0"
+            >
+              <h3>Leveling</h3>
+              <Chevron
+                className={`chevron${isLevelingExpanded ? " expanded" : ""}`}
+              />
+            </header>
 
-        {/* UNIVERSAL_SPELL_CHARGES */}
-        <h2 className="category">Universal Spell Charges</h2>
+            {isLevelingExpanded && (
+              <section className="fields">
+                {map(LEVELING, (value, key) => (
+                  <section className="field-group" key={key}>
+                    <p className="label">{key}</p>
+                    <p className="value">{value}</p>
+                  </section>
+                ))}
+              </section>
+            )}
+          </li>
 
-        {/* UNIVERSAL_SPELL_POINTS */}
-        <h2 className="category">Universal Spell Points</h2>
+          {/* SkillsQuickReference */}
+          <li>
+            <header
+              className="no-background-image"
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  setIsSkillsQuickReferenceExpanded(
+                    !isSkillsQuickReferenceExpanded
+                  )
+                }
+              }}
+              onClick={() =>
+                setIsSkillsQuickReferenceExpanded(
+                  !isSkillsQuickReferenceExpanded
+                )
+              }
+              role="button"
+              tabIndex="0"
+            >
+              <h3>Skills Quick Reference</h3>
+              <Chevron
+                className={`chevron${
+                  isSkillsQuickReferenceExpanded ? " expanded" : ""
+                }`}
+              />
+            </header>
+
+            {isSkillsQuickReferenceExpanded && (
+              <section className="fields">
+                {map(SKILLS_QUICK_REFERENCE, (value, key) => (
+                  <section className="field-group" key={key}>
+                    <p className="label">{key}</p>
+                    <p className="value">{value}</p>
+                  </section>
+                ))}
+              </section>
+            )}
+          </li>
+
+          {/* SpellPointCosts */}
+          <li>
+            <header
+              className="no-background-image"
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  setIsSpellPointCostsExpanded(!isSpellPointCostsExpanded)
+                }
+              }}
+              onClick={() =>
+                setIsSpellPointCostsExpanded(!isSpellPointCostsExpanded)
+              }
+              role="button"
+              tabIndex="0"
+            >
+              <h3>Spell Point Costs</h3>
+              <Chevron
+                className={`chevron${
+                  isSpellPointCostsExpanded ? " expanded" : ""
+                }`}
+              />
+            </header>
+
+            {isSpellPointCostsExpanded && (
+              <section className="fields">
+                {map(SPELL_POINT_COSTS, (value, key) => (
+                  <section className="field-group" key={key}>
+                    <p className="label">{key}</p>
+                    <p className="value">{value}</p>
+                  </section>
+                ))}
+              </section>
+            )}
+          </li>
+
+          {/* UniversalSpellCharges */}
+          <li>
+            <header
+              className="no-background-image"
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  setIsUniversalSpellChargesExpanded(
+                    !isUniversalSpellChargesExpanded
+                  )
+                }
+              }}
+              onClick={() =>
+                setIsUniversalSpellChargesExpanded(
+                  !isUniversalSpellChargesExpanded
+                )
+              }
+              role="button"
+              tabIndex="0"
+            >
+              <h3>Universal Spell Charges</h3>
+              <Chevron
+                className={`chevron${
+                  isUniversalSpellChargesExpanded ? " expanded" : ""
+                }`}
+              />
+            </header>
+
+            {isUniversalSpellChargesExpanded && (
+              <section className="fields">
+                {map(UNIVERSAL_SPELL_CHARGES, (value, key) => (
+                  <section className="field-group" key={key}>
+                    <p className="label">{key}</p>
+                    <p className="value">{value}</p>
+                  </section>
+                ))}
+              </section>
+            )}
+          </li>
+
+          {/* UniversalSpellPoints */}
+          <li>
+            <header
+              className="no-background-image"
+              onKeyDown={event => {
+                // On enter, toggle expanded/expanded.
+                if (event.keyCode === 13) {
+                  setIsUniversalSpellPointsExpanded(
+                    !isUniversalSpellPointsExpanded
+                  )
+                }
+              }}
+              onClick={() =>
+                setIsUniversalSpellPointsExpanded(
+                  !isUniversalSpellPointsExpanded
+                )
+              }
+              role="button"
+              tabIndex="0"
+            >
+              <h3>Universal Spell Points</h3>
+              <Chevron
+                className={`chevron${
+                  isUniversalSpellPointsExpanded ? " expanded" : ""
+                }`}
+              />
+            </header>
+
+            {isUniversalSpellPointsExpanded && (
+              <section className="fields">
+                {map(UNIVERSAL_SPELL_POINTS, (value, key) => (
+                  <section className="field-group" key={key}>
+                    <p className="label">{key}</p>
+                    <p className="value">{value}</p>
+                  </section>
+                ))}
+              </section>
+            )}
+          </li>
+        </ul>
       </Wrapper>
     </Layout>
   )
