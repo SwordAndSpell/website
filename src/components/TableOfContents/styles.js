@@ -29,7 +29,9 @@ export const Wrapper = styled.section`
         color: #24c9fc;
         cursor: pointer;
         outline: none;
+        text-align: left;
         text-decoration: none;
+        text-indent: -5px;
       }
     }
   }
