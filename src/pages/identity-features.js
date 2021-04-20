@@ -1,8 +1,9 @@
 // Node modules.
-import React, { useState } from "react"
+import React, { Fragment, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import forEach from "lodash/forEach"
 import find from "lodash/find"
+import forEach from "lodash/forEach"
+import map from "lodash/map"
 import reduce from "lodash/reduce"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
@@ -76,8 +77,8 @@ const IdentityFeaturesPage = () => {
         <TableOfContents />
 
         {/* Identity Categories */}
-        {identitiesLookup?.map((identityFeatures, identity) => (
-          <>
+        {map(identitiesLookup, (identityFeatures, identity) => (
+          <Fragment key={identity}>
             <h2 className="category" id={identity}>
               {identity}
             </h2>
@@ -198,7 +199,7 @@ const IdentityFeaturesPage = () => {
                 )
               })}
             </ul>
-          </>
+          </Fragment>
         ))}
       </Wrapper>
     </Layout>
