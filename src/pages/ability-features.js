@@ -321,6 +321,11 @@ const AbilityFeaturesPage = () => {
                     )
                   })}
                 </section>
+                {activeFilters.length === 0 && (
+                  <div className="empty-filter">
+                    Enable a filter to see relevant abilities!
+                  </div>
+                )}
               </>
             )}
           </li>
@@ -401,6 +406,11 @@ const AbilityFeaturesPage = () => {
                     )
                   })}
                 </section>
+                {activeFilters.length === 0 && (
+                  <div className="empty-filter">
+                    Enable a filter to see relevant abilities!
+                  </div>
+                )}
               </>
             )}
           </li>
@@ -481,6 +491,11 @@ const AbilityFeaturesPage = () => {
                     )
                   })}
                 </section>
+                {activeFilters.length === 0 && (
+                  <div className="empty-filter">
+                    Enable a filter to see relevant abilities!
+                  </div>
+                )}
               </>
             )}
           </li>
@@ -561,6 +576,11 @@ const AbilityFeaturesPage = () => {
                     )
                   })}
                 </section>
+                {activeFilters.length === 0 && (
+                  <div className="empty-filter">
+                    Enable a filter to see relevant abilities!
+                  </div>
+                )}
               </>
             )}
           </li>

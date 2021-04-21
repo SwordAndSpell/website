@@ -74,7 +74,7 @@ const IdentityFeaturesPage = () => {
         <h2>Identity Features</h2>
 
         {/* Table of Contents */}
-        <TableOfContents />
+        <TableOfContents includedHeaders={["h2"]} />
 
         {/* Identity Categories */}
         {map(identitiesLookup, (identityFeatures, identity) => (
@@ -146,12 +146,9 @@ const IdentityFeaturesPage = () => {
                       <section className="fields column">
                         <section className="field-group">
                           <h4>Requirements</h4>
-                          <p className="value">{requirements?.join(", ")}</p>
-                        </section>
-
-                        <section className="field-group">
-                          <h4>Identity</h4>
-                          <p className="value">{identity}</p>
+                          <p className="value">
+                            {requirements?.join(", ") || "None"}
+                          </p>
                         </section>
 
                         <section className="field-group">

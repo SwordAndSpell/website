@@ -149,6 +149,44 @@ export const Wrapper = styled.section`
 
       h4 {
         margin: 0 0 10px;
+        text-align: left;
+      }
+
+      .label {
+        color: #999999;
+        font-size: 0.7rem;
+        margin: 0;
+      }
+
+      .value {
+        color: #444444;
+        font-size: 1.2rem;
+        margin: 0;
+        white-space: pre-line;
+        text-align: left;
+      }
+    }
+
+    .fields-background {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      padding: 0 10px 10px;
+      width: 100%;
+
+      &.column {
+        flex-direction: column;
+      }
+    }
+
+    .field-group-background {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 10px 0;
+      width: 40%;
+
+      h4 {
+        margin: 0 0 10px;
       }
 
       .label {
@@ -163,6 +201,10 @@ export const Wrapper = styled.section`
         margin: 0;
         white-space: pre-line;
       }
+    }
+    .empty-filter {
+      margin-bottom: 20px;
+      background: none;
     }
 
     .collapsibles {
@@ -225,10 +267,69 @@ export const Wrapper = styled.section`
         margin-bottom: 20px;
       }
     }
+    .fields-gear {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      padding: 0 10px 10px;
+      width: 100%;
+
+      &.column {
+        flex-direction: column;
+      }
+    }
+
+    .field-group-gear {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 10px 0;
+      margin-top: 10px;
+
+      h4 {
+        margin: 0 0 10px;
+      }
+
+      .label {
+        color: #999999;
+        font-size: 0.7rem;
+        margin: 0;
+      }
+
+      .value {
+        color: #444444;
+        font-size: 1.2rem;
+        margin: 0;
+        white-space: pre-line;
+      }
+    }
+    .field-group-gear-wide {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 10px 0;
+      max-width: 100%;
+
+      h4 {
+        margin: 0 0 10px;
+      }
+
+      .label {
+        color: #999999;
+        font-size: 0.7rem;
+        margin: 0;
+      }
+
+      .value {
+        color: #444444;
+        font-size: 1.2rem;
+        margin: 0;
+        white-space: pre-line;
+      }
+    }
   }
 
   .filters {
     align-items: center;
+    justify-content: center;
     display: flex;
     flex-flow: row wrap;
     padding: 0 20px;

@@ -17,12 +17,8 @@ const CoreIdentitiesPage = () => {
         siteMetadata {
           CORE_IDENTITIES {
             coreAbilityIDs
-            healthAtFirstLevel
-            healthBeyondFirstLevel
             id
-            initialProficiencies
             name
-            startingEquipment
           }
           CORE_ABILITIES {
             description
@@ -51,13 +47,9 @@ const CoreIdentitiesPage = () => {
           {CORE_IDENTITIES?.map(coreIdentity => {
             // Derive coreIdentity properties.
             const coreAbilityIDs = coreIdentity?.coreAbilityIDs
-            const healthAtFirstLevel = coreIdentity?.healthAtFirstLevel
-            const healthBeyondFirstLevel = coreIdentity?.healthBeyondFirstLevel
             const id = coreIdentity?.id
             const imageURL = coreIdentity?.imageURL || defaultCoreIdentityImage
-            const initialProficiencies = coreIdentity?.initialProficiencies
             const name = coreIdentity?.name
-            const startingEquipment = coreIdentity?.startingEquipment
 
             // Derive the coreAbilities.
             const coreAbilities = coreAbilityIDs?.map(coreAbilityID =>
@@ -103,38 +95,12 @@ const CoreIdentitiesPage = () => {
 
                 {isExpanded && (
                   <>
-                    {/* CORE STATS */}
-                    {/* ========== */}
-                    <section className="fields">
-                      <section className="field-group">
-                        <h4>Health at Level 1</h4>
-                        <p className="value">{healthAtFirstLevel}</p>
-                      </section>
-
-                      <section className="field-group">
-                        <h4>Health at Level 2+</h4>
-                        <p className="value">{healthBeyondFirstLevel}</p>
-                      </section>
-
-                      <section className="field-group">
-                        <h4>Starting Equipment</h4>
-                        <p className="value">{startingEquipment}</p>
-                      </section>
-
-                      <section className="field-group">
-                        <h4>Initial Proficiencies</h4>
-                        <p className="value">{initialProficiencies}</p>
-                      </section>
-                    </section>
-                    {/* CORE STATS end */}
-                    {/* ========== */}
-
                     {/* CORE ABILITIES */}
                     {/* ========== */}
                     {coreAbilities?.length > 0 && (
                       <section className="collapsibles">
                         <header>
-                          <h4>Core Abilities</h4>
+                          <h4>Core Abilities and Identity Stats</h4>
                         </header>
 
                         {coreAbilities?.map(coreAbility => {
