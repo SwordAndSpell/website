@@ -352,4 +352,15 @@ export const Wrapper = styled.section`
       }
     }
   }
+
+  .filter-input {
+    border: 1px solid #999999;
+    color: #999999;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    height: 40px;
+    margin: 10px;
+    padding: 10px;
+    width: 90%;
+  }
 `
