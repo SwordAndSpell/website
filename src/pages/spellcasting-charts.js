@@ -1,12 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import map from "lodash/map"
 // Relative imports.
-import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
-import { onExpandedToggle } from "../utils"
 
 const SpellcastingChartPage = () => {
   const queryResult = useStaticQuery(graphql`

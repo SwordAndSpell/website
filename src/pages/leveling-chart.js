@@ -1,12 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import map from "lodash/map"
 // Relative imports.
-import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
-import { onExpandedToggle } from "../utils"
 
 const LevelingChartPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -25,8 +23,6 @@ const LevelingChartPage = () => {
 
   // Derive data from the graphql query above.
   const LEVELING_CHART = queryResult?.site?.siteMetadata?.LEVELING
-
-  console.log(LEVELING_CHART)
 
   return (
     <Layout>

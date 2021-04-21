@@ -12,6 +12,7 @@ import Seo from "../components/seo"
 import TableOfContents from "../components/TableOfContents"
 import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
+import { filter } from "lodash"
 
 const IdentityFeaturesPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -85,6 +86,17 @@ const IdentityFeaturesPage = () => {
           value={searchInput}
           placeholder="Search for identity features..."
         />
+        <p>
+          Showing{" "}
+          {
+            filter(IDENTITY_FEATURES, feature =>
+              JSON.stringify(feature)
+                .toLowerCase()
+                .includes(searchInput.toLowerCase())
+            ).length
+          }{" "}
+          features
+        </p>
 
         {/* Identity Categories */}
         {map(identitiesLookup, (identityFeatures, identity) => (
