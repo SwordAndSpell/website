@@ -66,6 +66,8 @@ const IdentityFeaturesPage = () => {
   const [expandedIdentityFeatureIDs, setExpandedIdentityFeatureIDs] = useState(
     []
   )
+  // Start with everything collapsed.
+  const [searchInput, setSearchInput] = useState("")
 
   return (
     <Layout>
@@ -76,126 +78,153 @@ const IdentityFeaturesPage = () => {
         {/* Table of Contents */}
         <TableOfContents includedHeaders={["h2"]} />
 
+        <input
+          className="filter-input"
+          name="search input"
+          onChange={event => setSearchInput(event.target.value)}
+          value={searchInput}
+          placeholder="Search for identity features..."
+        />
+
         {/* Identity Categories */}
         {map(identitiesLookup, (identityFeatures, identity) => (
           <Fragment key={identity}>
-            <h2 className="category" id={identity}>
-              {identity}
-            </h2>
-            <ul>
-              {identityFeatures?.map(identityFeature => {
-                // Derive identityFeature properties.
-                const firstLevelSpells = identityFeature?.firstLevelSpells
-                const secondLevelSpells = identityFeature?.secondLevelSpells
-                const thirdLevelSpells = identityFeature?.thirdLevelSpells
-                const fourthLevelSpells = identityFeature?.fourthLevelSpells
-                const fifthLevelSpells = identityFeature?.fifthLevelSpells
-                const description = identityFeature?.description
-                const id = identityFeature?.id
-                const identity = identityFeature?.identity
-                const name = identityFeature?.name
-                const requirementIDs = identityFeature?.requirementIDs
+            {JSON.stringify(identityFeatures)
+              .toLowerCase()
+              .includes(searchInput.toLowerCase()) && (
+              <h2 className="category" id={identity}>
+                {identity}
+              </h2>
+            )}
+            {JSON.stringify(identityFeatures)
+              .toLowerCase()
+              .includes(searchInput.toLowerCase()) && (
+              <ul>
+                {identityFeatures?.map(identityFeature => {
+                  // Derive identityFeature properties.
+                  const firstLevelSpells = identityFeature?.firstLevelSpells
+                  const secondLevelSpells = identityFeature?.secondLevelSpells
+                  const thirdLevelSpells = identityFeature?.thirdLevelSpells
+                  const fourthLevelSpells = identityFeature?.fourthLevelSpells
+                  const fifthLevelSpells = identityFeature?.fifthLevelSpells
+                  const description = identityFeature?.description
+                  const id = identityFeature?.id
+                  const identity = identityFeature?.identity
+                  const name = identityFeature?.name
+                  const requirementIDs = identityFeature?.requirementIDs
 
-                // Derive requirements.
-                const requirements = requirementIDs
-                  ?.map(
-                    requirementID =>
-                      find(IDENTITY_FEATURE_REQUIREMENTS, ["id", requirementID])
-                        ?.name
+                  // Derive requirements.
+                  const requirements = requirementIDs
+                    ?.map(
+                      requirementID =>
+                        find(IDENTITY_FEATURE_REQUIREMENTS, [
+                          "id",
+                          requirementID,
+                        ])?.name
+                    )
+                    ?.sort()
+
+                  // Derive if the details are expanded.
+                  const isExpanded = expandedIdentityFeatureIDs?.includes(id)
+                  const isRelevant =
+                    searchInput === "" ||
+                    JSON.stringify(identityFeature)
+                      .toLowerCase()
+                      .includes(searchInput.toLowerCase())
+
+                  return (
+                    isRelevant && (
+                      <li key={`${id}--${identity}`}>
+                        {/* NAME */}
+                        {/* ============ */}
+                        <header
+                          className="no-background-image"
+                          onKeyDown={event => {
+                            // On enter, toggle expanded/expanded.
+                            if (event.keyCode === 13) {
+                              onCollapseToggle(
+                                id,
+                                expandedIdentityFeatureIDs,
+                                setExpandedIdentityFeatureIDs
+                              )
+                            }
+                          }}
+                          onClick={() =>
+                            onCollapseToggle(
+                              id,
+                              expandedIdentityFeatureIDs,
+                              setExpandedIdentityFeatureIDs
+                            )
+                          }
+                          role="button"
+                          tabIndex="0"
+                        >
+                          <h3 id={`${identity}--${name}`}>{name}</h3>
+                          <Chevron
+                            className={`chevron${
+                              isExpanded ? " expanded" : ""
+                            }`}
+                          />
+                        </header>
+                        {/* IMAGE + NAME end */}
+                        {/* ============ */}
+
+                        {isExpanded && (
+                          <section className="fields column">
+                            <section className="field-group">
+                              <h4>Requirements</h4>
+                              <p className="value">
+                                {requirements?.join(", ") || "None"}
+                              </p>
+                            </section>
+
+                            <section className="field-group">
+                              <h4>Description</h4>
+                              <p className="value">{description}</p>
+                            </section>
+
+                            {firstLevelSpells && (
+                              <section className="field-group">
+                                <h4>1st Level Spells</h4>
+                                <p className="value">{firstLevelSpells}</p>
+                              </section>
+                            )}
+
+                            {secondLevelSpells && (
+                              <section className="field-group">
+                                <h4>2nd Level Spells</h4>
+                                <p className="value">{secondLevelSpells}</p>
+                              </section>
+                            )}
+
+                            {thirdLevelSpells && (
+                              <section className="field-group">
+                                <h4>3rd Level Spells</h4>
+                                <p className="value">{thirdLevelSpells}</p>
+                              </section>
+                            )}
+
+                            {fourthLevelSpells && (
+                              <section className="field-group">
+                                <h4>4th Level Spells</h4>
+                                <p className="value">{fourthLevelSpells}</p>
+                              </section>
+                            )}
+
+                            {fifthLevelSpells && (
+                              <section className="field-group">
+                                <h4>5th Level Spells</h4>
+                                <p className="value">{fifthLevelSpells}</p>
+                              </section>
+                            )}
+                          </section>
+                        )}
+                      </li>
+                    )
                   )
-                  ?.sort()
-
-                // Derive if the details are expanded.
-                const isExpanded = expandedIdentityFeatureIDs?.includes(id)
-
-                return (
-                  <li key={`${id}--${identity}`}>
-                    {/* NAME */}
-                    {/* ============ */}
-                    <header
-                      className="no-background-image"
-                      onKeyDown={event => {
-                        // On enter, toggle expanded/expanded.
-                        if (event.keyCode === 13) {
-                          onCollapseToggle(
-                            id,
-                            expandedIdentityFeatureIDs,
-                            setExpandedIdentityFeatureIDs
-                          )
-                        }
-                      }}
-                      onClick={() =>
-                        onCollapseToggle(
-                          id,
-                          expandedIdentityFeatureIDs,
-                          setExpandedIdentityFeatureIDs
-                        )
-                      }
-                      role="button"
-                      tabIndex="0"
-                    >
-                      <h3 id={`${identity}--${name}`}>{name}</h3>
-                      <Chevron
-                        className={`chevron${isExpanded ? " expanded" : ""}`}
-                      />
-                    </header>
-                    {/* IMAGE + NAME end */}
-                    {/* ============ */}
-
-                    {isExpanded && (
-                      <section className="fields column">
-                        <section className="field-group">
-                          <h4>Requirements</h4>
-                          <p className="value">
-                            {requirements?.join(", ") || "None"}
-                          </p>
-                        </section>
-
-                        <section className="field-group">
-                          <h4>Description</h4>
-                          <p className="value">{description}</p>
-                        </section>
-
-                        {firstLevelSpells && (
-                          <section className="field-group">
-                            <h4>1st Level Spells</h4>
-                            <p className="value">{firstLevelSpells}</p>
-                          </section>
-                        )}
-
-                        {secondLevelSpells && (
-                          <section className="field-group">
-                            <h4>2nd Level Spells</h4>
-                            <p className="value">{secondLevelSpells}</p>
-                          </section>
-                        )}
-
-                        {thirdLevelSpells && (
-                          <section className="field-group">
-                            <h4>3rd Level Spells</h4>
-                            <p className="value">{thirdLevelSpells}</p>
-                          </section>
-                        )}
-
-                        {fourthLevelSpells && (
-                          <section className="field-group">
-                            <h4>4th Level Spells</h4>
-                            <p className="value">{fourthLevelSpells}</p>
-                          </section>
-                        )}
-
-                        {fifthLevelSpells && (
-                          <section className="field-group">
-                            <h4>5th Level Spells</h4>
-                            <p className="value">{fifthLevelSpells}</p>
-                          </section>
-                        )}
-                      </section>
-                    )}
-                  </li>
-                )
-              })}
-            </ul>
+                })}
+              </ul>
+            )}
           </Fragment>
         ))}
       </Wrapper>
