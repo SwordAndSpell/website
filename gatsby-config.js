@@ -36,6 +36,10 @@ module.exports = {
     author: `@SwordAndSpell`,
     navItems: [
       {
+        link: "/leveling-chart",
+        label: "Leveling Chart",
+      },
+      {
         link: "/races",
         label: "Races",
       },
@@ -56,10 +60,6 @@ module.exports = {
         label: "Ability Features",
       },
       {
-        link: "/reference-charts",
-        label: "Reference Charts",
-      },
-      {
         link: "/armor",
         label: "Armor",
       },
@@ -67,17 +67,21 @@ module.exports = {
         link: "/weapons",
         label: "Weapons",
       },
+      {
+        link: "/spellcasting-charts",
+        label: "Spellcasting Charts",
+      },
+      {
+        link: "/rules",
+        label: "Rules",
+      },
+      {
+        link: "/reference-charts",
+        label: "Quick Reference",
+      },
       // {
       //   link: "/spells",
       //   label: "Spells",
-      // },
-      // {
-      //   link: "/rules",
-      //   label: "Rules",
-      // },
-      // {
-      //   link: "/spellcasting-charts",
-      //   label: "Spellcasting Charts",
       // },
       // {
       //   link: "/summoning-stat-blocks",
