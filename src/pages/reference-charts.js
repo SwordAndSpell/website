@@ -7,7 +7,6 @@ import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
-import { onExpandedToggle } from "../utils"
 
 const ReferenceChartsPage = () => {
   const queryResult = useStaticQuery(graphql`
