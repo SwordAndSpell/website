@@ -10,6 +10,7 @@ const LANGUAGES = require("sns-data/data/LANGUAGES.json")
 const PERKS = require("sns-data/data/PERKS.json")
 const RACES = require("sns-data/data/RACES.json")
 const SUBRACES = require("sns-data/data/SUBRACES.json")
+const RULES = require("sns-data/data/RULES.json")
 // Charts.
 const ABILITY_MODIFIERS = require("sns-data/data/CHARTS/ABILITY_MODIFIERS")
 const EXAMPLE_DCS = require("sns-data/data/CHARTS/EXAMPLE_DCS")
@@ -106,6 +107,7 @@ module.exports = {
     PERKS,
     RACES,
     SUBRACES,
+    RULES,
     // Charts.
     ABILITY_MODIFIERS,
     EXAMPLE_DCS,

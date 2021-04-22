@@ -38,7 +38,7 @@ const LevelingChartPage = () => {
           </thead>
           <tbody>
             {map(LEVELING_CHART, row => (
-              <tr>
+              <tr key={`${row?.level}-${row?.featuresGranted}`}>
                 <td>{row?.level}</td>
                 <td>{row?.featuresGranted}</td>
               </tr>

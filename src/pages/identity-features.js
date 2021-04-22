@@ -67,7 +67,7 @@ const IdentityFeaturesPage = () => {
   const [expandedIdentityFeatureIDs, setExpandedIdentityFeatureIDs] = useState(
     []
   )
-  // Start with everything collapsed.
+  // filtering.
   const [searchInput, setSearchInput] = useState("")
 
   return (

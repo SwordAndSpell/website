@@ -45,7 +45,6 @@ const SpellcastingChartPage = () => {
     queryResult?.site?.siteMetadata?.UNIVERSAL_SPELL_POINTS
   const SPELL_POINT_COSTS = queryResult?.site?.siteMetadata?.SPELL_POINT_COSTS
 
-  console.log(SPELL_POINT_COSTS)
   return (
     <Layout>
       <Seo title="Spellcasting Charts" />
