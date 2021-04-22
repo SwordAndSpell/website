@@ -148,8 +148,9 @@ export const Wrapper = styled.section`
       margin: 10px 10px 0;
 
       h4 {
-        margin: 0 0 10px;
+        margin: 10px 0 10px;
         text-align: left;
+        font-size: 1rem;
       }
 
       .label {
@@ -160,7 +161,7 @@ export const Wrapper = styled.section`
 
       .value {
         color: #444444;
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin: 0;
         white-space: pre-line;
         text-align: left;
@@ -187,6 +188,7 @@ export const Wrapper = styled.section`
 
       h4 {
         margin: 0 0 10px;
+        font-size: 1rem;
       }
 
       .label {
@@ -197,7 +199,7 @@ export const Wrapper = styled.section`
 
       .value {
         color: #444444;
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin: 0;
         white-space: pre-line;
       }
@@ -235,7 +237,7 @@ export const Wrapper = styled.section`
           color: #512bfccc;
           font-size: 1.2rem;
           margin: 10px 0 0;
-          text-align: center;
+          text-align: left;
         }
 
         p {
@@ -244,12 +246,11 @@ export const Wrapper = styled.section`
         }
 
         .requirements {
-          align-items: center;
           display: flex;
           flex-direction: column;
-          font-size: 0.7rem;
+          font-size: 0.85rem;
           margin: 10px 0 0;
-          text-align: center;
+          text-align: left;
 
           &:last-of-type {
             margin-bottom: 10px;
@@ -287,6 +288,7 @@ export const Wrapper = styled.section`
 
       h4 {
         margin: 0 0 10px;
+        font-size: 1.2rem;
       }
 
       .label {
@@ -297,7 +299,7 @@ export const Wrapper = styled.section`
 
       .value {
         color: #444444;
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin: 0;
         white-space: pre-line;
       }
@@ -310,6 +312,7 @@ export const Wrapper = styled.section`
 
       h4 {
         margin: 0 0 10px;
+        font-size: 1.2rem;
       }
 
       .label {

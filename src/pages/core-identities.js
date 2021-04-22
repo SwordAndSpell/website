@@ -99,10 +99,6 @@ const CoreIdentitiesPage = () => {
                     {/* ========== */}
                     {coreAbilities?.length > 0 && (
                       <section className="collapsibles">
-                        <header>
-                          <h4>Core Abilities and Identity Stats</h4>
-                        </header>
-
                         {coreAbilities?.map(coreAbility => {
                           // Derive coreAbility properties.
                           const description = coreAbility?.description
