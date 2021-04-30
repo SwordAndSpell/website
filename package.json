@@ -34,8 +34,8 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
-    "deploy": "curl --location --request POST 'https://webhook.gatsbyjs.com/hooks/data_source/publish/c1fdf4b2-9b62-4a71-abae-b9d7ccf46c51'",
     "clean": "gatsby clean",
+    "deploy": "curl --location --request POST 'https://webhook.gatsbyjs.com/hooks/data_source/publish/c1fdf4b2-9b62-4a71-abae-b9d7ccf46c51'",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "refresh:content": "rm yarn.lock && rm -rf node_modules && yarn && yarn start",
