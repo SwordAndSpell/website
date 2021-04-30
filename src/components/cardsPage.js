@@ -35,6 +35,7 @@ export const Wrapper = styled.section`
     align-items: center;
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
     width: 100%;
   }
 
@@ -45,6 +46,7 @@ export const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     margin: 0 20px 20px;
+    max-width: 500px;
     width: 100%;
 
     * {
