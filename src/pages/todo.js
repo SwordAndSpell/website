@@ -56,6 +56,9 @@ const ToDoPage = () => (
         </ul>
       </section>
       <section>
+        <h2>update the landing page to do something / have info</h2>
+      </section>
+      <section>
         <h2>push it live to the url</h2>
       </section>
     </Wrapper>
