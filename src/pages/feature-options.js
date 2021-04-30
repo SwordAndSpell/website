@@ -1,24 +1,12 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
-
-const onFilterToggle = (filterToToggle, activeFilters, setActiveFilters) => {
-  // Expand the ID.
-  if (activeFilters?.includes(filterToToggle)) {
-    setActiveFilters(activeFilters?.filter(filter => filter !== filterToToggle))
-    return
-  }
-
-  // toggle the filter
-  setActiveFilters(uniq([...activeFilters, filterToToggle]))
-}
 
 const FeatureOptionsPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -56,6 +44,7 @@ const FeatureOptionsPage = () => {
 
   return (
     <Layout>
+      <Seo title="Feature Options" />
       <Wrapper>
         <h2>Feature Options</h2>
 

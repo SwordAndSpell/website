@@ -84,13 +84,21 @@ module.exports = {
         link: "/reference-charts",
         label: "Quick Reference",
       },
+      {
+        link: "/todo",
+        label: "To Do List",
+      },
       // {
       //   link: "/spells",
       //   label: "Spells",
       // },
       // {
-      //   link: "/summoning-stat-blocks",
-      //   label: "Summoning Stat Blocks",
+      //   link: "/animal-companions",
+      //   label: "Animal Companions",
+      // },
+      // {
+      //   link: "/summoning,
+      //   label: "Summoning",
       // },
       // {
       //   link: "/shapechange-forms",
