@@ -13,7 +13,7 @@ export const Header = styled.header`
   left: 0;
   transition: box-shadow 0.2s ease, border-bottom 0.2s ease;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 
   &:hover {
     border-bottom: 1px solid transparent;
@@ -76,7 +76,7 @@ export const NavItems = styled.ul`
   padding: 0 0 10px;
   top: 70px;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 
   &.expanded {
     display: flex;

@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import find from "lodash/find"
 // Relative imports.
+import BackToTop from "../components/BackToTop"
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -63,6 +64,8 @@ const RacesPage = () => {
     <Layout>
       <Seo title="Races" />
       <Wrapper>
+        <BackToTop />
+
         <h2>Races</h2>
         <ul>
           {RACES?.map(race => {
