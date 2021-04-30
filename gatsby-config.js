@@ -57,6 +57,10 @@ module.exports = {
         label: "Identity Features",
       },
       {
+        link: "/feature-options",
+        label: "Feature Options",
+      },
+      {
         link: "/ability-features",
         label: "Ability Features",
       },
