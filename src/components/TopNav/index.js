@@ -41,6 +41,7 @@ const TopNav = ({ siteTitle }) => {
 
         {/* Burger */}
         <button
+          aria-label="burger icon for navigation"
           className={showNavItems ? "expanded" : ""}
           onClick={() => setShowNavItems(!showNavItems)}
           type="button"
