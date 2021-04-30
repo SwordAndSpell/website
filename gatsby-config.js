@@ -180,5 +180,12 @@ module.exports = {
         precachePages: [`/`, `/pages/*`],
       },
     },
+    // Full Story integration
+    {
+      resolve: `gatsby-plugin-fullstory`,
+      options: {
+        fs_org: "VZS58",
+      },
+    },
   ],
 }
