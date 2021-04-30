@@ -59,7 +59,25 @@ const ToDoPage = () => (
         <h2>update the landing page to do something / have info</h2>
       </section>
       <section>
-        <h2>push it live to the url</h2>
+        <h2>identity features work</h2>
+        <ul>
+          <li>want to be able to search for features based off text</li>
+          <li>want to be able to filter by applicable core identity</li>
+          <li>
+            want to be able to filter out features we don't have the
+            requirements for
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>create back to top for mobile</h2>
+      </section>
+      <section>
+        <h2>Potential improvements</h2>
+        <ul>
+          <li>table of contents for races</li>
+          <li>search bar style filtering for backgrounds</li>
+        </ul>
       </section>
     </Wrapper>
   </Layout>
