@@ -25,6 +25,10 @@ const TopNav = ({ siteTitle }) => {
     }
   `)
 
+  const onNavItemClick = () => {
+    setShowNavItems(false)
+  }
+
   return (
     <>
       {/* Main Nav */}
@@ -61,6 +65,7 @@ const TopNav = ({ siteTitle }) => {
             }
             key={navItem?.link}
             to={navItem?.link}
+            onClick={onNavItemClick}
           >
             <li>{navItem?.label}</li>
           </Link>
