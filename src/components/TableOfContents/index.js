@@ -1,126 +1,152 @@
 // Node modules.
-import React, { useState } from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
 // Relative imports.
 import { Wrapper } from "./styles"
 
 const isBrowser = typeof window !== "undefined"
+const RECALCULATE_TREE_INTERVAL_MS = 2000
 
-const onJumpLinkClick = element => event => {
-  event.preventDefault()
-
-  // Escape early if there's no element.
-  if (!element) {
-    return
+class TableOfContents extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      items: this.deriveItems(),
+      showTOC: false,
+    }
   }
 
-  // Smooth scroll to element.
-  element.scrollIntoView({ behavior: "smooth", block: "center" })
-}
-
-const onTOCToggleClick = (showTOC, setShowTOC) => event => {
-  event.preventDefault()
-
-  // Scroll to top when closing.
-  if (showTOC) {
-    window.scroll(0, 0)
+  componentDidMount() {
+    this.checkTreeInterval = setInterval(() => {
+      this.setState({ items: this.deriveItems() })
+    }, RECALCULATE_TREE_INTERVAL_MS)
   }
 
-  // Toggle show TOC.
-  setShowTOC(!showTOC)
-}
+  componentWillUnmount() {
+    clearInterval(this.checkTreeInterval)
+  }
 
-const TableOfContents = ({ includedHeaders }) => {
-  // Derive show table of contents state.
-  const [showTOC, setShowTOC] = useState(false)
+  deriveItems = () => {
+    const { includedHeaders } = this.props
 
-  let items = []
+    let items = []
 
-  // Do not render this server-side.
-  if (isBrowser) {
-    items = [...document.querySelectorAll(includedHeaders?.join(", "))]?.filter(
-      element => !!element?.id
-    )
+    // Do not render this server-side.
+    if (isBrowser) {
+      // Get all of the headers with IDs.
+      items = [
+        ...document.querySelectorAll(includedHeaders?.join(", ")),
+      ]?.filter(element => !!element?.id)
 
-    // Derive the highest depth.
-    const highestDepth = items?.reduce((highestDepth, item) => {
-      const depth = parseInt(item?.tagName?.replace("H", ""), 10)
+      // Derive the header with the greatest depth (e.g. with headers h1, h2, and h3, h1 is considered highest depth).
+      const highestDepth = items?.reduce((highestDepth, item) => {
+        const depth = parseInt(item?.tagName?.replace("H", ""), 10)
 
-      if (typeof highestDepth === "undefined") {
-        return depth
-      }
+        if (typeof highestDepth === "undefined") {
+          return depth
+        }
 
-      if (highestDepth > depth) {
-        highestDepth = depth
+        if (highestDepth > depth) {
+          highestDepth = depth
+          return highestDepth
+        }
+
         return highestDepth
-      }
+      }, undefined)
 
-      return highestDepth
-    }, undefined)
+      // Get all relevant meta data for each header element and put them in an array.
+      items = items?.map(element => ({
+        depth: parseInt(element?.tagName?.replace("H", ""), 10) - highestDepth,
+        element: element,
+        id: element?.id,
+        label: element?.innerText,
+      }))
+    }
 
-    items = items?.map(element => ({
-      depth: parseInt(element?.tagName?.replace("H", ""), 10) - highestDepth,
-      element: element,
-      id: element?.id,
-      label: element?.innerText,
-    }))
+    return items
   }
 
-  // Do not render if there are no items.
-  if (!items?.length) {
-    return null
+  onJumpLinkClick = element => event => {
+    event.preventDefault()
+
+    // Escape early if there's no element.
+    if (!element) {
+      return
+    }
+
+    // Smooth scroll to element.
+    element.scrollIntoView({ behavior: "smooth", block: "center" })
   }
 
-  return (
-    <Wrapper>
-      {/* TOC Toggle */}
-      <button
-        className="toggle-toc"
-        onClick={onTOCToggleClick(showTOC, setShowTOC)}
-        type="button"
-      >
-        {showTOC ? "Hide" : "Show"} table of contents
-      </button>
+  onTOCToggleClick = event => {
+    event.preventDefault()
 
-      {/* TOC List */}
-      {showTOC && (
-        <ul className="toc">
-          {items?.map(item => {
-            // Skip rendering item if there's no ID on the jump link.
-            if (!item?.id) {
-              return null
-            }
+    const { showTOC } = this.state
 
-            return (
-              <li
-                key={item?.id}
-                style={{
-                  fontSize: item?.depth ? "0.8rem" : "1rem",
-                  marginTop: item?.depth ? "2px" : "10px",
-                  paddingLeft: `${item?.depth * 15}px`,
-                }}
-              >
-                <button onClick={onJumpLinkClick(item?.element)} type="button">
-                  {item?.label}
-                </button>
-              </li>
-            )
-          })}
-        </ul>
-      )}
+    // Scroll to top when closing.
+    if (showTOC) {
+      window.scroll(0, 0)
+    }
 
-      {/* TOC Toggle */}
-      {showTOC && items?.length > 30 && (
-        <button
-          className="toggle-toc"
-          onClick={onTOCToggleClick(showTOC, setShowTOC)}
-          type="button"
-        >
+    // Toggle show TOC.
+    this.setState({ showTOC: !showTOC })
+  }
+
+  render() {
+    const { onJumpLinkClick, onTOCToggleClick } = this
+    const { includedHeaders } = this.props
+    const { items, showTOC } = this.state
+
+    return (
+      <Wrapper>
+        {/* TOC Toggle */}
+        <button className="toggle-toc" onClick={onTOCToggleClick} type="button">
           {showTOC ? "Hide" : "Show"} table of contents
         </button>
-      )}
-    </Wrapper>
-  )
+
+        {/* TOC List */}
+        {showTOC && (
+          <ul className="toc">
+            {items?.map(item => {
+              // Skip rendering item if there's no ID on the jump link.
+              if (!item?.id) {
+                return null
+              }
+
+              return (
+                <li
+                  key={item?.id}
+                  style={{
+                    fontSize: item?.depth ? "0.8rem" : "1rem",
+                    marginTop: item?.depth ? "2px" : "10px",
+                    paddingLeft: `${item?.depth * 15}px`,
+                  }}
+                >
+                  <button
+                    onClick={onJumpLinkClick(item?.element)}
+                    type="button"
+                  >
+                    {item?.label}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        )}
+
+        {/* TOC Toggle */}
+        {showTOC && items?.length > 30 && (
+          <button
+            className="toggle-toc"
+            onClick={onTOCToggleClick}
+            type="button"
+          >
+            {showTOC ? "Hide" : "Show"} table of contents
+          </button>
+        )}
+      </Wrapper>
+    )
+  }
 }
 
 TableOfContents.defaultProps = {
