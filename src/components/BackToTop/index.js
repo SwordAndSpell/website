@@ -7,13 +7,15 @@ import { DesktopWrapper, Wrapper } from "./styles"
 const MIN_VIEWPORT_WIDTH = 870
 const SCROLL_BREAKPOINT = 600
 
+const isBrowser = typeof window !== "undefined"
+
 class BackToTop extends Component {
   constructor(props) {
     super(props)
     this.state = {
       show: false,
       // Put window.innerWidth in state, otherwise component won't re-render on viewport width change.
-      viewportWidth: window.innerWidth,
+      viewportWidth: isBrowser ? window.innerWidth : 360,
     }
   }
 
