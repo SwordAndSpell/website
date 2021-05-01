@@ -2,8 +2,9 @@
 import React, { Component } from "react"
 // Relative imports.
 import Chevron from "../icons/Chevron"
-import { Wrapper } from "./styles"
+import { DesktopWrapper, Wrapper } from "./styles"
 
+const MIN_VIEWPORT_WIDTH = 870
 const SCROLL_BREAKPOINT = 600
 
 class BackToTop extends Component {
@@ -11,14 +12,22 @@ class BackToTop extends Component {
     super(props)
     this.state = {
       show: false,
+      // Put window.innerWidth in state, otherwise component won't re-render on viewport width change.
+      viewportWidth: window.innerWidth,
     }
   }
 
   componentDidMount() {
     document.addEventListener("scroll", this.onScroll)
+    window.addEventListener("resize", this.onResize)
   }
 
-  onScroll = event => {
+  componentWillUnmount() {
+    document.removeEventListener("scroll", this.onScroll)
+    window.removeEventListener("resize", this.onResize)
+  }
+
+  recalculateShow = () => {
     const { show } = this.state
 
     // Derive if we scrolled down past the breakpoint.
@@ -35,7 +44,37 @@ class BackToTop extends Component {
     }
   }
 
+  onResize = () => {
+    this.recalculateShow()
+    this.setState({ viewportWidth: window.innerWidth })
+  }
+
+  onScroll = event => {
+    this.recalculateShow()
+  }
+
   render() {
+    const { show, viewportWidth } = this.state
+
+    // Do not render if we shouldn't show it.
+    if (!this.state.show) {
+      return null
+    }
+
+    // Show desktop version if viewport is large enough.
+    if (viewportWidth > MIN_VIEWPORT_WIDTH) {
+      return (
+        <DesktopWrapper
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          type="button"
+        >
+          Back to top
+          <Chevron />
+        </DesktopWrapper>
+      )
+    }
+
+    // Show mobile version.
     return (
       <Wrapper
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
