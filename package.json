@@ -39,7 +39,7 @@
     "deploy": "curl --location --request POST 'https://webhook.gatsbyjs.com/hooks/data_source/publish/c1fdf4b2-9b62-4a71-abae-b9d7ccf46c51'",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "refresh:content": "rm yarn.lock && rm -rf node_modules && yarn && yarn start",
+    "refresh:content": "rm yarn.lock && rm -rf node_modules && yarn",
     "serve": "gatsby serve",
     "start": "npm run develop",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
