@@ -125,57 +125,57 @@ const RacesPage = () => {
                     <section className="fields">
                       <section className="field-group">
                         <p className="label">Size</p>
-                        <p className="value">{size}</p>
+                        <p className="value-center">{size}</p>
                       </section>
 
                       <section className="field-group">
                         <p className="label">Land Speed</p>
-                        <p className="value">{landSpeed}</p>
+                        <p className="value-center">{landSpeed}</p>
                       </section>
 
                       <section className="field-group">
                         <p className="label">Hit Points</p>
-                        <p className="value">{hitPoints}</p>
+                        <p className="value-center">{hitPoints}</p>
                       </section>
 
                       {swimSpeed > 0 && (
                         <section className="field-group">
                           <p className="label">Swim Speed</p>
-                          <p className="value">{swimSpeed}</p>
+                          <p className="value-center">{swimSpeed}</p>
                         </section>
                       )}
 
                       {climbSpeed > 0 && (
                         <section className="field-group">
                           <p className="label">Climb Speed</p>
-                          <p className="value">{climbSpeed}</p>
+                          <p className="value-center">{climbSpeed}</p>
                         </section>
                       )}
 
                       {flySpeed > 0 && (
                         <section className="field-group">
                           <p className="label">Fly Speed</p>
-                          <p className="value">{flySpeed}</p>
+                          <p className="value-center">{flySpeed}</p>
                         </section>
                       )}
 
                       {burrowSpeed > 0 && (
                         <section className="field-group">
                           <p className="label">Burrow Speed</p>
-                          <p className="value">{burrowSpeed}</p>
+                          <p className="value-center">{burrowSpeed}</p>
                         </section>
                       )}
 
                       {ability && (
                         <section className="field-group">
                           <p className="label">Ability</p>
-                          <p className="value">{ability}</p>
+                          <p className="value-center">{ability}</p>
                         </section>
                       )}
 
                       <section className="field-group">
                         <p className="label">Languages</p>
-                        <p className="value">{languages}</p>
+                        <p className="value-center">{languages}</p>
                       </section>
                     </section>
                     {/* CORE STATS end */}
