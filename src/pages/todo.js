@@ -70,13 +70,9 @@ const ToDoPage = () => (
         </ul>
       </section>
       <section>
-        <h2>create back to top for mobile</h2>
-      </section>
-      <section>
         <h2>Potential improvements</h2>
         <ul>
           <li>table of contents for races</li>
-          <li>search bar style filtering for backgrounds</li>
         </ul>
       </section>
     </Wrapper>
