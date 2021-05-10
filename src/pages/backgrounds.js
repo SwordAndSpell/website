@@ -31,12 +31,22 @@ const BackgroundsPage = () => {
 
   // Start with everything collapsed.
   const [expandedBackgroundIDs, setExpandedBackgroundIDs] = useState([])
+  // filtering.
+  const [searchInput, setSearchInput] = useState("")
 
   return (
     <Layout>
       <Seo title="Backgrounds" />
       <Wrapper>
         <h2>Backgrounds</h2>
+
+        <input
+          className="filter-input"
+          name="search input"
+          onChange={event => setSearchInput(event.target.value)}
+          value={searchInput}
+          placeholder="Search for backgrounds..."
+        />
         <ul>
           {BACKGROUNDS?.map(background => {
             // Derive background properties.
@@ -49,6 +59,14 @@ const BackgroundsPage = () => {
 
             // Derive if the details are expanded.
             const isExpanded = expandedBackgroundIDs?.includes(id)
+
+            const isRelevant = JSON.stringify(background)
+              .toLowerCase()
+              .includes(searchInput.toLowerCase())
+
+            if (!isRelevant) {
+              return null
+            }
 
             return (
               <li key={name}>

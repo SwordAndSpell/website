@@ -59,7 +59,7 @@ class BackToTop extends Component {
     const { show, viewportWidth } = this.state
 
     // Do not render if we shouldn't show it.
-    if (!this.state.show) {
+    if (!show) {
       return null
     }
 

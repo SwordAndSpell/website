@@ -94,7 +94,6 @@ class TableOfContents extends Component {
 
   render() {
     const { onJumpLinkClick, onTOCToggleClick } = this
-    const { includedHeaders } = this.props
     const { items, showTOC } = this.state
 
     return (
