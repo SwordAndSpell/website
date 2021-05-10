@@ -168,6 +168,14 @@ export const Wrapper = styled.section`
         white-space: pre-line;
         text-align: left;
       }
+
+      .value-center {
+        color: #444444;
+        font-size: 1rem;
+        margin: 0;
+        white-space: pre-line;
+        text-align: center;
+      }
     }
 
     .fields-background {
