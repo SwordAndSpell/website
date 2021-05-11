@@ -29,6 +29,9 @@ const SHIELDS = require("sns-data/data/GEAR/SHIELDS.json")
 const SIMPLE_WEAPONS = require("sns-data/data/GEAR/SIMPLE_WEAPONS.json")
 const WEAPON_PROPERTIES = require("sns-data/data/GEAR/WEAPON_PROPERTIES.json")
 const WEAPON_RUNES = require("sns-data/data/GEAR/WEAPON_RUNES.json")
+// Spells
+const CANTRIPS = require("sns-data/data/SPELLS/CANTRIPS.json")
+const FIRST_LEVEL_SPELLS = require("sns-data/data/SPELLS/FIRST_LEVEL.json")
 
 module.exports = {
   siteMetadata: {
@@ -77,6 +80,10 @@ module.exports = {
         label: "Spellcasting Charts",
       },
       {
+        link: "/spells",
+        label: "Spells",
+      },
+      {
         link: "/rules",
         label: "Rules",
       },
@@ -88,10 +95,6 @@ module.exports = {
         link: "/todo",
         label: "To Do List",
       },
-      // {
-      //   link: "/spells",
-      //   label: "Spells",
-      // },
       // {
       //   link: "/animal-companions",
       //   label: "Animal Companions",
@@ -138,6 +141,10 @@ module.exports = {
     SIMPLE_WEAPONS,
     WEAPON_PROPERTIES,
     WEAPON_RUNES,
+    // Spells.
+    CANTRIPS,
+    FIRST_LEVEL_SPELLS,
+
     // ========
     // Raw CMS Data End
   },
