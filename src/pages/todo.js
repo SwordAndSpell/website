@@ -20,14 +20,6 @@ const ToDoPage = () => (
         </ul>
       </section>
       <section>
-        <h2>Summon stat blocks</h2>
-        <ul>
-          <li>input content to data repo</li>
-          <li>make wiki page</li>
-          <li>set up wiki page layout / styling</li>
-        </ul>
-      </section>
-      <section>
         <h2>shapechange forms</h2>
         <ul>
           <li>input content to data repo</li>
@@ -67,12 +59,6 @@ const ToDoPage = () => (
             want to be able to filter out features we don't have the
             requirements for
           </li>
-        </ul>
-      </section>
-      <section>
-        <h2>Potential improvements</h2>
-        <ul>
-          <li>table of contents for races</li>
         </ul>
       </section>
     </Wrapper>

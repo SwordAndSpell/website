@@ -86,6 +86,10 @@ export const NavItems = styled.ul`
     margin: 0;
     padding: 20px;
     width: 100%;
+
+    &:last-of-type {
+      margin-bottom: 100px;
+    }
   }
 
   a {
