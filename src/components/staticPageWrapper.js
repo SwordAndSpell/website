@@ -19,11 +19,16 @@ export const Wrapper = styled.section`
   h2 {
     text-align: center;
     width: 100%;
+    background: #ffffff;
+    color: #8471ff;
+    position: initial;
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 15px;
   }
   h3,
   h4 {
-    background: #8471ff;
-    color: #ffffff;
+    color: #8471ff;
     width: 100%;
     padding: 10px;
   }
@@ -39,7 +44,7 @@ export const Wrapper = styled.section`
   }
 
   p {
-    margin: 15px;
+    margin: 5px 15px;
   }
 
   ul {
@@ -54,6 +59,10 @@ export const Wrapper = styled.section`
   li {
     text-align: left;
     width: 100%;
+
+    &:last-of-type {
+      margin-bottom: 15px;
+    }
   }
 
   .requirement {

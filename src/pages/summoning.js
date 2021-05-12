@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
-import StatBlock from "../components/StatBlock"
+import SummonStatBlock from "../components/SummonStatBlock"
 
 const SummoningPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -64,7 +64,7 @@ const SummoningPage = () => {
             const isExpanded = expandedBlocksIDs?.includes(id)
             return (
               <li key={id}>
-                <StatBlock
+                <SummonStatBlock
                   data={summon}
                   isOpen={isExpanded}
                   clickHandler={() =>

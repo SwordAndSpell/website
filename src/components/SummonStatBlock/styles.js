@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  padding: 15px;
   width: 100%;
 
   h2 {
@@ -33,6 +32,19 @@ export const Wrapper = styled.div`
     font-size: 0.9rem;
   }
 
+  .name {
+    padding: 15px;
+    &:hover {
+      border-bottom: 1px solid transparent;
+      box-shadow: 0px 3px 7px -5px #000000;
+      cursor: pointer;
+    }
+  }
+
+  .body {
+    padding: 0 15px;
+  }
+
   .vitals {
     display: flex;
     flex-direction: column;
@@ -42,6 +54,7 @@ export const Wrapper = styled.div`
     .vital-data {
       width: 100%;
       text-align: left;
+      margin: 2px;
     }
   }
 

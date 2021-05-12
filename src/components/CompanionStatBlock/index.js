@@ -3,42 +3,42 @@ import React, { Component } from "react"
 // Relative imports.
 import { Wrapper } from "./styles"
 
-class StatBlock extends Component {
+class CompanionStatBlock extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      summon: this.props.data,
+      companion: this.props.data,
     }
   }
 
   render() {
-    const { summon } = this.state
+    const { companion } = this.state
 
     return (
       <Wrapper>
         <h2 className="name" onClick={this.props.clickHandler}>
-          {summon?.name}
+          {companion?.name}
         </h2>
         {this.props.isOpen && (
           <section className="body">
-            <section className="type">{summon?.type}</section>
+            <section className="type">{companion?.type}</section>
             <div className="barrier" />
             <section className="vitals">
               <div className="vital-data">
                 <strong>Defense: </strong>
-                {summon?.defense}
+                {companion?.defense}
               </div>
               <div className="vital-data">
                 <strong>Armor: </strong>
-                {summon?.armor}
+                {companion?.armor}
               </div>
               <div className="vital-data">
                 <strong>Hit Points: </strong>
-                {summon?.hitPoints}
+                {companion?.hitPoints}
               </div>
               <div className="vital-data">
                 <strong>Speeds: </strong>
-                {summon?.speed}
+                {companion?.speed}
               </div>
             </section>
             <div className="barrier" />
@@ -46,63 +46,59 @@ class StatBlock extends Component {
             <section className="stats">
               <section className="stat">
                 <span className="label">STR</span>
-                <span>{summon?.strength}</span>
+                <span className="center">{companion?.strength}</span>
               </section>
               <section className="stat">
                 <span className="label">DEX</span>
-                <span>{summon?.dexterity}</span>
+                <span className="center">{companion?.dexterity}</span>
               </section>
               <section className="stat">
                 <span className="label">CON</span>
-                <span>{summon?.constitution}</span>
+                <span className="center">{companion?.constitution}</span>
               </section>
               <section className="stat">
                 <span className="label">INT</span>
-                <span>{summon?.intelligence}</span>
+                <span className="center">{companion?.intelligence}</span>
               </section>
               <section className="stat">
                 <span className="label">WIS</span>
-                <span>{summon?.wisdom}</span>
+                <span className="center">{companion?.wisdom}</span>
               </section>
               <section className="stat">
                 <span className="label">CHA</span>
-                <span>{summon?.charisma}</span>
+                <span className="center">{companion?.charisma}</span>
               </section>
             </section>
             <div className="barrier" />
             <section className="saves">
               <h3 className="heading">Saves</h3>
               <span>
-                <strong>Fortitude:</strong> {summon?.fortitude}
+                <strong>Fortitude:</strong> {companion?.fortitude}
               </span>
               <span>
-                <strong>Reflex:</strong> {summon?.reflex}
+                <strong>Reflex:</strong> {companion?.reflex}
               </span>
               <span>
-                <strong>Will:</strong> {summon?.will}
+                <strong>Will:</strong> {companion?.will}
               </span>
             </section>
             <div className="barrier" />
-            <section className="resistances">
-              <h3 className="heading">Resistances</h3>
-              <span>{summon?.resistances}</span>
-            </section>
-            <section className="immunities">
-              <h3 className="heading">Immunities</h3>
-              <span>{summon?.immunities}</span>
+            <section className="skills">
+              <h3 className="heading">Skills</h3>
+              <div>{companion?.skills}</div>
             </section>
             <section className="senses">
               <h3 className="heading">Senses</h3>
-              <span>{summon?.senses}</span>
+              <div>{companion?.senses}</div>
             </section>
             <div className="barrier" />
             <section className="abilities">
               <h3 className="heading">Abilities</h3>
-              {summon?.abilities.map(ability => {
+              {companion?.abilities.map(ability => {
                 return (
                   <section
                     className="ability"
-                    key={`${summon?.name}-${ability?.name}`}
+                    key={`${companion?.name}-${ability?.name}`}
                   >
                     <div className="ability-name">{ability?.name}</div>
                     <div className="ability-description">
@@ -115,11 +111,11 @@ class StatBlock extends Component {
             <div className="barrier" />
             <section className="actions">
               <h3 className="heading">Actions</h3>
-              {summon?.actions.map(action => {
+              {companion?.actions.map(action => {
                 return (
                   <section
                     className="action"
-                    key={`${summon?.name}-${action?.name}`}
+                    key={`${companion?.name}-${action?.name}`}
                   >
                     <div className="action-name">{action?.name}</div>
                     <div className="action-description">
@@ -136,4 +132,4 @@ class StatBlock extends Component {
   }
 }
 
-export default StatBlock
+export default CompanionStatBlock

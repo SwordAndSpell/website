@@ -34,6 +34,7 @@ const CANTRIPS = require("sns-data/data/SPELLS/CANTRIPS.json")
 const FIRST_LEVEL_SPELLS = require("sns-data/data/SPELLS/FIRST_LEVEL.json")
 // Extra
 const SUMMONABLES = require("sns-data/data/SUMMONABLES.json")
+const COMPANIONS = require("sns-data/data/COMPANIONS.json")
 
 module.exports = {
   siteMetadata: {
@@ -148,6 +149,7 @@ module.exports = {
     FIRST_LEVEL_SPELLS,
     // Extra
     SUMMONABLES,
+    COMPANIONS,
 
     // ========
     // Raw CMS Data End

@@ -7,9 +7,46 @@ import Seo from "../components/seo"
 import uniq from "lodash/uniq"
 import { Wrapper } from "../components/staticPageWrapper"
 import { onCollapseToggle } from "../utils"
-import StatBlock from "../components/StatBlock"
+import CompanionStatBlock from "../components/CompanionStatBlock"
 
 const CompanionsPage = () => {
+  const queryResult = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          COMPANIONS {
+            abilities {
+              description
+              name
+            }
+            actions {
+              description
+              name
+            }
+            armor
+            charisma
+            constitution
+            defense
+            dexterity
+            fortitude
+            hitPoints
+            id
+            intelligence
+            skills
+            name
+            senses
+            reflex
+            speed
+            strength
+            type
+            will
+            wisdom
+          }
+        }
+      }
+    }
+  `)
+
   const onFilterToggle = (filterToToggle, activeFilters, setActiveFilters) => {
     // Expand the ID.
     if (activeFilters?.includes(filterToToggle)) {
@@ -24,20 +61,22 @@ const CompanionsPage = () => {
   }
 
   const [activeFilters, setActiveFilters] = useState(["Young"])
+  const [expandedBlocksIDs, setExpandedBlocksIDs] = useState([])
+  const COMPANIONS = queryResult?.site?.siteMetadata?.COMPANIONS
 
   return (
     <Layout>
       <Wrapper>
         <h2>Animal Companions</h2>
         <div className="card">
-          <h3
+          <h2
             className="hover"
             onClick={() =>
               onFilterToggle("Command", activeFilters, setActiveFilters)
             }
           >
             Commanding your Companion
-          </h3>
+          </h2>
           {activeFilters.includes("Command") && (
             <p>
               Your animal takes their turn on your initiative, directly after
@@ -52,14 +91,14 @@ const CompanionsPage = () => {
         </div>
 
         <div className="card">
-          <h3
+          <h2
             className="hover"
             onClick={() =>
               onFilterToggle("Young", activeFilters, setActiveFilters)
             }
           >
             Young Animal Companion
-          </h3>
+          </h2>
           {activeFilters.includes("Young") && (
             <>
               <p>
@@ -126,6 +165,7 @@ const CompanionsPage = () => {
                     <li>- Health: Your Level * (Con + 6)</li>
                     <li>- Land Speed: 25</li>
                     <li>- Swim or Climb Speed: 25</li>
+                    <li>- Low-Light Vision, Keen Hearing and Smell</li>
                     <li>
                       - Melee attack: Bite, Str + Your Level to hit, 1d8 + Str
                       slashing damage
@@ -139,6 +179,7 @@ const CompanionsPage = () => {
                     <li>- Health: Your Level * (Con + 5)</li>
                     <li>- Land Speed: 35</li>
                     <li>- Swim or Climb Speed: 35</li>
+                    <li>- Darkvision 60ft, Keen Hearing and Smell</li>
                     <li>
                       - Melee attack: Claw, Dex + Your Level to hit, 1d6 + Str
                       slashing damage
@@ -152,6 +193,7 @@ const CompanionsPage = () => {
                     <li>- Health: Your Level * (Con + 4)</li>
                     <li>- Land Speed: 10</li>
                     <li>- Fly Speed: 50</li>
+                    <li>- Darkvision 120ft</li>
                     <li>
                       - Melee attack: Talon, Dex + Your Level to hit, 1d4 + Str
                       slashing damage
@@ -259,14 +301,14 @@ const CompanionsPage = () => {
           )}
         </div>
         <div className="card">
-          <h3
+          <h2
             className="hover"
             onClick={() =>
               onFilterToggle("Mature", activeFilters, setActiveFilters)
             }
           >
             Mature Companion
-          </h3>
+          </h2>
           {activeFilters.includes("Mature") && (
             <>
               <p className="requirement">Requires Level 3</p>
@@ -281,19 +323,22 @@ const CompanionsPage = () => {
                   - Your companion gains an additional ability from the list of
                   companion abilities above
                 </li>
+                <li>
+                  - Each of their skill proficiencies increases to Trained
+                </li>
               </ul>
             </>
           )}
         </div>
         <div className="card">
-          <h3
+          <h2
             className="hover"
             onClick={() =>
               onFilterToggle("Specialized", activeFilters, setActiveFilters)
             }
           >
             Specialized Companion
-          </h3>
+          </h2>
           {activeFilters.includes("Specialized") && (
             <>
               <p className="requirement">Requires Level 5</p>
@@ -315,6 +360,7 @@ const CompanionsPage = () => {
                   - Increase the number of damage dice dealt on its attacks by 1
                 </li>
                 <li>- Its size increases from medium to large</li>
+                <li>- Each of their skill proficiencies increases to Expert</li>
                 <li>
                   - Its attacks become magical for the purposes of ignoring
                   resistances
@@ -329,14 +375,14 @@ const CompanionsPage = () => {
           )}
         </div>
         <div className="card">
-          <h3
+          <h2
             className="hover"
             onClick={() =>
               onFilterToggle("Apex", activeFilters, setActiveFilters)
             }
           >
             Apex Companion
-          </h3>
+          </h2>
           {activeFilters.includes("Apex") && (
             <>
               <p className="requirement">Requires Level 7</p>
@@ -349,6 +395,7 @@ const CompanionsPage = () => {
                 <li>
                   - Increase all of your companions ability score modifiers by 1
                 </li>
+                <li>- Each of their skill proficiencies increases to Master</li>
                 <li>
                   - Increase the number of damage dice from its attacks by 1
                 </li>
@@ -360,6 +407,25 @@ const CompanionsPage = () => {
             </>
           )}
         </div>
+
+        <h2>Sample Stat Blocks</h2>
+        {COMPANIONS?.map(companion => {
+          // Derive if the details are expanded.
+          const id = companion?.id
+          const isExpanded = expandedBlocksIDs?.includes(id)
+          return (
+            <div className="card" key={id}>
+              <CompanionStatBlock
+                data={companion}
+                isOpen={true}
+                isOpen={isExpanded}
+                clickHandler={() =>
+                  onCollapseToggle(id, expandedBlocksIDs, setExpandedBlocksIDs)
+                }
+              />
+            </div>
+          )
+        })}
       </Wrapper>
     </Layout>
   )
