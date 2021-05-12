@@ -90,12 +90,12 @@ module.exports = {
         label: "Rules",
       },
       {
-        link: "/reference-charts",
-        label: "Quick Reference",
-      },
-      {
         link: "/summoning",
         label: "Summoning",
+      },
+      {
+        link: "/reference-charts",
+        label: "Quick Reference",
       },
       {
         link: "/todo",
