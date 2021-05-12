@@ -32,6 +32,8 @@ const WEAPON_RUNES = require("sns-data/data/GEAR/WEAPON_RUNES.json")
 // Spells
 const CANTRIPS = require("sns-data/data/SPELLS/CANTRIPS.json")
 const FIRST_LEVEL_SPELLS = require("sns-data/data/SPELLS/FIRST_LEVEL.json")
+// Extra
+const SUMMONABLES = require("sns-data/data/SUMMONABLES.json")
 
 module.exports = {
   siteMetadata: {
@@ -92,16 +94,16 @@ module.exports = {
         label: "Quick Reference",
       },
       {
+        link: "/summoning",
+        label: "Summoning",
+      },
+      {
         link: "/todo",
         label: "To Do List",
       },
       // {
       //   link: "/animal-companions",
       //   label: "Animal Companions",
-      // },
-      // {
-      //   link: "/summoning,
-      //   label: "Summoning",
       // },
       // {
       //   link: "/shapechange-forms",
@@ -144,6 +146,8 @@ module.exports = {
     // Spells.
     CANTRIPS,
     FIRST_LEVEL_SPELLS,
+    // Extra
+    SUMMONABLES,
 
     // ========
     // Raw CMS Data End
