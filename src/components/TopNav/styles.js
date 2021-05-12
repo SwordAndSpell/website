@@ -86,10 +86,6 @@ export const NavItems = styled.ul`
     margin: 0;
     padding: 20px;
     width: 100%;
-
-    &:last-of-type {
-      margin-bottom: 100px;
-    }
   }
 
   a {
@@ -106,6 +102,7 @@ export const NavItems = styled.ul`
 
     &:last-of-type {
       border-bottom: none;
+      margin-bottom: 100px;
     }
   }
 `
