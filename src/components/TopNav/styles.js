@@ -102,7 +102,7 @@ export const NavItems = styled.ul`
 
     &:last-of-type {
       border-bottom: none;
-      margin-bottom: 100px;
+      margin-bottom: 150px;
     }
   }
 `
