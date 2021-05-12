@@ -376,4 +376,22 @@ export const Wrapper = styled.section`
     padding: 10px;
     width: 90%;
   }
+
+  .wide-stats {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    .label {
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+
+    .value {
+      margin-top: 5px;
+    }
+  }
 `

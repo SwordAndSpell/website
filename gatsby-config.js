@@ -94,6 +94,10 @@ module.exports = {
         label: "Summoning",
       },
       {
+        link: "/animal-companions",
+        label: "Animal Companions",
+      },
+      {
         link: "/reference-charts",
         label: "Quick Reference",
       },
@@ -101,10 +105,6 @@ module.exports = {
         link: "/todo",
         label: "To Do List",
       },
-      // {
-      //   link: "/animal-companions",
-      //   label: "Animal Companions",
-      // },
       // {
       //   link: "/shapechange-forms",
       //   label: "Shapechange Forms",
