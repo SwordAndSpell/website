@@ -163,7 +163,10 @@ const SpellsPage = () => {
                         {duration && (
                           <section className="field-group">
                             <h4>Duration</h4>
-                            <p className="value">{duration}</p>
+                            <p className="value">
+                              {duration}
+                              {concentration && " (Requires concentration)"}
+                            </p>
                           </section>
                         )}
                         {range && (
