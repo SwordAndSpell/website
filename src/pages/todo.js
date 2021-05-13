@@ -20,22 +20,6 @@ const ToDoPage = () => (
         </ul>
       </section>
       <section>
-        <h2>shapechange forms</h2>
-        <ul>
-          <li>input content to data repo</li>
-          <li>make wiki page</li>
-          <li>set up wiki page layout / styling</li>
-        </ul>
-      </section>
-      <section>
-        <h2>animal companions</h2>
-        <ul>
-          <li>input content to data repo</li>
-          <li>make wiki page</li>
-          <li>set up wiki page layout / styling</li>
-        </ul>
-      </section>
-      <section>
         <h2>leveling chart</h2>
         <ul>
           <li>update styling to make it look good</li>

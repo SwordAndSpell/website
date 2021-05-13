@@ -35,6 +35,7 @@ const FIRST_LEVEL_SPELLS = require("sns-data/data/SPELLS/FIRST_LEVEL.json")
 // Extra
 const SUMMONABLES = require("sns-data/data/SUMMONABLES.json")
 const COMPANIONS = require("sns-data/data/COMPANIONS.json")
+const SHAPECHANGE = require("sns-data/data/SHAPECHANGE.json")
 
 module.exports = {
   siteMetadata: {
@@ -99,6 +100,10 @@ module.exports = {
         label: "Animal Companions",
       },
       {
+        link: "/shapechange-forms",
+        label: "Shapechange Forms",
+      },
+      {
         link: "/reference-charts",
         label: "Quick Reference",
       },
@@ -106,10 +111,6 @@ module.exports = {
         link: "/todo",
         label: "To Do List",
       },
-      // {
-      //   link: "/shapechange-forms",
-      //   label: "Shapechange Forms",
-      // },
     ],
     // Raw CMS Data Start
     // ========
@@ -150,6 +151,7 @@ module.exports = {
     // Extra
     SUMMONABLES,
     COMPANIONS,
+    SHAPECHANGE,
 
     // ========
     // Raw CMS Data End
