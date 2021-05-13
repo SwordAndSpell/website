@@ -94,6 +94,33 @@ export const Wrapper = styled.section`
         width: 100%;
       }
 
+      .header-column {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .tags {
+        justify-content: flex-start;
+        margin: 5px 0 0 20px;
+        display: flex;
+        width: 100%;
+
+        li {
+          background: #f1b306;
+          border-radius: 3px;
+          border: none;
+          outline: none;
+          color: #ffffff;
+          font-size: 0.7rem;
+          padding: 3px 5px;
+          width: auto;
+          margin: 0 10px 0 0;
+          box-shadow: none;
+        }
+      }
+
       h3 {
         align-items: center;
         background: rgba(81, 43, 252, 0.8);
@@ -107,6 +134,13 @@ export const Wrapper = styled.section`
         position: absolute;
         text-align: left;
         width: 100%;
+      }
+
+      .extra-info {
+        color: #999999;
+        font-size: 0.7rem;
+        padding: 0 0 0 20px;
+        margin: 0 0 10px;
       }
 
       .chevron {
@@ -130,6 +164,13 @@ export const Wrapper = styled.section`
 
     h4 {
       margin: 20px 0 0;
+    }
+
+    hr {
+      border: none;
+      border-bottom: 3px solid #8471ff;
+      margin: 20px 0 0;
+      width: 100%;
     }
 
     .fields {

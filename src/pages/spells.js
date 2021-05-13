@@ -144,7 +144,15 @@ const SpellsPage = () => {
                       role="button"
                       tabIndex="0"
                     >
-                      <h3 id={`${level}--${name}`}>{name}</h3>
+                      <div className="header-column">
+                        <ul className="tags">
+                          {tags?.map(tag => (
+                            <li key={tag}>{tag}</li>
+                          ))}
+                        </ul>
+                        <h3 id={`${level}--${name}`}>{name}</h3>
+                        <p className="extra-info">{castingSpeed}</p>
+                      </div>
                       <Chevron
                         className={`chevron${isExpanded ? " expanded" : ""}`}
                       />
@@ -154,6 +162,7 @@ const SpellsPage = () => {
 
                     {isExpanded && (
                       <section className="fields column">
+                        <hr />
                         {castingSpeed && (
                           <section className="field-group">
                             <h4>Casting Speed</h4>
@@ -181,34 +190,22 @@ const SpellsPage = () => {
                             <p className="value">{school}</p>
                           </section>
                         )}
-                        {tags && (
-                          <section className="field-group">
-                            <h4>Tags</h4>
-                            <p className="value">{tags}</p>
-                          </section>
-                        )}
                         {components && (
                           <section className="field-group">
                             <h4>Components</h4>
-                            <p className="value">{components}</p>
+                            <p className="value">{components?.join(", ")}</p>
                           </section>
                         )}
-                        {concentration && (
+                        <hr />
+                        {description && (
                           <section className="field-group">
-                            <h4>Concentration</h4>
-                            <p className="value">{concentration}</p>
+                            <p className="value">{description}</p>
                           </section>
                         )}
                         {atHigherLevels && (
                           <section className="field-group">
                             <h4>At higher levels</h4>
                             <p className="value">{atHigherLevels}</p>
-                          </section>
-                        )}
-                        {description && (
-                          <section className="field-group">
-                            <h4>Description</h4>
-                            <p className="value">{description}</p>
                           </section>
                         )}
                       </section>
