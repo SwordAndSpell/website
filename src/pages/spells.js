@@ -1,6 +1,7 @@
 // Node modules.
-import React, { useState } from "react"
+import React, { Fragment, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import map from "lodash/map"
 import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
@@ -36,6 +37,7 @@ const SpellsPage = () => {
       site {
         siteMetadata {
           CANTRIPS {
+            atHigherLevels
             castingSpeed
             components
             concentration
@@ -69,14 +71,21 @@ const SpellsPage = () => {
 
   // Derive Races and Perks data from the graphql query above.
   const CANTRIPS = queryResult?.site?.siteMetadata?.CANTRIPS
+  const FIRST_LEVEL_SPELLS = queryResult?.site?.siteMetadata?.FIRST_LEVEL_SPELLS
 
-  const [activeFilters, setActiveFilters] = useState([
-    "Arcane",
-    "Divine",
-    "Primal",
-  ])
-  const [collapsedHeadings, setCollapsedHeadings] = useState(["0", "1"])
-  const [collapsedSpellIDs, setCollapsedSpellIDs] = useState([])
+  const spellCategories = [
+    {
+      label: "Cantrips",
+      items: CANTRIPS,
+    },
+    {
+      label: "1st Level",
+      items: FIRST_LEVEL_SPELLS,
+    },
+  ]
+
+  // Start with everything collapsed.
+  const [expandedSpellIDs, setExpandedSpellIDs] = useState([])
 
   return (
     <Layout>
@@ -84,64 +93,129 @@ const SpellsPage = () => {
       <Wrapper>
         <h2>Spells</h2>
 
-        {/* Filters */}
-        <section className="filters">
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Arcane") &&
-              activeFilters?.includes("Divine") &&
-              activeFilters?.includes("Primal")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() => toggleAllFilters(activeFilters, setActiveFilters)}
-          >
-            All
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Arcane")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Arcane", activeFilters, setActiveFilters)
-            }
-          >
-            Arcane
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Divine")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Divine", activeFilters, setActiveFilters)
-            }
-          >
-            Divine
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Primal")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Primal", activeFilters, setActiveFilters)
-            }
-          >
-            Primal
-          </button>
-        </section>
+        {/* Spell Categories */}
+        {map(spellCategories, spellCategory => (
+          <Fragment key={spellCategory.label}>
+            <h2 className="category" id={spellCategory?.label}>
+              {spellCategory?.label}
+            </h2>
+            <ul>
+              {spellCategory?.items?.map(spell => {
+                // Derive spell properties.
+                const atHigherLevels = spell?.atHigherLevels
+                const castingSpeed = spell?.castingSpeed
+                const components = spell?.components
+                const concentration = spell?.concentration
+                const description = spell?.description
+                const duration = spell?.duration
+                const id = spell?.id
+                const level = spell?.level
+                const name = spell?.name
+                const range = spell?.range
+                const school = spell?.school
+                const tags = spell?.tags
 
-        {/* begin headings for abilities */}
-        <ul></ul>
+                // Derive if the details are expanded.
+                const isExpanded = expandedSpellIDs?.includes(id)
+
+                return (
+                  <li key={id}>
+                    {/* NAME */}
+                    {/* ============ */}
+                    <header
+                      className="no-background-image"
+                      onKeyDown={event => {
+                        // On enter, toggle expanded/expanded.
+                        if (event.keyCode === 13) {
+                          onCollapseToggle(
+                            id,
+                            expandedSpellIDs,
+                            setExpandedSpellIDs
+                          )
+                        }
+                      }}
+                      onClick={() =>
+                        onCollapseToggle(
+                          id,
+                          expandedSpellIDs,
+                          setExpandedSpellIDs
+                        )
+                      }
+                      role="button"
+                      tabIndex="0"
+                    >
+                      <h3 id={`${level}--${name}`}>{name}</h3>
+                      <Chevron
+                        className={`chevron${isExpanded ? " expanded" : ""}`}
+                      />
+                    </header>
+                    {/* IMAGE + NAME end */}
+                    {/* ============ */}
+
+                    {isExpanded && (
+                      <section className="fields column">
+                        {castingSpeed && (
+                          <section className="field-group">
+                            <h4>Casting Speed</h4>
+                            <p className="value">{castingSpeed}</p>
+                          </section>
+                        )}
+                        {duration && (
+                          <section className="field-group">
+                            <h4>Duration</h4>
+                            <p className="value">{duration}</p>
+                          </section>
+                        )}
+                        {range && (
+                          <section className="field-group">
+                            <h4>Range</h4>
+                            <p className="value">{range}</p>
+                          </section>
+                        )}
+                        {school && (
+                          <section className="field-group">
+                            <h4>School</h4>
+                            <p className="value">{school}</p>
+                          </section>
+                        )}
+                        {tags && (
+                          <section className="field-group">
+                            <h4>Tags</h4>
+                            <p className="value">{tags}</p>
+                          </section>
+                        )}
+                        {components && (
+                          <section className="field-group">
+                            <h4>Components</h4>
+                            <p className="value">{components}</p>
+                          </section>
+                        )}
+                        {concentration && (
+                          <section className="field-group">
+                            <h4>Concentration</h4>
+                            <p className="value">{concentration}</p>
+                          </section>
+                        )}
+                        {atHigherLevels && (
+                          <section className="field-group">
+                            <h4>At higher levels</h4>
+                            <p className="value">{atHigherLevels}</p>
+                          </section>
+                        )}
+                        {description && (
+                          <section className="field-group">
+                            <h4>Description</h4>
+                            <p className="value">{description}</p>
+                          </section>
+                        )}
+                      </section>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          </Fragment>
+        ))}
       </Wrapper>
     </Layout>
   )
