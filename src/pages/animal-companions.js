@@ -33,6 +33,7 @@ const CompanionsPage = () => {
             id
             intelligence
             skills
+            skillLevel
             name
             senses
             reflex

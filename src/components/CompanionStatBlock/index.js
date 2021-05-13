@@ -84,7 +84,7 @@ class CompanionStatBlock extends Component {
             </section>
             <div className="barrier" />
             <section className="skills">
-              <h3 className="heading">Skills</h3>
+              <h3 className="heading">Skills - {companion?.skillLevel}</h3>
               <div>{companion?.skills}</div>
             </section>
             <section className="senses">
