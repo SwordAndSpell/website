@@ -157,7 +157,7 @@ const SpellsPage = () => {
                         className={`chevron${isExpanded ? " expanded" : ""}`}
                       />
                     </header>
-                    {/* IMAGE + NAME end */}
+                    {/* NAME end */}
                     {/* ============ */}
 
                     {isExpanded && (
