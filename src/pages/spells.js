@@ -483,13 +483,13 @@ const SpellsPage = () => {
                               <hr />
                               {castingSpeed && (
                                 <section className="field-group">
-                                  <h4>Casting Speed</h4>
+                                  <h4>Casting Speed: </h4>
                                   <p className="value">{castingSpeed}</p>
                                 </section>
                               )}
                               {duration && (
                                 <section className="field-group">
-                                  <h4>Duration</h4>
+                                  <h4>Duration: </h4>
                                   <p className="value">
                                     {duration}
                                     {concentration &&
@@ -499,19 +499,19 @@ const SpellsPage = () => {
                               )}
                               {range && (
                                 <section className="field-group">
-                                  <h4>Range</h4>
+                                  <h4>Range: </h4>
                                   <p className="value">{range}</p>
                                 </section>
                               )}
                               {school && (
                                 <section className="field-group">
-                                  <h4>School</h4>
+                                  <h4>School: </h4>
                                   <p className="value">{school}</p>
                                 </section>
                               )}
                               {components && (
                                 <section className="field-group">
-                                  <h4>Components</h4>
+                                  <h4>Components: </h4>
                                   <p className="value">
                                     {components?.join(", ")}
                                   </p>
@@ -520,13 +520,17 @@ const SpellsPage = () => {
                               <hr />
                               {description && (
                                 <section className="field-group">
-                                  <p className="value">{description}</p>
+                                  <p className="value description">
+                                    {description}
+                                  </p>
                                 </section>
                               )}
                               {atHigherLevels && (
                                 <section className="field-group">
                                   <h4>At higher levels</h4>
-                                  <p className="value">{atHigherLevels}</p>
+                                  <p className="value description">
+                                    {atHigherLevels}
+                                  </p>
                                 </section>
                               )}
                             </section>

@@ -138,7 +138,7 @@ export const Wrapper = styled.section`
 
       .extra-info {
         color: #fbcea0;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         padding: 0 0 0 20px;
         margin: 0 0 5px;
       }
@@ -198,8 +198,8 @@ export const Wrapper = styled.section`
 
     .field-group {
       display: flex;
-      flex-direction: column;
-      margin: 10px 10px 0;
+      flex-direction: row;
+      margin: 0 10px 0;
 
       h4 {
         color: #fbcea0;
@@ -218,10 +218,15 @@ export const Wrapper = styled.section`
 
       .value {
         color: #ffffff;
-        font-size: 1rem;
+        font-size: 0.8rem;
         margin: 0;
         white-space: pre-line;
         text-align: left;
+        margin: 10px 10px 5px;
+      }
+
+      .description {
+        font-size: 1rem !important;
       }
 
       .value-center {
