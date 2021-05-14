@@ -7,6 +7,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
 import { onExpandedToggle } from "../utils"
+import TableOfContents from "../components/TableOfContents"
 
 const WeaponsPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -67,6 +68,9 @@ const WeaponsPage = () => {
       <Seo title="Weapons | Weapon Runes" />
       <Wrapper>
         <h2>Weapons / Weapon Runes</h2>
+        {/* Table of Contents */}
+        <TableOfContents />
+
         <h2 className="category">Simple Weapons</h2>
         <ul>
           {SIMPLE_WEAPONS?.map(item => {
