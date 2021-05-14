@@ -52,7 +52,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .homepage video {
-  position: absolute;
+  max-width: 1000px;
+  position: fixed;
+  top: calc(100px + 10vh);
   z-index: -1;
 }
 
