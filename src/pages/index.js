@@ -18,7 +18,7 @@ const Wrapper = styled.section`
   }
 
   a {
-    color: #33a1b6;
+    color: #fbcea0;
   }
 `
 
@@ -26,7 +26,7 @@ const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
     <Wrapper>
-      <h2>How to create a character</h2>
+      {/* <h2>How to create a character</h2>
       <ul>
         <li>
           <Link to="/races">Choose race</Link>
@@ -74,7 +74,7 @@ const IndexPage = () => (
           default)
         </li>
         <li>Save & view new character</li>
-      </ul>
+      </ul> */}
     </Wrapper>
   </Layout>
 )
