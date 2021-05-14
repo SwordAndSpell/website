@@ -64,7 +64,7 @@ const IndexPage = () => (
     <Seo title="Home" />
     <Wrapper>
       <video
-        autoplay="autoplay"
+        autoPlay
         loop="loop"
         muted="muted"
         poster="/video-still-4.jpg"
