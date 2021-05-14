@@ -1,8 +1,10 @@
 html {
-  color: #444444;
+  -webkit-font-smoothing: antialiased;
+  background: #000000;
+  color: #ffffffa6;
   display: flex;
   flex-direction: column;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Crimson Text', serif;
   font-size: 16px;
   width: 100%;
 }
@@ -16,7 +18,7 @@ body {
 }
 
 a {
-  color: #24c9fc;
+  color: #fbcea0;
   cursor: pointer;
   text-decoration: none;
 }
@@ -33,7 +35,24 @@ button {
 }
 
 h1, h2, h3, h4, h5 {
+  font-weight: 700;
+  color: #ffffff;
   margin: 0;
+  text-transform: uppercase;
+}
+
+.smoke {
+  -webkit-mask-image: linear-gradient(180deg,#000 0,#000 84%,rgba(0,0,0,.5) 94%,transparent);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  mask-image: linear-gradient(180deg,#000 0,#000 84%,rgba(0,0,0,.5) 94%,transparent);
+  position: fixed;
+  width: 100%;
+  z-index: -2;
 }
 
 #gatsby-focus-wrapper {

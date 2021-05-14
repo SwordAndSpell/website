@@ -6,7 +6,7 @@ import find from "lodash/find"
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import defaultCoreIdentityImage from "../images/defaultCoreIdentity.jpg"
+import defaultCoreIdentityImage from "../../static/images/defaultCoreIdentity.jpg"
 import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
 

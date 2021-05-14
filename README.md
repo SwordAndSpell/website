@@ -1,4 +1,4 @@
-<img alt="Sword and Spell logo" src="./src/images/logo.png" height="50px" width="50px" />
+<img alt="Sword and Spell logo" src="./static/images/logo.png" height="50px" width="50px" />
 
 # Sword and Spell: Wikipedia
 

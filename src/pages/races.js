@@ -7,7 +7,7 @@ import BackToTop from "../components/BackToTop"
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import defaultRaceImage from "../images/defaultRace.png"
+import defaultRaceImage from "../../static/images/defaultRace.png"
 import { Wrapper } from "../components/cardsPage"
 import { onExpandedToggle } from "../utils"
 
