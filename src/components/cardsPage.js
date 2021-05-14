@@ -414,6 +414,7 @@ export const Wrapper = styled.section`
     }
   }
   .search-section {
+    max-width: 700px;
     h4 {
       margin: 10px 10px 5px !important;
     }
@@ -425,7 +426,6 @@ export const Wrapper = styled.section`
       flex-flow: row wrap;
       padding: 0 20px;
       margin: 10px 0 0;
-      max-width: 700px;
 
       .filter-button {
         background: transparent;
@@ -551,9 +551,6 @@ export const Wrapper = styled.section`
       text-align: center;
       padding: 5px;
       color: #ffffff;
-    }
-
-    &.skills {
     }
   }
 `
