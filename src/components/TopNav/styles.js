@@ -78,15 +78,9 @@ export const Header = styled.header`
       );
       height: 100px;
       left: 0;
-      opacity: 0;
       position: absolute;
       top: 0;
-      transition: opacity 1s ease;
       width: 100%;
-
-      &.visible {
-        opacity: 1;
-      }
     }
 
     .shadow {
@@ -98,16 +92,15 @@ export const Header = styled.header`
 
       &.right {
         background-image: url("${menuShadowRightMobile}");
-        background-position: 0 0;
-        height: 215px;
+        background-position: 100% 0;
+        height: 125px;
         right: 0;
         width: 305px;
 
         @media (min-width: 970px) {
           background-image: url("${menuShadowRight}");
-          background-position: 0 0;
+          background-position: 100% 0;
           background-size: cover;
-          height: 126px;
           width: 431px;
         }
       }
@@ -115,7 +108,7 @@ export const Header = styled.header`
       &.left {
         background-image: url("${menuShadowLeftMobile}");
         background-position: 0 0;
-        height: 215px;
+        height: 125px;
         left: 0;
         width: 305px;
 
@@ -123,7 +116,6 @@ export const Header = styled.header`
           background-image: url("${menuShadowLeft}");
           background-position: 0 0;
           background-size: cover;
-          height: 126px;
           width: 431px;
         }
       }

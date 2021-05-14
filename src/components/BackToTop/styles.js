@@ -13,9 +13,13 @@ const fadeIn = keyframes`
 export const Wrapper = styled.button`
   align-items: center;
   animation: ${fadeIn} 0.5s;
-  background: linear-gradient(to right, #3e4346 0%, #596164 100%);
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0) 0%,
+    rgba(20, 20, 20) 100%
+  );
+  border-radius: 5px;
+  border: 3px solid #271b1b;
   bottom: 20px;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 40%);
   color: #ffffff;
@@ -25,8 +29,14 @@ export const Wrapper = styled.button`
   padding: 10px;
   position: fixed;
   right: 0;
+  text-transform: uppercase;
+  transition: border 1s ease;
   width: 60px;
-  z-index: 1;
+  z-index: 2;
+
+  &:hover {
+    border: 3px solid #4a3232;
+  }
 
   svg {
     height: 25px;
