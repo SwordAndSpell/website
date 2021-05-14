@@ -444,19 +444,6 @@ export const Wrapper = styled.section`
         }
       }
     }
-
-    .filter-input {
-      background: #000000;
-      border-radius: 5px;
-      border: none;
-      color: #ffffff;
-      font-size: 1rem;
-      margin: 0;
-      max-width: 500px;
-      outline: none;
-      padding: 12px 15px;
-      width: 100%;
-    }
   }
   .filter-input {
     background: #000000;
@@ -465,10 +452,10 @@ export const Wrapper = styled.section`
     color: #ffffff;
     font-size: 1rem;
     margin: 20px 0 5px;
-    max-width: 500px;
     outline: none;
     padding: 12px 15px;
-    width: 100%;
+    width: 90%;
+    max-width: 500px;
   }
 
   .wide-stats {
