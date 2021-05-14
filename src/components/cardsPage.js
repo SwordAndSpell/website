@@ -198,8 +198,12 @@ export const Wrapper = styled.section`
 
     .field-group {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       margin: 0 10px 0;
+
+      &.row {
+        flex-direction: row;
+      }
 
       h4 {
         color: #fbcea0;
@@ -217,6 +221,19 @@ export const Wrapper = styled.section`
       }
 
       .value {
+        color: #ffffff;
+        font-size: 1rem;
+        margin: 0;
+        white-space: pre-line;
+        text-align: left;
+        margin: 10px 10px 5px;
+      }
+      .spell-label {
+        color: #fbcea0;
+        font-size: 0.8rem;
+        margin: 0;
+      }
+      .spell-value {
         color: #ffffff;
         font-size: 0.8rem;
         margin: 0;
