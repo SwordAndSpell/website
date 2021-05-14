@@ -413,40 +413,57 @@ export const Wrapper = styled.section`
       }
     }
   }
+  .search-section {
+    h4 {
+      margin: 10px 10px 5px !important;
+    }
 
-  .filters {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-flow: row wrap;
-    padding: 0 20px;
-    margin: 10px 0 0;
+    .filters {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-flow: row wrap;
+      padding: 0 20px;
+      margin: 10px 0 0;
 
-    .filter-button {
-      background: #ffffff;
-      border-radius: 5px;
-      border: 1px solid #b5b5b5;
-      box-shadow: 0 1px 1px 0 rgb(0, 0, 0, 0.4);
-      color: #fbcea0;
-      margin: 5px;
-      padding: 10px 15px;
-      font-size: 0.9rem;
+      .filter-button {
+        background: transparent;
+        border-radius: 5px;
+        border: 1px solid #fbcea0;
+        box-shadow: 0 1px 1px 0 rgb(0, 0, 0, 0.4);
+        color: #fbcea0;
+        margin: 5px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
 
-      &.active-button {
-        background: #6d56ff;
-        border: 1px solid transparent;
-        color: #ffffff;
+        &.active-button {
+          background: #fbcea0;
+          border: 1px solid transparent;
+          color: #000000;
+        }
       }
     }
-  }
 
+    .filter-input {
+      background: #000000;
+      border-radius: 5px;
+      border: none;
+      color: #ffffff;
+      font-size: 1rem;
+      margin: 0;
+      max-width: 500px;
+      outline: none;
+      padding: 12px 15px;
+      width: 100%;
+    }
+  }
   .filter-input {
     background: #000000;
     border-radius: 5px;
     border: none;
     color: #ffffff;
     font-size: 1rem;
-    margin: 20px 0 0;
+    margin: 20px 0 5px;
     max-width: 500px;
     outline: none;
     padding: 12px 15px;
@@ -473,12 +490,14 @@ export const Wrapper = styled.section`
 
   .search-bar {
     border: 1px solid #999999;
-    color: #6d56ff;
+    border-radius: 5px;
+    color: #ffffff;
     width: 80%;
     padding: 5px;
     margin: 15px 10px 10px;
     &:hover {
-      border: 1px solid #6d56ff;
+      border: 1px solid #fbcea0;
+      color: #fbcea0;
       cursor: pointer;
     }
   }

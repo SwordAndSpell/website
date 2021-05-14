@@ -140,7 +140,7 @@ const SpellsPage = () => {
           Search and Filter
         </h3>
         {expandedSpellIDs.includes("filters") && (
-          <section>
+          <section className="search-section">
             <section>
               <h4>Search</h4>
               <input
@@ -151,9 +151,8 @@ const SpellsPage = () => {
                 placeholder="Search for identity features..."
               />
             </section>
-
+            <h4>Spell Lists</h4>
             <section className="filters">
-              <h4>Spell Lists</h4>
               <button
                 type="button"
                 className={`filter-button ${

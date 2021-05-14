@@ -92,155 +92,157 @@ const AbilityFeaturesPage = () => {
         <h2>Ability Features</h2>
 
         {/* Filters */}
-        <section className="filters">
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Dual Wielding") &&
-              activeFilters?.includes("Daggers / Finesse") &&
-              activeFilters?.includes("Fencing") &&
-              activeFilters?.includes("Two-Handed") &&
-              activeFilters?.includes("Weapon and Shield") &&
-              activeFilters?.includes("Brawling / Grappling") &&
-              activeFilters?.includes("Spellcasting") &&
-              activeFilters?.includes("Polearms") &&
-              activeFilters?.includes("Ranged")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() => toggleAllFilters(activeFilters, setActiveFilters)}
-          >
-            All
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Dual Wielding")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Dual Wielding", activeFilters, setActiveFilters)
-            }
-          >
-            Dual Wielding
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Daggers / Finesse")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle(
-                "Daggers / Finesse",
-                activeFilters,
-                setActiveFilters
-              )
-            }
-          >
-            Daggers / Finesse
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Fencing")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Fencing", activeFilters, setActiveFilters)
-            }
-          >
-            Fencing
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Two-Handed")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Two-Handed", activeFilters, setActiveFilters)
-            }
-          >
-            Two-Handed
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Weapon and Shield")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle(
-                "Weapon and Shield",
-                activeFilters,
-                setActiveFilters
-              )
-            }
-          >
-            Weapon and Shield
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Brawling / Grappling")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle(
-                "Brawling / Grappling",
-                activeFilters,
-                setActiveFilters
-              )
-            }
-          >
-            Brawling / Grappling
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Spellcasting")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Spellcasting", activeFilters, setActiveFilters)
-            }
-          >
-            Spellcasting
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Polearms")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Polearms", activeFilters, setActiveFilters)
-            }
-          >
-            Polearms
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Ranged")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Ranged", activeFilters, setActiveFilters)
-            }
-          >
-            Ranged
-          </button>
+        <section className="search-section">
+          <section className="filters">
+            <button
+              type="button"
+              className={`filter-button ${
+                activeFilters?.includes("Dual Wielding") &&
+                activeFilters?.includes("Daggers / Finesse") &&
+                activeFilters?.includes("Fencing") &&
+                activeFilters?.includes("Two-Handed") &&
+                activeFilters?.includes("Weapon and Shield") &&
+                activeFilters?.includes("Brawling / Grappling") &&
+                activeFilters?.includes("Spellcasting") &&
+                activeFilters?.includes("Polearms") &&
+                activeFilters?.includes("Ranged")
+                  ? "active-button"
+                  : "inactive-button"
+              }`}
+              onClick={() => toggleAllFilters(activeFilters, setActiveFilters)}
+            >
+              All
+            </button>
+            <button
+              type="button"
+              className={`filter-button ${
+                activeFilters?.includes("Dual Wielding")
+                  ? "active-button"
+                  : "inactive-button"
+              }`}
+              onClick={() =>
+                onFilterToggle("Dual Wielding", activeFilters, setActiveFilters)
+              }
+            >
+              Dual Wielding
+            </button>
+            <button
+              type="button"
+              className={`filter-button ${
+                activeFilters?.includes("Daggers / Finesse")
+                  ? "active-button"
+                  : "inactive-button"
+              }`}
+              onClick={() =>
+                onFilterToggle(
+                  "Daggers / Finesse",
+                  activeFilters,
+                  setActiveFilters
+                )
+              }
+            >
+              Daggers / Finesse
+            </button>
+            <button
+              type="button"
+              className={`filter-button ${
+                activeFilters?.includes("Fencing")
+                  ? "active-button"
+                  : "inactive-button"
+              }`}
+              onClick={() =>
+                onFilterToggle("Fencing", activeFilters, setActiveFilters)
+              }
+            >
+              Fencing
+            </button>
+            <button
+              type="button"
+              className={`filter-button ${
+                activeFilters?.includes("Two-Handed")
+                  ? "active-button"
+                  : "inactive-button"
+              }`}
+              onClick={() =>
+                onFilterToggle("Two-Handed", activeFilters, setActiveFilters)
+              }
+            >
+              Two-Handed
+            </button>
+            <button
+              type="button"
+              className={`filter-button ${
+                activeFilters?.includes("Weapon and Shield")
+                  ? "active-button"
+                  : "inactive-button"
+              }`}
+              onClick={() =>
+                onFilterToggle(
+                  "Weapon and Shield",
+                  activeFilters,
+                  setActiveFilters
+                )
+              }
+            >
+              Weapon and Shield
+            </button>
+            <button
+              type="button"
+              className={`filter-button ${
+                activeFilters?.includes("Brawling / Grappling")
+                  ? "active-button"
+                  : "inactive-button"
+              }`}
+              onClick={() =>
+                onFilterToggle(
+                  "Brawling / Grappling",
+                  activeFilters,
+                  setActiveFilters
+                )
+              }
+            >
+              Brawling / Grappling
+            </button>
+            <button
+              type="button"
+              className={`filter-button ${
+                activeFilters?.includes("Spellcasting")
+                  ? "active-button"
+                  : "inactive-button"
+              }`}
+              onClick={() =>
+                onFilterToggle("Spellcasting", activeFilters, setActiveFilters)
+              }
+            >
+              Spellcasting
+            </button>
+            <button
+              type="button"
+              className={`filter-button ${
+                activeFilters?.includes("Polearms")
+                  ? "active-button"
+                  : "inactive-button"
+              }`}
+              onClick={() =>
+                onFilterToggle("Polearms", activeFilters, setActiveFilters)
+              }
+            >
+              Polearms
+            </button>
+            <button
+              type="button"
+              className={`filter-button ${
+                activeFilters?.includes("Ranged")
+                  ? "active-button"
+                  : "inactive-button"
+              }`}
+              onClick={() =>
+                onFilterToggle("Ranged", activeFilters, setActiveFilters)
+              }
+            >
+              Ranged
+            </button>
+          </section>
         </section>
 
         {/* begin headings for abilities */}

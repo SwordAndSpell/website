@@ -350,7 +350,7 @@ const IdentityFeaturesPage = () => {
           Search and Filter
         </h3>
         {expandedIdentityFeatureIDs.includes("filters") && (
-          <section>
+          <section className="search-section">
             <h4>Search</h4>
             <input
               className="filter-input"
