@@ -137,29 +137,31 @@ const ArmorPage = () => {
                 </header>
 
                 {isExpanded && (
-                  <section className="fields column">
-                    <section className=" fields-gear">
-                      <section className="field-group-gear">
-                        <h4>Defense Bonus</h4>
-                        <p className="value">{defenseBonus}</p>
+                  <section className="content">
+                    <section className="fields column">
+                      <section className=" fields-gear">
+                        <section className="field-group-gear">
+                          <h4>Defense Bonus</h4>
+                          <p className="value">{defenseBonus}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Max Dex Bonus</h4>
+                          <p className="value">{maxDexterityBonus}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Armor Value</h4>
+                          <p className="value">{armorValue}</p>
+                        </section>
                       </section>
-                      <section className="field-group-gear">
-                        <h4>Max Dex Bonus</h4>
-                        <p className="value">{maxDexterityBonus}</p>
-                      </section>
-                      <section className="field-group-gear">
-                        <h4>Armor Value</h4>
-                        <p className="value">{armorValue}</p>
-                      </section>
-                    </section>
-                    <section className=" fields-gear">
-                      <section className="field-group-gear">
-                        <h4>Movement Penalty</h4>
-                        <p className="value">{movementPenalty}</p>
-                      </section>
-                      <section className="field-group-gear">
-                        <h4>Strength Required</h4>
-                        <p className="value">{strengthRequired}</p>
+                      <section className=" fields-gear">
+                        <section className="field-group-gear">
+                          <h4>Movement Penalty</h4>
+                          <p className="value">{movementPenalty}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Strength Required</h4>
+                          <p className="value">{strengthRequired}</p>
+                        </section>
                       </section>
                     </section>
                   </section>
@@ -218,29 +220,31 @@ const ArmorPage = () => {
                 </header>
 
                 {isExpanded && (
-                  <section className="fields column">
-                    <section className=" fields-gear">
-                      <section className="field-group-gear">
-                        <h4>Defense Bonus</h4>
-                        <p className="value">{defenseBonus}</p>
+                  <section className="content">
+                    <section className="fields column">
+                      <section className=" fields-gear">
+                        <section className="field-group-gear">
+                          <h4>Defense Bonus</h4>
+                          <p className="value">{defenseBonus}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Max Dex Bonus</h4>
+                          <p className="value">{maxDexterityBonus}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Armor Value</h4>
+                          <p className="value">{armorValue}</p>
+                        </section>
                       </section>
-                      <section className="field-group-gear">
-                        <h4>Max Dex Bonus</h4>
-                        <p className="value">{maxDexterityBonus}</p>
-                      </section>
-                      <section className="field-group-gear">
-                        <h4>Armor Value</h4>
-                        <p className="value">{armorValue}</p>
-                      </section>
-                    </section>
-                    <section className=" fields-gear">
-                      <section className="field-group-gear">
-                        <h4>Movement Penalty</h4>
-                        <p className="value">{movementPenalty}</p>
-                      </section>
-                      <section className="field-group-gear">
-                        <h4>Strength Required</h4>
-                        <p className="value">{strengthRequired}</p>
+                      <section className=" fields-gear">
+                        <section className="field-group-gear">
+                          <h4>Movement Penalty</h4>
+                          <p className="value">{movementPenalty}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Strength Required</h4>
+                          <p className="value">{strengthRequired}</p>
+                        </section>
                       </section>
                     </section>
                   </section>
@@ -299,29 +303,31 @@ const ArmorPage = () => {
                 </header>
 
                 {isExpanded && (
-                  <section className="fields column">
-                    <section className=" fields-gear">
-                      <section className="field-group-gear">
-                        <h4>Defense Bonus</h4>
-                        <p className="value">{defenseBonus}</p>
+                  <section className="content">
+                    <section className="fields column">
+                      <section className=" fields-gear">
+                        <section className="field-group-gear">
+                          <h4>Defense Bonus</h4>
+                          <p className="value">{defenseBonus}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Max Dex Bonus</h4>
+                          <p className="value">{maxDexterityBonus}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Armor Value</h4>
+                          <p className="value">{armorValue}</p>
+                        </section>
                       </section>
-                      <section className="field-group-gear">
-                        <h4>Max Dex Bonus</h4>
-                        <p className="value">{maxDexterityBonus}</p>
-                      </section>
-                      <section className="field-group-gear">
-                        <h4>Armor Value</h4>
-                        <p className="value">{armorValue}</p>
-                      </section>
-                    </section>
-                    <section className=" fields-gear">
-                      <section className="field-group-gear">
-                        <h4>Movement Penalty</h4>
-                        <p className="value">{movementPenalty}</p>
-                      </section>
-                      <section className="field-group-gear">
-                        <h4>Strength Required</h4>
-                        <p className="value">{strengthRequired}</p>
+                      <section className=" fields-gear">
+                        <section className="field-group-gear">
+                          <h4>Movement Penalty</h4>
+                          <p className="value">{movementPenalty}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Strength Required</h4>
+                          <p className="value">{strengthRequired}</p>
+                        </section>
                       </section>
                     </section>
                   </section>
@@ -378,20 +384,22 @@ const ArmorPage = () => {
                 </header>
 
                 {isExpanded && (
-                  <section className="fields column">
-                    <section className="fields-gear">
-                      <section className="field-group-gear">
-                        <h4>Defense Bonus</h4>
-                        <p className="value">{defenseBonus}</p>
+                  <section className="content">
+                    <section className="fields column">
+                      <section className="fields-gear">
+                        <section className="field-group-gear">
+                          <h4>Defense Bonus</h4>
+                          <p className="value">{defenseBonus}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Strength Required</h4>
+                          <p className="value">{strengthRequired}</p>
+                        </section>
                       </section>
-                      <section className="field-group-gear">
-                        <h4>Strength Required</h4>
-                        <p className="value">{strengthRequired}</p>
+                      <section className="field-group-gear-wide">
+                        <h4>Special Ability</h4>
+                        <p className="value">{specialAbility}</p>
                       </section>
-                    </section>
-                    <section className="field-group-gear-wide">
-                      <h4>Special Ability</h4>
-                      <p className="value">{specialAbility}</p>
                     </section>
                   </section>
                 )}
@@ -447,20 +455,22 @@ const ArmorPage = () => {
                 </header>
 
                 {isExpanded && (
-                  <section className="fields column">
-                    <section className="fields-gear">
-                      <section className="field-group-gear">
-                        <h4>Arcanite Cost</h4>
-                        <p className="value">{arcaniteCost}</p>
+                  <section className="content">
+                    <section className="fields column">
+                      <section className="fields-gear">
+                        <section className="field-group-gear">
+                          <h4>Arcanite Cost</h4>
+                          <p className="value">{arcaniteCost}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Crafting Level</h4>
+                          <p className="value">{craftingLevelRequired}</p>
+                        </section>
                       </section>
-                      <section className="field-group-gear">
-                        <h4>Crafting Level</h4>
-                        <p className="value">{craftingLevelRequired}</p>
+                      <section className="field-group-gear-wide">
+                        <h4>Description</h4>
+                        <p className="value">{description}</p>
                       </section>
-                    </section>
-                    <section className="field-group-gear-wide">
-                      <h4>Description</h4>
-                      <p className="value">{description}</p>
                     </section>
                   </section>
                 )}

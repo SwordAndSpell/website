@@ -105,25 +105,27 @@ const BackgroundsPage = () => {
                 {/* CORE STATS */}
                 {/* ========== */}
                 {isExpanded && (
-                  <section className="fields-background">
-                    <section className="field-group-background">
-                      <h4>Ability Boost Choice</h4>
-                      <p className="value">{abilityBoostChoice}</p>
-                    </section>
+                  <section className="content">
+                    <section className="fields-background">
+                      <section className="field-group-background">
+                        <h4>Ability Boost Choice</h4>
+                        <p className="value">{abilityBoostChoice}</p>
+                      </section>
 
-                    <section className="field-group-background">
-                      <h4>Free Ability Boost</h4>
-                      <p className="value">{freeAbilityBoost}</p>
-                    </section>
+                      <section className="field-group-background">
+                        <h4>Free Ability Boost</h4>
+                        <p className="value">{freeAbilityBoost}</p>
+                      </section>
 
-                    <section className="field-group-background">
-                      <h4>Lore Advantage</h4>
-                      <p className="value">{loreAdvantage}</p>
-                    </section>
+                      <section className="field-group-background">
+                        <h4>Lore Advantage</h4>
+                        <p className="value">{loreAdvantage}</p>
+                      </section>
 
-                    <section className="field-group-background">
-                      <h4>Trained Skill</h4>
-                      <p className="value">{trainedSkill}</p>
+                      <section className="field-group-background">
+                        <h4>Trained Skill</h4>
+                        <p className="value">{trainedSkill}</p>
+                      </section>
                     </section>
                   </section>
                 )}

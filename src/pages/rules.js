@@ -125,61 +125,65 @@ const RulesPage = () => {
                   {/* ============ */}
 
                   {isExpanded && (
-                    <section className="fields column">
-                      <section className="field-group">
-                        <p className="value">{description}</p>
-                      </section>
-                      <section className="field-group">
-                        {subsections &&
-                          subsections.map(subsection => {
-                            const subsectionName = subsection?.name
-                            const subsectionDescription =
-                              subsection?.description
-                            return (
-                              <>
-                                <h4>{subsectionName}</h4>
-                                <p className="value">{subsectionDescription}</p>
-                              </>
-                            )
-                          })}
-                      </section>
+                    <section className="content">
+                      <section className="fields column">
+                        <section className="field-group">
+                          <p className="value">{description}</p>
+                        </section>
+                        <section className="field-group">
+                          {subsections &&
+                            subsections.map(subsection => {
+                              const subsectionName = subsection?.name
+                              const subsectionDescription =
+                                subsection?.description
+                              return (
+                                <>
+                                  <h4>{subsectionName}</h4>
+                                  <p className="value">
+                                    {subsectionDescription}
+                                  </p>
+                                </>
+                              )
+                            })}
+                        </section>
 
-                      <section className="field-group">
-                        {chart && (
-                          <table>
-                            <thead>
-                              <tr>
-                                <td>
-                                  {chart[0].modifier ? "Modifier" : "Level"}
-                                </td>
-                                <td>
-                                  {chart[1].result ? "Result" : "Description"}
-                                </td>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {chart.map(row => {
-                                const col1 =
-                                  row?.modifier ||
-                                  undefined ||
-                                  row?.level ||
-                                  undefined
-                                const col2 =
-                                  row?.result ||
-                                  undefined ||
-                                  row?.description ||
-                                  undefined
+                        <section className="field-group">
+                          {chart && (
+                            <table>
+                              <thead>
+                                <tr>
+                                  <td>
+                                    {chart[0].modifier ? "Modifier" : "Level"}
+                                  </td>
+                                  <td>
+                                    {chart[1].result ? "Result" : "Description"}
+                                  </td>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {chart.map(row => {
+                                  const col1 =
+                                    row?.modifier ||
+                                    undefined ||
+                                    row?.level ||
+                                    undefined
+                                  const col2 =
+                                    row?.result ||
+                                    undefined ||
+                                    row?.description ||
+                                    undefined
 
-                                return (
-                                  <tr key={`${col1}-${col2}`}>
-                                    <td>{col1}</td>
-                                    <td>{col2}</td>
-                                  </tr>
-                                )
-                              })}
-                            </tbody>
-                          </table>
-                        )}
+                                  return (
+                                    <tr key={`${col1}-${col2}`}>
+                                      <td>{col1}</td>
+                                      <td>{col2}</td>
+                                    </tr>
+                                  )
+                                })}
+                              </tbody>
+                            </table>
+                          )}
+                        </section>
                       </section>
                     </section>
                   )}
