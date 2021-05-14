@@ -9,6 +9,7 @@ import menuShadowRightMobile from "../../../static/images/menu-shadow-right-mobi
 export const Header = styled.header`
   align-items: center;
   display: flex;
+  height: 100px;
   justify-content: space-between;
   left: 0;
   padding: 15px 20px;
