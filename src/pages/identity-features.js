@@ -79,9 +79,6 @@ const IdentityFeaturesPage = () => {
       "Spellcasting",
       "Patron-Sworn",
       "Animal Companion",
-      "Core Features",
-      "Subclass Features",
-      "General Features",
     ])
     return
   }
@@ -156,9 +153,9 @@ const IdentityFeaturesPage = () => {
         .includes(searchInput.toLowerCase())
     )
 
-    const coreActive = activeFilters.includes("Core Features")
-    const subclassActive = activeFilters.includes("Subclass Features")
-    const generalActive = activeFilters.includes("General Features")
+    const coreActive = activeTypeFilters.includes("Core Features")
+    const subclassActive = activeTypeFilters.includes("Subclass Features")
+    const generalActive = activeTypeFilters.includes("General Features")
 
     const relevantData = searchData.filter(
       feature =>
@@ -316,6 +313,11 @@ const IdentityFeaturesPage = () => {
     "Spellcasting",
     "Patron-Sworn",
     "Animal Companion",
+    "Core Features",
+    "Subclass Features",
+    "General Features",
+  ])
+  const [activeTypeFilters, setActiveTypeFilters] = useState([
     "Core Features",
     "Subclass Features",
     "General Features",
@@ -627,7 +629,11 @@ const IdentityFeaturesPage = () => {
                 : "inactive-button"
             }`}
             onClick={() =>
-              onFilterToggle("Core Features", activeFilters, setActiveFilters)
+              onFilterToggle(
+                "Core Features",
+                activeTypeFilters,
+                setActiveTypeFilters
+              )
             }
           >
             Core Features
@@ -642,8 +648,8 @@ const IdentityFeaturesPage = () => {
             onClick={() =>
               onFilterToggle(
                 "Subclass Features",
-                activeFilters,
-                setActiveFilters
+                activeTypeFilters,
+                setActiveTypeFilters
               )
             }
           >
@@ -659,8 +665,8 @@ const IdentityFeaturesPage = () => {
             onClick={() =>
               onFilterToggle(
                 "General Features",
-                activeFilters,
-                setActiveFilters
+                activeTypeFilters,
+                setActiveTypeFilters
               )
             }
           >
