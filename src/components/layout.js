@@ -9,6 +9,8 @@ import Footer from "./Footer"
 import TopNav from "./TopNav"
 import "./layout.css"
 
+const isBrowser = typeof window !== "undefined"
+
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -25,7 +27,7 @@ const Layout = ({ children }) => {
       <TopNav siteTitle={data?.site?.siteMetadata?.title} />
       <main>{children}</main>
       <Footer />
-      {window.location.pathname !== "/" && (
+      {isBrowser && window.location.pathname !== "/" && (
         <video
           autoPlay
           className="smoke-animation"
