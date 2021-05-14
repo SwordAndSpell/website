@@ -94,7 +94,7 @@ const CoreIdentitiesPage = () => {
                 {/* ============ */}
 
                 {isExpanded && (
-                  <>
+                  <section className="content">
                     {/* CORE ABILITIES */}
                     {/* ========== */}
                     {coreAbilities?.length > 0 && (
@@ -135,7 +135,7 @@ const CoreIdentitiesPage = () => {
                     )}
                     {/* CORE ABILITIES end */}
                     {/* ========== */}
-                  </>
+                  </section>
                 )}
               </li>
             )

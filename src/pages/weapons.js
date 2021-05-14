@@ -112,20 +112,22 @@ const WeaponsPage = () => {
                 </header>
 
                 {isExpanded && (
-                  <section className="fields column">
-                    <section className="fields">
-                      <section className="field-group-gear">
-                        <h4>Range</h4>
-                        <p className="value">{range}</p>
+                  <section className="content">
+                    <section className="fields column">
+                      <section className="fields">
+                        <section className="field-group-gear">
+                          <h4>Range</h4>
+                          <p className="value">{range}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Damage</h4>
+                          <p className="value">{damage}</p>
+                        </section>
                       </section>
-                      <section className="field-group-gear">
-                        <h4>Damage</h4>
-                        <p className="value">{damage}</p>
+                      <section className="field-group-gear-wide">
+                        <h4>Weapon Properties</h4>
+                        <p className="value">{weaponProperties}</p>
                       </section>
-                    </section>
-                    <section className="field-group-gear-wide">
-                      <h4>Weapon Properties</h4>
-                      <p className="value">{weaponProperties}</p>
                     </section>
                   </section>
                 )}
@@ -179,20 +181,22 @@ const WeaponsPage = () => {
                 </header>
 
                 {isExpanded && (
-                  <section className="fields column">
-                    <section className="fields">
-                      <section className="field-group-gear">
-                        <h4>Range</h4>
-                        <p className="value">{range}</p>
+                  <section className="content">
+                    <section className="fields column">
+                      <section className="fields">
+                        <section className="field-group-gear">
+                          <h4>Range</h4>
+                          <p className="value">{range}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Damage</h4>
+                          <p className="value">{damage}</p>
+                        </section>
                       </section>
-                      <section className="field-group-gear">
-                        <h4>Damage</h4>
-                        <p className="value">{damage}</p>
+                      <section className="field-group-gear-wide">
+                        <h4>Weapon Properties</h4>
+                        <p className="value">{weaponProperties}</p>
                       </section>
-                    </section>
-                    <section className="field-group-gear-wide">
-                      <h4>Weapon Properties</h4>
-                      <p className="value">{weaponProperties}</p>
                     </section>
                   </section>
                 )}
@@ -243,10 +247,12 @@ const WeaponsPage = () => {
                 </header>
 
                 {isExpanded && (
-                  <section className="fields column">
-                    <section className="field-group-gear-wide">
-                      <h4>Description</h4>
-                      <p className="value">{description}</p>
+                  <section className="content">
+                    <section className="fields column">
+                      <section className="field-group-gear-wide">
+                        <h4>Description</h4>
+                        <p className="value">{description}</p>
+                      </section>
                     </section>
                   </section>
                 )}
@@ -299,20 +305,22 @@ const WeaponsPage = () => {
                   />
                 </header>
                 {isExpanded && (
-                  <section className="fields column">
-                    <section className="fields">
-                      <section className="field-group-gear">
-                        <h4>Arcanite Cost</h4>
-                        <p className="value">{arcaniteCost}</p>
+                  <section className="content">
+                    <section className="fields column">
+                      <section className="fields">
+                        <section className="field-group-gear">
+                          <h4>Arcanite Cost</h4>
+                          <p className="value">{arcaniteCost}</p>
+                        </section>
+                        <section className="field-group-gear">
+                          <h4>Crafting Level Required</h4>
+                          <p className="value">{craftingLevelRequired}</p>
+                        </section>
                       </section>
-                      <section className="field-group-gear">
-                        <h4>Crafting Level Required</h4>
-                        <p className="value">{craftingLevelRequired}</p>
+                      <section className="field-group-gear-wide">
+                        <h4>Description</h4>
+                        <p className="value">{description}</p>
                       </section>
-                    </section>
-                    <section className="field-group-gear-wide">
-                      <h4>Description</h4>
-                      <p className="value">{description}</p>
                     </section>
                   </section>
                 )}

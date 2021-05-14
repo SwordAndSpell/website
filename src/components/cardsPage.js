@@ -23,16 +23,15 @@ export const Wrapper = styled.section`
     width: 100%;
 
     &.category {
-      border-top: 3px solid #b5b5b5;
-      border-bottom: 3px solid #b5b5b5;
+      border-top: 1px solid #fbcea0;
+      border-bottom: 1px solid #fbcea0;
       color: #fbcea0;
-      padding: 10px 20px;
+      padding: 10px 20px 5px;
       margin: 20px 0 10px;
     }
   }
 
   ul {
-    align-items: center;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -68,13 +67,15 @@ export const Wrapper = styled.section`
       min-height: 60px;
 
       &.no-background-image {
+        background: #000000;
+        background: linear-gradient(0deg, #151515 0%, #000000 100%);
         flex-direction: row;
         justify-content: space-between;
         padding: 5px 20px 5px 0;
 
         h3 {
-          background: #ffffff;
-          color: #8471ff;
+          background: transparent;
+          color: #ffffff;
           position: initial;
           font-size: 1.5rem;
         }
@@ -84,7 +85,7 @@ export const Wrapper = styled.section`
           position: initial;
 
           path {
-            fill: #8471ff;
+            fill: #ffffff;
           }
         }
       }
@@ -162,7 +163,7 @@ export const Wrapper = styled.section`
     }
 
     .content {
-      background: #000000;
+      background: linear-gradient(180deg, #151515 0%, #000000 100%);
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
       cursor: initial;
@@ -201,8 +202,11 @@ export const Wrapper = styled.section`
       margin: 10px 10px 0;
 
       h4 {
-        font-size: 1rem;
-        margin: 10px 0 10px;
+        color: #fbcea0;
+        font-size: 0.8rem;
+        margin: 10px 0 5px;
+        text-transform: uppercase;
+        font-weight: 400;
         text-align: left;
       }
 
@@ -324,6 +328,7 @@ export const Wrapper = styled.section`
         margin-bottom: 20px;
       }
     }
+
     .fields-gear {
       display: flex;
       flex-flow: row wrap;
@@ -360,6 +365,7 @@ export const Wrapper = styled.section`
         white-space: pre-line;
       }
     }
+
     .field-group-gear-wide {
       display: flex;
       flex-direction: column;
@@ -413,14 +419,16 @@ export const Wrapper = styled.section`
   }
 
   .filter-input {
-    border: 1px solid #b5b5b5;
-    color: #fbcea0;
-    font-size: 0.9rem;
+    background: #000000;
     border-radius: 5px;
-    height: 40px;
-    margin: 10px;
-    padding: 10px;
-    width: 90%;
+    border: none;
+    color: #ffffff;
+    font-size: 1rem;
+    margin: 20px 0 0;
+    max-width: 500px;
+    outline: none;
+    padding: 12px 15px;
+    width: 100%;
   }
 
   .wide-stats {

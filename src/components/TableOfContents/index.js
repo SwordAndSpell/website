@@ -105,7 +105,7 @@ class TableOfContents extends Component {
 
         {/* TOC List */}
         {showTOC && (
-          <ul className="toc">
+          <ul>
             {items?.map(item => {
               // Skip rendering item if there's no ID on the jump link.
               if (!item?.id) {
