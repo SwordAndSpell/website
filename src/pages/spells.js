@@ -461,7 +461,9 @@ const SpellsPage = () => {
                           >
                             <div className="header-column">
                               <h3 id={`${level}--${name}`}>{name}</h3>
-                              <p className="extra-info">{castingSpeed}</p>
+                              {!isExpanded && (
+                                <p className="extra-info">{castingSpeed}</p>
+                              )}
                               <ul className="tags">
                                 {tags?.map(tag => (
                                   <li key={tag}>{tag}</li>
@@ -478,8 +480,7 @@ const SpellsPage = () => {
                           {/* ============ */}
 
                           {isExpanded && (
-                            <section className="fields column">
-                              <hr />
+                            <section className="fields column content">
                               {castingSpeed && (
                                 <section className="field-group row">
                                   <h4>Casting Speed: </h4>
@@ -516,7 +517,6 @@ const SpellsPage = () => {
                                   </p>
                                 </section>
                               )}
-                              <hr />
                               {description && (
                                 <section className="field-group">
                                   <p className="spell-value description">

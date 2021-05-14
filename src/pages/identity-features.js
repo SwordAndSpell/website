@@ -226,7 +226,7 @@ const IdentityFeaturesPage = () => {
                   {/* ============ */}
 
                   {isExpanded && (
-                    <section className="fields column">
+                    <section className="fields column content">
                       <section className="field-group">
                         <h4>Requirements</h4>
                         <p className="value">
