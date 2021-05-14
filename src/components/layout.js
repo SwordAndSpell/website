@@ -3,6 +3,7 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 // Relative imports.
+import fog from "../../static/videos/fog.mp4"
 import smokeImage from "../../static/images/smoke.jpeg"
 import Footer from "./Footer"
 import TopNav from "./TopNav"
@@ -24,8 +25,20 @@ const Layout = ({ children }) => {
       <TopNav siteTitle={data?.site?.siteMetadata?.title} />
       <main>{children}</main>
       <Footer />
+      {window.location.pathname !== "/" && (
+        <video
+          autoPlay
+          className="smoke-animation"
+          loop="loop"
+          muted="muted"
+          type="video/mp4"
+        >
+          <source src={fog} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )}
       <div
-        className="smoke"
+        className="smoke-background"
         style={{ backgroundImage: `url('${smokeImage}')` }}
       />
     </>

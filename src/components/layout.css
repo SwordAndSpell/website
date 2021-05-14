@@ -42,7 +42,17 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
 }
 
-.smoke {
+.smoke-animation {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  opacity: 0.3;
+  position: fixed;
+  width: 100%;
+  z-index: -2;
+}
+
+.smoke-background {
   -webkit-mask-image: linear-gradient(180deg,#000 0,#000 84%,rgba(0,0,0,.5) 94%,transparent);
   background-position: 50%;
   background-repeat: no-repeat;
@@ -53,7 +63,7 @@ h1, h2, h3, h4, h5 {
   mask-image: linear-gradient(180deg,#000 0,#000 84%,rgba(0,0,0,.5) 94%,transparent);
   position: fixed;
   width: 100%;
-  z-index: -2;
+  z-index: -3;
 }
 
 #gatsby-focus-wrapper {
