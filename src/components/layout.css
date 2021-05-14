@@ -46,6 +46,7 @@ h1, h2, h3, h4, h5 {
   bottom: 0;
   height: 100%;
   left: 0;
+  object-fit: fill;
   opacity: 0.3;
   position: fixed;
   width: 100%;
