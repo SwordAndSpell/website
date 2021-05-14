@@ -63,13 +63,7 @@ const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
     <Wrapper>
-      <video
-        autoPlay
-        loop="loop"
-        muted="muted"
-        poster="/video-still-4.jpg"
-        type="video/mp4"
-      >
+      <video autoPlay loop="loop" muted="muted" type="video/mp4">
         <source src={flameVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
