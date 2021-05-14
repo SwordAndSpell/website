@@ -10,15 +10,19 @@ export const Wrapper = styled.footer`
   background: #000000;
   display: flex;
   justify-content: space-around;
-  padding: 0 20px 90px;
+  padding: 0 20px 20px;
   position: relative;
-  min-height: 400px;
   text-align: center;
+
+  @media (min-width: 970px) {
+    min-height: 400px;
+  }
 
   &:before {
     background: rgba(0, 0, 0, 0.6);
     bottom: 0;
     content: "";
+    height: 100%;
     height: 100%;
     left: 0;
     pointer-events: none;
