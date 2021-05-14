@@ -73,12 +73,6 @@ const AbilityFeaturesPage = () => {
     "Polearms",
     "Ranged",
   ])
-  const [collapsedHeadings, setCollapsedHeadings] = useState([
-    "1",
-    "3",
-    "5",
-    "7",
-  ])
   const [expandedAbilityIDs, setExpandedAbilityIDs] = useState([])
 
   const level1Abilities = ABILITIES?.filter(ability => ability.level === 1)
