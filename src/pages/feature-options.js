@@ -92,7 +92,7 @@ const FeatureOptionsPage = () => {
 
             {!collapsedHeadings?.includes("Empowered Bloodlines") && (
               <>
-                <section className="collapsibles">
+                <section className="collapsibles content">
                   {BLOODLINES?.map(item => {
                     // Derive ability properties.
                     const name = item?.name
@@ -166,7 +166,7 @@ const FeatureOptionsPage = () => {
 
             {!collapsedHeadings?.includes("Fighting Styles") && (
               <>
-                <section className="collapsibles">
+                <section className="collapsibles content">
                   {FIGHTING_STYLES?.map(item => {
                     // Derive ability properties.
                     const name = item?.name
@@ -238,7 +238,7 @@ const FeatureOptionsPage = () => {
 
             {!collapsedHeadings?.includes("Metamagics") && (
               <>
-                <section className="collapsibles">
+                <section className="collapsibles content">
                   {METAMAGICS?.map(item => {
                     // Derive ability properties.
                     const name = item?.name

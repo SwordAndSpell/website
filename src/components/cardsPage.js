@@ -72,6 +72,7 @@ export const Wrapper = styled.section`
         flex-direction: row;
         justify-content: space-between;
         padding: 5px 20px 5px 0;
+        min-height: 110px;
 
         h3 {
           background: transparent;
@@ -108,11 +109,11 @@ export const Wrapper = styled.section`
         width: 100%;
 
         li {
-          background: #f1b306;
+          background: #ebb044;
           border-radius: 3px;
           border: none;
           outline: none;
-          color: #ffffff;
+          color: #000000;
           font-size: 0.7rem;
           padding: 3px 5px;
           width: auto;
@@ -208,7 +209,7 @@ export const Wrapper = styled.section`
       h4 {
         color: #fbcea0;
         font-size: 0.8rem;
-        margin: 10px 0 5px;
+        margin: 10px 10px 5px;
         text-transform: uppercase;
         font-weight: 400;
         text-align: left;
@@ -270,25 +271,35 @@ export const Wrapper = styled.section`
     .field-group-background {
       display: flex;
       flex-direction: column;
-      margin: 10px 10px 0;
+      margin: 0 10px 0;
       width: 40%;
 
+      &.row {
+        flex-direction: row;
+      }
+
       h4 {
-        margin: 0 0 10px;
-        font-size: 1rem;
+        color: #fbcea0;
+        font-size: 0.8rem;
+        margin: 10px 0 5px;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-align: center;
       }
 
       .label {
         color: #fbcea0;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         margin: 0;
       }
 
       .value {
-        color: #bbbbbb;
+        color: #ffffff;
         font-size: 1rem;
         margin: 0;
         white-space: pre-line;
+        text-align: center;
+        margin: 3px 10px;
       }
     }
     .empty-filter {
@@ -370,21 +381,21 @@ export const Wrapper = styled.section`
       margin-top: 10px;
 
       h4 {
-        margin: 0 0 10px;
-        font-size: 1.2rem;
-      }
-
-      .label {
         color: #fbcea0;
-        font-size: 0.7rem;
-        margin: 0;
+        font-size: 0.8rem;
+        margin: 10px 0 5px;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-align: center;
       }
 
       .value {
-        color: #bbbbbb;
+        color: #ffffff;
         font-size: 1rem;
         margin: 0;
         white-space: pre-line;
+        text-align: center;
+        margin: 3px 10px;
       }
     }
 
@@ -395,21 +406,25 @@ export const Wrapper = styled.section`
       max-width: 100%;
 
       h4 {
-        margin: 0 0 10px;
-        font-size: 1.2rem;
-      }
-
-      .label {
         color: #fbcea0;
-        font-size: 0.7rem;
-        margin: 0;
+        font-size: 0.8rem;
+        margin: 10px 0 5px;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-align: center;
       }
 
       .value {
-        color: #bbbbbb;
-        font-size: 1.2rem;
+        color: #ffffff;
+        font-size: 1rem;
         margin: 0;
         white-space: pre-line;
+        text-align: center;
+        margin: 3px 10px;
+
+        &:last-of-type {
+          margin-bottom: 10px;
+        }
       }
     }
   }

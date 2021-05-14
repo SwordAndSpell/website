@@ -290,7 +290,7 @@ const AbilityFeaturesPage = () => {
                   {/* IMAGE + NAME end */}
                   {/* ============ */}
                   {isExpanded && (
-                    <section className="fields column">
+                    <section className="fields column content">
                       <section className="field-group">
                         <h4>Requirements</h4>
                         <p className="value">{requirements || "None"}</p>
@@ -357,7 +357,7 @@ const AbilityFeaturesPage = () => {
                   {/* IMAGE + NAME end */}
                   {/* ============ */}
                   {isExpanded && (
-                    <section className="fields column">
+                    <section className="fields column content">
                       <section className="field-group">
                         <h4>Requirements</h4>
                         <p className="value">{requirements || "None"}</p>
@@ -424,7 +424,7 @@ const AbilityFeaturesPage = () => {
                   {/* IMAGE + NAME end */}
                   {/* ============ */}
                   {isExpanded && (
-                    <section className="fields column">
+                    <section className="fields column content">
                       <section className="field-group">
                         <h4>Requirements</h4>
                         <p className="value">{requirements || "None"}</p>
@@ -491,7 +491,7 @@ const AbilityFeaturesPage = () => {
                   {/* IMAGE + NAME end */}
                   {/* ============ */}
                   {isExpanded && (
-                    <section className="fields column">
+                    <section className="fields column content">
                       <section className="field-group">
                         <h4>Requirements</h4>
                         <p className="value">{requirements || "None"}</p>

@@ -107,10 +107,6 @@ module.exports = {
         link: "/reference-charts",
         label: "Quick Reference",
       },
-      {
-        link: "/todo",
-        label: "To Do List",
-      },
     ],
     // Raw CMS Data Start
     // ========
