@@ -21,6 +21,7 @@ export const Wrapper = styled.footer`
     content: "";
     height: 100%;
     left: 0;
+    pointer-events: none;
     position: absolute;
     width: 100%;
     z-index: 1;
