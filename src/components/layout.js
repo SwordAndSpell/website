@@ -22,27 +22,31 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const isHomepage = isBrowser && window.location.pathname === "/"
+
   return (
     <>
       <TopNav siteTitle={data?.site?.siteMetadata?.title} />
       <main>{children}</main>
       <Footer />
-      {isBrowser && window.location.pathname !== "/" && (
-        <video
-          autoPlay
-          className="smoke-animation"
-          loop="loop"
-          muted="muted"
-          type="video/mp4"
-        >
-          <source src={fog} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      {!isHomepage && (
+        <>
+          <video
+            autoPlay
+            className="smoke-animation"
+            loop="loop"
+            muted="muted"
+            type="video/mp4"
+          >
+            <source src={fog} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div
+            className="smoke-background"
+            style={{ backgroundImage: `url('${smokeImage}')` }}
+          />
+        </>
       )}
-      <div
-        className="smoke-background"
-        style={{ backgroundImage: `url('${smokeImage}')` }}
-      />
     </>
   )
 }
