@@ -18,6 +18,10 @@ export const Header = styled.header`
   width: 100%;
   z-index: 2;
 
+  &.expanded {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
   @media (max-width: 600px) {
     justify-content: space-between;
 
@@ -86,6 +90,7 @@ export const Header = styled.header`
     }
 
     .shadow {
+      background-repeat: no-repeat;
       background-size: contain;
       pointer-events: none;
       position: absolute;
@@ -138,7 +143,7 @@ export const NavItems = styled.ul`
   overflow-y: auto;
   position: fixed;
   padding: 0 0 10px;
-  top: 70px;
+  top: 100px;
   width: 100%;
   z-index: 2;
 

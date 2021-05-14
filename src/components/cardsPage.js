@@ -23,9 +23,9 @@ export const Wrapper = styled.section`
     width: 100%;
 
     &.category {
-      border-top: 3px solid #999999;
-      border-bottom: 3px solid #999999;
-      color: #999999;
+      border-top: 3px solid #b5b5b5;
+      border-bottom: 3px solid #b5b5b5;
+      color: #fbcea0;
       padding: 10px 20px;
       margin: 20px 0 10px;
     }
@@ -41,8 +41,6 @@ export const Wrapper = styled.section`
 
   li {
     align-items: center;
-    background: #ffffff;
-    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     margin: 0 20px 20px;
@@ -55,12 +53,13 @@ export const Wrapper = styled.section`
 
     &:nth-of-type(even) {
       h3 {
-        background: rgba(164, 0, 255, 0.8);
+        background: rgba(88, 102, 69, 0.9);
       }
     }
 
     header {
       align-items: center;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -123,21 +122,21 @@ export const Wrapper = styled.section`
 
       h3 {
         align-items: center;
-        background: rgba(81, 43, 252, 0.8);
+        background: rgba(14, 88, 105, 0.9);
         bottom: 0;
         color: #ffffff;
         display: flex;
         font-size: 2.5rem;
         justify-content: space-between;
         line-height: 40px;
-        padding: 10px 20px;
+        padding: 15px 20px 5px;
         position: absolute;
         text-align: left;
         width: 100%;
       }
 
       .extra-info {
-        color: #999999;
+        color: #fbcea0;
         font-size: 0.7rem;
         padding: 0 0 0 20px;
         margin: 0 0 5px;
@@ -162,7 +161,18 @@ export const Wrapper = styled.section`
       }
     }
 
+    .content {
+      background: #000000;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      cursor: initial;
+      width: 100%;
+    }
+
     h4 {
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 700;
       margin: 20px 0 0;
     }
 
@@ -191,19 +201,19 @@ export const Wrapper = styled.section`
       margin: 10px 10px 0;
 
       h4 {
+        font-size: 1rem;
         margin: 10px 0 10px;
         text-align: left;
-        font-size: 1rem;
       }
 
       .label {
-        color: #999999;
-        font-size: 0.7rem;
+        color: #fbcea0;
+        font-size: 0.8rem;
         margin: 0;
       }
 
       .value {
-        color: #444444;
+        color: #ffffff;
         font-size: 1rem;
         margin: 0;
         white-space: pre-line;
@@ -211,7 +221,7 @@ export const Wrapper = styled.section`
       }
 
       .value-center {
-        color: #444444;
+        color: #ffffff;
         font-size: 1rem;
         margin: 0;
         white-space: pre-line;
@@ -243,7 +253,7 @@ export const Wrapper = styled.section`
       }
 
       .label {
-        color: #999999;
+        color: #fbcea0;
         font-size: 0.7rem;
         margin: 0;
       }
@@ -272,7 +282,7 @@ export const Wrapper = styled.section`
       }
 
       .disclaimer {
-        color: #999999;
+        color: #fbcea0;
         font-size: 0.7rem;
         margin: 0;
       }
@@ -285,13 +295,14 @@ export const Wrapper = styled.section`
 
         h4,
         h5 {
-          color: #512bfccc;
+          color: #ffffff;
           font-size: 1.2rem;
           margin: 10px 0 0;
           text-align: left;
         }
 
         p {
+          color: #ffffff;
           margin: 10px 0;
           text-align: left;
         }
@@ -306,12 +317,6 @@ export const Wrapper = styled.section`
           &:last-of-type {
             margin-bottom: 10px;
           }
-        }
-      }
-
-      &:nth-of-type(even) {
-        h5 {
-          color: #831fbbcc;
         }
       }
 
@@ -343,7 +348,7 @@ export const Wrapper = styled.section`
       }
 
       .label {
-        color: #999999;
+        color: #fbcea0;
         font-size: 0.7rem;
         margin: 0;
       }
@@ -367,7 +372,7 @@ export const Wrapper = styled.section`
       }
 
       .label {
-        color: #999999;
+        color: #fbcea0;
         font-size: 0.7rem;
         margin: 0;
       }
@@ -392,9 +397,9 @@ export const Wrapper = styled.section`
     .filter-button {
       background: #ffffff;
       border-radius: 5px;
-      border: 1px solid #999999;
+      border: 1px solid #b5b5b5;
       box-shadow: 0 1px 1px 0 rgb(0, 0, 0, 0.4);
-      color: #999999;
+      color: #fbcea0;
       margin: 5px;
       padding: 10px 15px;
       font-size: 0.9rem;
@@ -408,8 +413,8 @@ export const Wrapper = styled.section`
   }
 
   .filter-input {
-    border: 1px solid #999999;
-    color: #999999;
+    border: 1px solid #b5b5b5;
+    color: #fbcea0;
     font-size: 0.9rem;
     border-radius: 5px;
     height: 40px;

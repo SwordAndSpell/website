@@ -3,6 +3,7 @@ import * as React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 // Relative imports.
+import flameVideo from "../../static/videos/flame.mp4"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -10,15 +11,51 @@ const Wrapper = styled.section`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 90px 0 0;
+  min-height: 100vh;
   text-align: center;
 
-  li {
-    font-size: 1.1rem;
+  video {
+    position: absolute;
+    z-index: -1;
+  }
+
+  h1 {
+    /* Make sure background stays at the top here. */
+    background: radial-gradient(
+      circle at 50% 50%,
+      #fff 0,
+      #fbcea0 66%,
+      #fbcea0 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: #fbcea0;
+    font-size: 2.5rem;
+    margin: 50vh 0 0;
+    text-align: center;
+    text-transform: uppercase;
   }
 
   a {
-    color: #fbcea0;
+    background-size: contain;
+    background: linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.9),
+      rgba(53, 53, 53, 0.7)
+    );
+    border-radius: 5px;
+    border: 2px solid #1b1705;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 10px 20px 5px;
+    text-transform: uppercase;
+    transition: border 1s ease;
+
+    &:hover {
+      border: 2px solid #52450b;
+    }
   }
 `
 
@@ -26,55 +63,18 @@ const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
     <Wrapper>
-      {/* <h2>How to create a character</h2>
-      <ul>
-        <li>
-          <Link to="/races">Choose race</Link>
-        </li>
-        <li>
-          Gain ability boosts + penalty (option to take additional penalty +
-          boost)
-        </li>
-        <li>Gain core stats</li>
-        <li>Choose subrace</li>
-        <li>Gain/choose abilities/stats</li>
-        <li>Choose +/-3 perks</li>
-        <li>Modify abilities/stats/</li>
-        <li>
-          <Link to="/backgrounds">Choose background</Link>
-        </li>
-        <li>Modify ability scores</li>
-        <li>
-          Gain trained skill (*If already trained, gain skill of your choice)
-        </li>
-        <li>Gain lore advantage</li>
-        <li>
-          <Link to="/core-identities">Choose core identity</Link>
-        </li>
-        <li>Gain health</li>
-        <li>
-          Choose proficiencies (*If already trained, gain skill of your choice)
-        </li>
-        <li>
-          Choose <Link to="/armor">armor</Link> and{" "}
-          <Link to="/weapons">weapons</Link>
-        </li>
-        <li>Gain abilities</li>
-        <li>
-          (Optional) <Link to="/spells">Choose spells</Link>{" "}
-          <em>if you are a spell caster</em>
-        </li>
-        <li>
-          <Link to="/identity-features">Choose identity feature(s)</Link> (1 by
-          default)
-        </li>
-        <li>Identify edge cases that modify abilities/stats</li>
-        <li>
-          <Link to="/ability-features">Choose ability feature(s)</Link> (1 by
-          default)
-        </li>
-        <li>Save & view new character</li>
-      </ul> */}
+      <video
+        autoplay="autoplay"
+        loop="loop"
+        muted="muted"
+        poster="/video-still-4.jpg"
+        type="video/mp4"
+      >
+        <source src={flameVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h1>Embark on your journey</h1>
+      <Link to="/races">Choose your race</Link>
     </Wrapper>
   </Layout>
 )

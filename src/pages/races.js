@@ -117,7 +117,7 @@ const RacesPage = () => {
                 {/* ============ */}
 
                 {isExpanded && (
-                  <>
+                  <section className="content">
                     {/* CORE STATS */}
                     {/* ========== */}
                     <h4>CORE STATS</h4>
@@ -298,7 +298,7 @@ const RacesPage = () => {
                     </section>
                     {/* PERKS end */}
                     {/* ===== */}
-                  </>
+                  </section>
                 )}
               </li>
             )
