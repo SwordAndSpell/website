@@ -177,11 +177,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `sword-and-spell`,
+        short_name: `sns`,
         start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#644ffd`,
+        background_color: `#000000`,
+        theme_color: `#fbcea0`,
         display: `minimal-ui`,
         icon: `static/images/logo.png`, // This path is relative to the root of the site.
       },
