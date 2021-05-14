@@ -32,7 +32,7 @@ const TopNav = ({ siteTitle }) => {
   return (
     <>
       {/* Main Nav */}
-      <Header>
+      <Header className={showNavItems ? "expanded" : ""}>
         {/* Logo */}
         <Link to="/">
           <h1>{siteTitle}</h1>
