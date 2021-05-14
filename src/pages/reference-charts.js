@@ -13,28 +13,6 @@ const ReferenceChartsPage = () => {
     query {
       site {
         siteMetadata {
-          ABILITY_MODIFIERS {
-            _5
-            _6
-            _7
-            _8
-            _9
-            _10
-            _11
-            _12
-            _13
-            _14
-            _15
-            _16
-            _17
-            _18
-            _19
-            _20
-            _21
-            _22
-            _23
-            _24
-          }
           EXAMPLE_DCS {
             difficultDC
             easyDC
@@ -58,30 +36,6 @@ const ReferenceChartsPage = () => {
     }
   `)
 
-  // Derive data from the graphql query above.
-  const ABILITY_MODIFIERS = queryResult?.site?.siteMetadata?.ABILITY_MODIFIERS
-  const abilityModifiersReference = {
-    _5: "5",
-    _6: "6",
-    _7: "7",
-    _8: "8",
-    _9: "9",
-    _10: "10",
-    _11: "11",
-    _12: "12",
-    _13: "13",
-    _14: "14",
-    _15: "15",
-    _16: "16",
-    _17: "17",
-    _18: "18",
-    _19: "19",
-    _20: "20",
-    _21: "21",
-    _22: "22",
-    _23: "23",
-    _24: "24",
-  }
   const EXAMPLE_DCS = queryResult?.site?.siteMetadata?.EXAMPLE_DCS
   const SKILLS_QUICK_REFERENCE =
     queryResult?.site?.siteMetadata?.SKILLS_QUICK_REFERENCE
@@ -125,25 +79,82 @@ const ReferenceChartsPage = () => {
                 }`}
               />
             </header>
-
-            {isAbilityModifiersExpanded && (
-              <table>
-                <thead>
-                  <tr>
-                    <th>Ability Score</th>
-                    <th>Modifier</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {map(ABILITY_MODIFIERS, (value, key) => (
+            <section className="modifier-chart">
+              {isAbilityModifiersExpanded && (
+                <table border="1">
+                  <thead>
                     <tr>
-                      <td>{abilityModifiersReference[key]}</td>
-                      <td>{value}</td>
+                      <th>Ability Score</th>
+                      <th>Modifier</th>
+                      <th>Ability Score</th>
+                      <th>Modifier</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>5</td>
+                      <td>-3</td>
+                      <td>15</td>
+                      <td>+2</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>-2</td>
+                      <td>16</td>
+                      <td>+3</td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>-2</td>
+                      <td>17</td>
+                      <td>+3</td>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td>-1</td>
+                      <td>18</td>
+                      <td>+4</td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td>-1</td>
+                      <td>19</td>
+                      <td>+4</td>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td>+0</td>
+                      <td>20</td>
+                      <td>+5</td>
+                    </tr>
+                    <tr>
+                      <td>11</td>
+                      <td>+0</td>
+                      <td>21</td>
+                      <td>+5</td>
+                    </tr>
+                    <tr>
+                      <td>12</td>
+                      <td>+1</td>
+                      <td>22</td>
+                      <td>+6</td>
+                    </tr>
+                    <tr>
+                      <td>13</td>
+                      <td>+1</td>
+                      <td>23</td>
+                      <td>+6</td>
+                    </tr>
+                    <tr>
+                      <td>14</td>
+                      <td>+2</td>
+                      <td>24</td>
+                      <td>+7</td>
+                    </tr>
+                  </tbody>
+                </table>
+              )}
+            </section>
           </li>
 
           {/* SkillsQuickReference */}
@@ -175,30 +186,32 @@ const ReferenceChartsPage = () => {
             </header>
 
             {isSkillsQuickReferenceExpanded && (
-              <table>
-                <thead>
-                  <tr>
-                    <th>Modifier</th>
-                    <th>Apprentice</th>
-                    <th>Trained</th>
-                    <th>Expert</th>
-                    <th>Master</th>
-                    <th>Legendary</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {map(SKILLS_QUICK_REFERENCE, row => (
+              <section className="modifier-chart">
+                <table border="1">
+                  <thead>
                     <tr>
-                      <td>{row?.abilityScoreModifier}</td>
-                      <td>{row?.apprentice}</td>
-                      <td>{row?.trained}</td>
-                      <td>{row?.expert}</td>
-                      <td>{row?.master}</td>
-                      <td>{row?.legendary}</td>
+                      <th>Modifier</th>
+                      <th>A</th>
+                      <th>T</th>
+                      <th>E</th>
+                      <th>M</th>
+                      <th>L</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {map(SKILLS_QUICK_REFERENCE, row => (
+                      <tr>
+                        <td>{row?.abilityScoreModifier}</td>
+                        <td>{row?.apprentice}</td>
+                        <td>{row?.trained}</td>
+                        <td>{row?.expert}</td>
+                        <td>{row?.master}</td>
+                        <td>{row?.legendary}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
             )}
           </li>
 
@@ -223,32 +236,34 @@ const ReferenceChartsPage = () => {
             </header>
 
             {isExampleDCSExpanded && (
-              <table>
-                <thead>
-                  <tr>
-                    <th>Level</th>
-                    <th>Trivial</th>
-                    <th>Easy</th>
-                    <th>Normal</th>
-                    <th>Difficult</th>
-                    <th>Expert</th>
-                    <th>Impossible</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {map(EXAMPLE_DCS, row => (
+              <section className="modifier-chart">
+                <table border="1">
+                  <thead>
                     <tr>
-                      <td>{row?.playerLevel}</td>
-                      <td>{row?.trivialDC}</td>
-                      <td>{row?.easyDC}</td>
-                      <td>{row?.standardDC}</td>
-                      <td>{row?.difficultDC}</td>
-                      <td>{row?.expertDC}</td>
-                      <td>{row?.impossibleDC}</td>
+                      <th>Level</th>
+                      <th>-- --</th>
+                      <th> -- </th>
+                      <th>Standard</th>
+                      <th>+</th>
+                      <th>+ +</th>
+                      <th>+ + +</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {map(EXAMPLE_DCS, row => (
+                      <tr>
+                        <td>{row?.playerLevel}</td>
+                        <td>{row?.trivialDC}</td>
+                        <td>{row?.easyDC}</td>
+                        <td>{row?.standardDC}</td>
+                        <td>{row?.difficultDC}</td>
+                        <td>{row?.expertDC}</td>
+                        <td>{row?.impossibleDC}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
             )}
           </li>
         </ul>

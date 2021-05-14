@@ -425,6 +425,7 @@ export const Wrapper = styled.section`
       flex-flow: row wrap;
       padding: 0 20px;
       margin: 10px 0 0;
+      max-width: 700px;
 
       .filter-button {
         background: transparent;
@@ -499,6 +500,60 @@ export const Wrapper = styled.section`
       border: 1px solid #fbcea0;
       color: #fbcea0;
       cursor: pointer;
+    }
+  }
+
+  .leveling-chart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    table {
+      max-width: 90%;
+    }
+
+    td {
+      text-align: left;
+      max-width: 80%;
+      padding: 5px;
+    }
+  }
+
+  .modifier-chart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+
+    table {
+      width: 95%;
+      margin-top: 10px;
+    }
+    th {
+      line-height: 1rem;
+      padding: 5px;
+      text-align: center;
+      color: #ffffff;
+    }
+    tr {
+      &:nth-of-type(even) {
+        background: #cfaf8f;
+        td {
+          color: #000000;
+        }
+      }
+    }
+
+    td {
+      text-align: center;
+      padding: 5px;
+      color: #ffffff;
+    }
+
+    &.skills {
     }
   }
 `

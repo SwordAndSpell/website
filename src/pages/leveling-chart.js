@@ -29,22 +29,24 @@ const LevelingChartPage = () => {
       <Seo title="Leveling Chart" />
       <Wrapper>
         <h2>Leveling Chart </h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Level</th>
-              <th>Features Granted</th>
-            </tr>
-          </thead>
-          <tbody>
-            {map(LEVELING_CHART, row => (
-              <tr key={`${row?.level}-${row?.featuresGranted}`}>
-                <td>{row?.level}</td>
-                <td>{row?.featuresGranted}</td>
+        <section className="leveling-chart">
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th>Features Granted</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {map(LEVELING_CHART, row => (
+                <tr key={`${row?.level}-${row?.featuresGranted}`}>
+                  <td>{row?.level}</td>
+                  <td>{row?.featuresGranted}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
       </Wrapper>
     </Layout>
   )

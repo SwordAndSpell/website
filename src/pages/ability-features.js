@@ -2,6 +2,7 @@
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import uniq from "lodash/uniq"
+import map from "lodash/map"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
@@ -78,7 +79,7 @@ const AbilityFeaturesPage = () => {
     "5",
     "7",
   ])
-  const [collapsedAbilityIDs, setCollapsedAbilityIDs] = useState([])
+  const [expandedAbilityIDs, setExpandedAbilityIDs] = useState([])
 
   const level1Abilities = ABILITIES?.filter(ability => ability.level === 1)
   const level3Abilities = ABILITIES?.filter(ability => ability.level === 3)
@@ -246,346 +247,271 @@ const AbilityFeaturesPage = () => {
         </section>
 
         {/* begin headings for abilities */}
+        <h2 className="category">Level 1 Abilties</h2>
         <ul>
-          <li key={"level1Abilities"}>
-            {/*  NAME */}
-            {/* ===== */}
-            <header
-              className="no-background-image"
-              onKeyDown={event => {
-                // On enter, toggle expanded/expanded.
-                if (event.keyCode === 13) {
-                  onCollapseToggle("1", collapsedHeadings, setCollapsedHeadings)
-                }
-              }}
-              onClick={() =>
-                onCollapseToggle("1", collapsedHeadings, setCollapsedHeadings)
-              }
-              role="button"
-              tabIndex="0"
-            >
-              <h3 id="Level 1 Abilities">Level 1 Abilities</h3>
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("1") ? " expanded" : ""
-                }`}
-              />
-            </header>
+          {map(level1Abilities, ability => {
+            const name = ability?.name
+            const id = ability?.id
+            const description = ability?.description
+            const requirements = ability?.requirements
+            const relevantStyles = ability?.relevantStyles
 
-            {/* NAME end */}
-            {/* ======== */}
+            const isRelevant = activeFilters.some(style =>
+              relevantStyles.includes(style)
+            )
 
-            {!collapsedHeadings?.includes("1") && (
-              <>
-                <section className="collapsibles">
-                  {level1Abilities?.map(ability => {
-                    // Derive ability properties.
-                    const name = ability?.name
-                    const id = ability?.id
-                    const description = ability?.description
-                    const requirements = ability?.requirements
-                    const relevantStyles = ability?.relevantStyles
-
-                    const relevant = activeFilters.some(style =>
-                      relevantStyles.includes(style)
-                    )
-
-                    return (
-                      relevant && (
-                        <button
-                          className="collapsible"
-                          key={`filter-button ${id}`}
-                          onClick={() =>
-                            onCollapseToggle(
-                              id,
-                              collapsedAbilityIDs,
-                              setCollapsedAbilityIDs
-                            )
-                          }
-                          type="button"
-                        >
-                          {/* Ability Name */}
-                          <h4 id={name}>{name}</h4>
-
-                          {/* Ability Info */}
-                          {collapsedAbilityIDs?.includes(id) && (
-                            <>
-                              {requirements && (
-                                <p className="requirements">
-                                  <strong>Requirements:</strong> {requirements}
-                                </p>
-                              )}
-                              <p>{description}</p>
-                            </>
-                          )}
-                        </button>
+            const isExpanded = expandedAbilityIDs?.includes(id)
+            if (isRelevant)
+              return (
+                <li key={`${id}--level1`}>
+                  {/* NAME */}
+                  {/* ============ */}
+                  <header
+                    className="no-background-image"
+                    onKeyDown={event => {
+                      // On enter, toggle expanded/expanded.
+                      if (event.keyCode === 13) {
+                        onCollapseToggle(
+                          id,
+                          expandedAbilityIDs,
+                          setExpandedAbilityIDs
+                        )
+                      }
+                    }}
+                    onClick={() =>
+                      onCollapseToggle(
+                        id,
+                        expandedAbilityIDs,
+                        setExpandedAbilityIDs
                       )
-                    )
-                  })}
-                </section>
-                {activeFilters.length === 0 && (
-                  <div className="empty-filter">
-                    Enable a filter to see relevant abilities!
-                  </div>
-                )}
-              </>
-            )}
-          </li>
+                    }
+                    role="button"
+                    tabIndex="0"
+                  >
+                    <h3 id={`${id}--${name}`}>{name}</h3>
+                    <Chevron
+                      className={`chevron${isExpanded ? " expanded" : ""}`}
+                    />
+                  </header>
+                  {/* IMAGE + NAME end */}
+                  {/* ============ */}
+                  {isExpanded && (
+                    <section className="fields column">
+                      <section className="field-group">
+                        <h4>Requirements</h4>
+                        <p className="value">{requirements || "None"}</p>
+                      </section>
 
-          <li key={"level3Abilities"}>
-            {/*  NAME */}
-            {/* ===== */}
-            <header
-              className="no-background-image"
-              onKeyDown={event => {
-                // On enter, toggle expanded/expanded.
-                if (event.keyCode === 13) {
-                  onCollapseToggle("3", collapsedHeadings, setCollapsedHeadings)
-                }
-              }}
-              onClick={() =>
-                onCollapseToggle("3", collapsedHeadings, setCollapsedHeadings)
-              }
-              role="button"
-              tabIndex="0"
-            >
-              <h3 id="Level 3 Abilities">Level 3 Abilities</h3>
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("3") ? " expanded" : ""
-                }`}
-              />
-            </header>
+                      <section className="field-group">
+                        <h4>Description</h4>
+                        <p className="value">{description}</p>
+                      </section>
+                    </section>
+                  )}
+                </li>
+              )
+          })}
+        </ul>
 
-            {/* NAME end */}
-            {/* ======== */}
+        {/* begin headings for abilities */}
+        <h2 className="category">Level 3 Abilties</h2>
+        <ul>
+          {map(level3Abilities, ability => {
+            const name = ability?.name
+            const id = ability?.id
+            const description = ability?.description
+            const requirements = ability?.requirements
+            const relevantStyles = ability?.relevantStyles
 
-            {!collapsedHeadings?.includes("3") && (
-              <>
-                <section className="collapsibles">
-                  {level3Abilities?.map(ability => {
-                    // Derive ability properties.
-                    const name = ability?.name
-                    const id = ability?.id
-                    const description = ability?.description
-                    const requirements = ability?.requirements
-                    const relevantStyles = ability?.relevantStyles
+            const isRelevant = activeFilters.some(style =>
+              relevantStyles.includes(style)
+            )
 
-                    const relevant = activeFilters.some(style =>
-                      relevantStyles.includes(style)
-                    )
-
-                    return (
-                      relevant && (
-                        <button
-                          className="collapsible"
-                          key={`filter-button ${id}`}
-                          onClick={() =>
-                            onCollapseToggle(
-                              id,
-                              collapsedAbilityIDs,
-                              setCollapsedAbilityIDs
-                            )
-                          }
-                          type="button"
-                        >
-                          {/* Ability Name */}
-                          <h4 id={name}>{name}</h4>
-
-                          {/* Ability Info */}
-                          {collapsedAbilityIDs?.includes(id) && (
-                            <>
-                              {requirements && (
-                                <p className="requirements">
-                                  <strong>Requirements:</strong> {requirements}
-                                </p>
-                              )}
-                              <p>{description}</p>
-                            </>
-                          )}
-                        </button>
+            const isExpanded = expandedAbilityIDs?.includes(id)
+            if (isRelevant)
+              return (
+                <li key={`${id}--level1`}>
+                  {/* NAME */}
+                  {/* ============ */}
+                  <header
+                    className="no-background-image"
+                    onKeyDown={event => {
+                      // On enter, toggle expanded/expanded.
+                      if (event.keyCode === 13) {
+                        onCollapseToggle(
+                          id,
+                          expandedAbilityIDs,
+                          setExpandedAbilityIDs
+                        )
+                      }
+                    }}
+                    onClick={() =>
+                      onCollapseToggle(
+                        id,
+                        expandedAbilityIDs,
+                        setExpandedAbilityIDs
                       )
-                    )
-                  })}
-                </section>
-                {activeFilters.length === 0 && (
-                  <div className="empty-filter">
-                    Enable a filter to see relevant abilities!
-                  </div>
-                )}
-              </>
-            )}
-          </li>
+                    }
+                    role="button"
+                    tabIndex="0"
+                  >
+                    <h3 id={`${id}--${name}`}>{name}</h3>
+                    <Chevron
+                      className={`chevron${isExpanded ? " expanded" : ""}`}
+                    />
+                  </header>
+                  {/* IMAGE + NAME end */}
+                  {/* ============ */}
+                  {isExpanded && (
+                    <section className="fields column">
+                      <section className="field-group">
+                        <h4>Requirements</h4>
+                        <p className="value">{requirements || "None"}</p>
+                      </section>
 
-          <li key={"level5Abilities"}>
-            {/*  NAME */}
-            {/* ===== */}
-            <header
-              className="no-background-image"
-              onKeyDown={event => {
-                // On enter, toggle expanded/expanded.
-                if (event.keyCode === 13) {
-                  onCollapseToggle("5", collapsedHeadings, setCollapsedHeadings)
-                }
-              }}
-              onClick={() =>
-                onCollapseToggle("5", collapsedHeadings, setCollapsedHeadings)
-              }
-              role="button"
-              tabIndex="0"
-            >
-              <h3 id="Level 5 Abilities">Level 5 Abilities</h3>
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("5") ? " expanded" : ""
-                }`}
-              />
-            </header>
+                      <section className="field-group">
+                        <h4>Description</h4>
+                        <p className="value">{description}</p>
+                      </section>
+                    </section>
+                  )}
+                </li>
+              )
+          })}
+        </ul>
 
-            {/* NAME end */}
-            {/* ======== */}
+        {/* begin headings for abilities */}
+        <h2 className="category">Level 5 Abilties</h2>
+        <ul>
+          {map(level5Abilities, ability => {
+            const name = ability?.name
+            const id = ability?.id
+            const description = ability?.description
+            const requirements = ability?.requirements
+            const relevantStyles = ability?.relevantStyles
 
-            {!collapsedHeadings?.includes("5") && (
-              <>
-                <section className="collapsibles">
-                  {level5Abilities?.map(ability => {
-                    // Derive ability properties.
-                    const name = ability?.name
-                    const id = ability?.id
-                    const description = ability?.description
-                    const requirements = ability?.requirements
-                    const relevantStyles = ability?.relevantStyles
+            const isRelevant = activeFilters.some(style =>
+              relevantStyles.includes(style)
+            )
 
-                    const relevant = activeFilters.some(style =>
-                      relevantStyles.includes(style)
-                    )
-
-                    return (
-                      relevant && (
-                        <button
-                          className="collapsible"
-                          key={`filter-button ${id}`}
-                          onClick={() =>
-                            onCollapseToggle(
-                              id,
-                              collapsedAbilityIDs,
-                              setCollapsedAbilityIDs
-                            )
-                          }
-                          type="button"
-                        >
-                          {/* Ability Name */}
-                          <h4 id={name}>{name}</h4>
-
-                          {/* Ability Info */}
-                          {collapsedAbilityIDs?.includes(id) && (
-                            <>
-                              {requirements && (
-                                <p className="requirements">
-                                  <strong>Requirements:</strong> {requirements}
-                                </p>
-                              )}
-                              <p>{description}</p>
-                            </>
-                          )}
-                        </button>
+            const isExpanded = expandedAbilityIDs?.includes(id)
+            if (isRelevant)
+              return (
+                <li key={`${id}--level1`}>
+                  {/* NAME */}
+                  {/* ============ */}
+                  <header
+                    className="no-background-image"
+                    onKeyDown={event => {
+                      // On enter, toggle expanded/expanded.
+                      if (event.keyCode === 13) {
+                        onCollapseToggle(
+                          id,
+                          expandedAbilityIDs,
+                          setExpandedAbilityIDs
+                        )
+                      }
+                    }}
+                    onClick={() =>
+                      onCollapseToggle(
+                        id,
+                        expandedAbilityIDs,
+                        setExpandedAbilityIDs
                       )
-                    )
-                  })}
-                </section>
-                {activeFilters.length === 0 && (
-                  <div className="empty-filter">
-                    Enable a filter to see relevant abilities!
-                  </div>
-                )}
-              </>
-            )}
-          </li>
+                    }
+                    role="button"
+                    tabIndex="0"
+                  >
+                    <h3 id={`${id}--${name}`}>{name}</h3>
+                    <Chevron
+                      className={`chevron${isExpanded ? " expanded" : ""}`}
+                    />
+                  </header>
+                  {/* IMAGE + NAME end */}
+                  {/* ============ */}
+                  {isExpanded && (
+                    <section className="fields column">
+                      <section className="field-group">
+                        <h4>Requirements</h4>
+                        <p className="value">{requirements || "None"}</p>
+                      </section>
 
-          <li key={"level7Abilities"}>
-            {/*  NAME */}
-            {/* ===== */}
-            <header
-              className="no-background-image"
-              onKeyDown={event => {
-                // On enter, toggle expanded/expanded.
-                if (event.keyCode === 13) {
-                  onCollapseToggle("7", collapsedHeadings, setCollapsedHeadings)
-                }
-              }}
-              onClick={() =>
-                onCollapseToggle("7", collapsedHeadings, setCollapsedHeadings)
-              }
-              role="button"
-              tabIndex="0"
-            >
-              <h3 id="Level 7 Abilities">Level 7 Abilities</h3>
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("7") ? " expanded" : ""
-                }`}
-              />
-            </header>
+                      <section className="field-group">
+                        <h4>Description</h4>
+                        <p className="value">{description}</p>
+                      </section>
+                    </section>
+                  )}
+                </li>
+              )
+          })}
+        </ul>
 
-            {/* NAME end */}
-            {/* ======== */}
+        {/* begin headings for abilities */}
+        <h2 className="category">Level 7 Abilties</h2>
+        <ul>
+          {map(level7Abilities, ability => {
+            const name = ability?.name
+            const id = ability?.id
+            const description = ability?.description
+            const requirements = ability?.requirements
+            const relevantStyles = ability?.relevantStyles
 
-            {!collapsedHeadings?.includes("7") && (
-              <>
-                <section className="collapsibles">
-                  {level7Abilities?.map(ability => {
-                    // Derive ability properties.
-                    const name = ability?.name
-                    const id = ability?.id
-                    const description = ability?.description
-                    const requirements = ability?.requirements
-                    const relevantStyles = ability?.relevantStyles
+            const isRelevant = activeFilters.some(style =>
+              relevantStyles.includes(style)
+            )
 
-                    const relevant = activeFilters.some(style =>
-                      relevantStyles.includes(style)
-                    )
-
-                    return (
-                      relevant && (
-                        <button
-                          className="collapsible"
-                          key={`filter-button ${id}`}
-                          onClick={() =>
-                            onCollapseToggle(
-                              id,
-                              collapsedAbilityIDs,
-                              setCollapsedAbilityIDs
-                            )
-                          }
-                          type="button"
-                        >
-                          {/* Ability Name */}
-                          <h4 id={name}>{name}</h4>
-
-                          {/* Ability Info */}
-                          {collapsedAbilityIDs?.includes(id) && (
-                            <>
-                              {requirements && (
-                                <p className="requirements">
-                                  <strong>Requirements:</strong> {requirements}
-                                </p>
-                              )}
-                              <p>{description}</p>
-                            </>
-                          )}
-                        </button>
+            const isExpanded = expandedAbilityIDs?.includes(id)
+            if (isRelevant)
+              return (
+                <li key={`${id}--level1`}>
+                  {/* NAME */}
+                  {/* ============ */}
+                  <header
+                    className="no-background-image"
+                    onKeyDown={event => {
+                      // On enter, toggle expanded/expanded.
+                      if (event.keyCode === 13) {
+                        onCollapseToggle(
+                          id,
+                          expandedAbilityIDs,
+                          setExpandedAbilityIDs
+                        )
+                      }
+                    }}
+                    onClick={() =>
+                      onCollapseToggle(
+                        id,
+                        expandedAbilityIDs,
+                        setExpandedAbilityIDs
                       )
-                    )
-                  })}
-                </section>
-                {activeFilters.length === 0 && (
-                  <div className="empty-filter">
-                    Enable a filter to see relevant abilities!
-                  </div>
-                )}
-              </>
-            )}
-          </li>
+                    }
+                    role="button"
+                    tabIndex="0"
+                  >
+                    <h3 id={`${id}--${name}`}>{name}</h3>
+                    <Chevron
+                      className={`chevron${isExpanded ? " expanded" : ""}`}
+                    />
+                  </header>
+                  {/* IMAGE + NAME end */}
+                  {/* ============ */}
+                  {isExpanded && (
+                    <section className="fields column">
+                      <section className="field-group">
+                        <h4>Requirements</h4>
+                        <p className="value">{requirements || "None"}</p>
+                      </section>
+
+                      <section className="field-group">
+                        <h4>Description</h4>
+                        <p className="value">{description}</p>
+                      </section>
+                    </section>
+                  )}
+                </li>
+              )
+          })}
         </ul>
       </Wrapper>
     </Layout>
