@@ -16,7 +16,16 @@ class CompanionStatBlock extends Component {
 
     return (
       <Wrapper>
-        <h2 className="name" onClick={this.props.clickHandler}>
+        <h2
+          className="name"
+          onClick={this.props.clickHandler}
+          onKeyDown={event => {
+            // On enter, toggle expanded/expanded.
+            if (event.keyCode === 13) {
+              this.props.clickHandler()
+            }
+          }}
+        >
           {companion?.name}
         </h2>
         {this.props.isOpen && (

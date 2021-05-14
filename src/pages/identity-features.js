@@ -2,16 +2,14 @@
 import React, { Fragment, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import find from "lodash/find"
-import pick from "lodash/pick"
 import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import TableOfContents from "../components/TableOfContents"
+import BackToTop from "../components/BackToTop"
 import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
-import { filter } from "lodash"
 
 const IdentityFeaturesPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -327,352 +325,389 @@ const IdentityFeaturesPage = () => {
     <Layout>
       <Seo title="Identity Features" />
       <Wrapper>
+        <BackToTop />
         <h2>Identity Features</h2>
-        <input
-          className="filter-input"
-          name="search input"
-          onChange={event => setSearchInput(event.target.value)}
-          value={searchInput}
-          placeholder="Search for identity features..."
-        />
-        <h3>Feature Category</h3>
-        <section className="filters">
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Arcanist") &&
-              activeFilters?.includes("Barbarian") &&
-              activeFilters?.includes("Bard") &&
-              activeFilters?.includes("Champion") &&
-              activeFilters?.includes("Inheritor") &&
-              activeFilters?.includes("Mystic") &&
-              activeFilters?.includes("Priest") &&
-              activeFilters?.includes("Scoundrel") &&
-              activeFilters?.includes("Spellblade") &&
-              activeFilters?.includes("Warden") &&
-              activeFilters?.includes("Warrior") &&
-              activeFilters?.includes("Wildling") &&
-              activeFilters?.includes("Mutliclass") &&
-              activeFilters?.includes("General") &&
-              activeFilters?.includes("Armor") &&
-              activeFilters?.includes("Combat") &&
-              activeFilters?.includes("Spellcasting") &&
-              activeFilters?.includes("Patron-Sworn") &&
-              activeFilters?.includes("Animal Companion")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() => toggleAllFilters(activeFilters, setActiveFilters)}
-          >
-            All
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Arcanist")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Arcanist", activeFilters, setActiveFilters)
-            }
-          >
-            Arcanist
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Barbarian")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Barbarian", activeFilters, setActiveFilters)
-            }
-          >
-            Barbarian
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Bard")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Bard", activeFilters, setActiveFilters)
-            }
-          >
-            Bard
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Champion")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Champion", activeFilters, setActiveFilters)
-            }
-          >
-            Champion
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Inheritor")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Inheritor", activeFilters, setActiveFilters)
-            }
-          >
-            Inheritor
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Mystic")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Mystic", activeFilters, setActiveFilters)
-            }
-          >
-            Mystic
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Priest")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Priest", activeFilters, setActiveFilters)
-            }
-          >
-            Priest
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Scoundrel")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Scoundrel", activeFilters, setActiveFilters)
-            }
-          >
-            Scoundrel
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Spellblade")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Spellblade", activeFilters, setActiveFilters)
-            }
-          >
-            Spellblade
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Warden")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Warden", activeFilters, setActiveFilters)
-            }
-          >
-            Warden
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Warrior")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Warrior", activeFilters, setActiveFilters)
-            }
-          >
-            Warrior
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Wildling")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Wildling", activeFilters, setActiveFilters)
-            }
-          >
-            Wildling
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Mutliclass")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Mutliclass", activeFilters, setActiveFilters)
-            }
-          >
-            Mutliclass
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("General")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("General", activeFilters, setActiveFilters)
-            }
-          >
-            General
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Armor")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Armor", activeFilters, setActiveFilters)
-            }
-          >
-            Armor
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Combat")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Combat", activeFilters, setActiveFilters)
-            }
-          >
-            Combat
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Spellcasting")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Spellcasting", activeFilters, setActiveFilters)
-            }
-          >
-            Spellcasting
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Patron-Sworn")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle("Patron-Sworn", activeFilters, setActiveFilters)
-            }
-          >
-            Patron-Sworn
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Animal Companion")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle(
-                "Animal Companion",
-                activeFilters,
-                setActiveFilters
+        <h3
+          onClick={() =>
+            onCollapseToggle(
+              "filters",
+              expandedIdentityFeatureIDs,
+              setExpandedIdentityFeatureIDs
+            )
+          }
+          onKeyDown={event => {
+            // On enter, toggle expanded/expanded.
+            if (event.keyCode === 13) {
+              onCollapseToggle(
+                "filters",
+                expandedIdentityFeatureIDs,
+                setExpandedIdentityFeatureIDs
               )
             }
-          >
-            Animal Companion
-          </button>
-        </section>
-
-        <h3>Feature Type</h3>
-        <section className="filters">
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Core Features")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle(
-                "Core Features",
-                activeTypeFilters,
-                setActiveTypeFilters
-              )
-            }
-          >
-            Core Features
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("Subclass Features")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle(
-                "Subclass Features",
-                activeTypeFilters,
-                setActiveTypeFilters
-              )
-            }
-          >
-            Subclass Features
-          </button>
-          <button
-            type="button"
-            className={`filter-button ${
-              activeFilters?.includes("General Features")
-                ? "active-button"
-                : "inactive-button"
-            }`}
-            onClick={() =>
-              onFilterToggle(
-                "General Features",
-                activeTypeFilters,
-                setActiveTypeFilters
-              )
-            }
-          >
-            General Features
-          </button>
-        </section>
+          }}
+          className="search-bar"
+        >
+          Search and Filter
+        </h3>
+        {expandedIdentityFeatureIDs.includes("filters") && (
+          <section>
+            <h4>Search</h4>
+            <input
+              className="filter-input"
+              name="search input"
+              onChange={event => setSearchInput(event.target.value)}
+              value={searchInput}
+              placeholder="Search for identity features..."
+            />
+            <h4>Feature Category</h4>
+            <section className="filters">
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Arcanist") &&
+                  activeFilters?.includes("Barbarian") &&
+                  activeFilters?.includes("Bard") &&
+                  activeFilters?.includes("Champion") &&
+                  activeFilters?.includes("Inheritor") &&
+                  activeFilters?.includes("Mystic") &&
+                  activeFilters?.includes("Priest") &&
+                  activeFilters?.includes("Scoundrel") &&
+                  activeFilters?.includes("Spellblade") &&
+                  activeFilters?.includes("Warden") &&
+                  activeFilters?.includes("Warrior") &&
+                  activeFilters?.includes("Wildling") &&
+                  activeFilters?.includes("Mutliclass") &&
+                  activeFilters?.includes("General") &&
+                  activeFilters?.includes("Armor") &&
+                  activeFilters?.includes("Combat") &&
+                  activeFilters?.includes("Spellcasting") &&
+                  activeFilters?.includes("Patron-Sworn") &&
+                  activeFilters?.includes("Animal Companion")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  toggleAllFilters(activeFilters, setActiveFilters)
+                }
+              >
+                All
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Arcanist")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Arcanist", activeFilters, setActiveFilters)
+                }
+              >
+                Arcanist
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Barbarian")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Barbarian", activeFilters, setActiveFilters)
+                }
+              >
+                Barbarian
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Bard")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Bard", activeFilters, setActiveFilters)
+                }
+              >
+                Bard
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Champion")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Champion", activeFilters, setActiveFilters)
+                }
+              >
+                Champion
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Inheritor")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Inheritor", activeFilters, setActiveFilters)
+                }
+              >
+                Inheritor
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Mystic")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Mystic", activeFilters, setActiveFilters)
+                }
+              >
+                Mystic
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Priest")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Priest", activeFilters, setActiveFilters)
+                }
+              >
+                Priest
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Scoundrel")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Scoundrel", activeFilters, setActiveFilters)
+                }
+              >
+                Scoundrel
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Spellblade")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Spellblade", activeFilters, setActiveFilters)
+                }
+              >
+                Spellblade
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Warden")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Warden", activeFilters, setActiveFilters)
+                }
+              >
+                Warden
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Warrior")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Warrior", activeFilters, setActiveFilters)
+                }
+              >
+                Warrior
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Wildling")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Wildling", activeFilters, setActiveFilters)
+                }
+              >
+                Wildling
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Mutliclass")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Mutliclass", activeFilters, setActiveFilters)
+                }
+              >
+                Mutliclass
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("General")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("General", activeFilters, setActiveFilters)
+                }
+              >
+                General
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Armor")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Armor", activeFilters, setActiveFilters)
+                }
+              >
+                Armor
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Combat")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle("Combat", activeFilters, setActiveFilters)
+                }
+              >
+                Combat
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Spellcasting")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle(
+                    "Spellcasting",
+                    activeFilters,
+                    setActiveFilters
+                  )
+                }
+              >
+                Spellcasting
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Patron-Sworn")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle(
+                    "Patron-Sworn",
+                    activeFilters,
+                    setActiveFilters
+                  )
+                }
+              >
+                Patron-Sworn
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeFilters?.includes("Animal Companion")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle(
+                    "Animal Companion",
+                    activeFilters,
+                    setActiveFilters
+                  )
+                }
+              >
+                Animal Companion
+              </button>
+            </section>
+            <h4>Feature Type</h4>
+            <section className="filters">
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeTypeFilters?.includes("Core Features")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle(
+                    "Core Features",
+                    activeTypeFilters,
+                    setActiveTypeFilters
+                  )
+                }
+              >
+                Core Features
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeTypeFilters?.includes("Subclass Features")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle(
+                    "Subclass Features",
+                    activeTypeFilters,
+                    setActiveTypeFilters
+                  )
+                }
+              >
+                Subclass Features
+              </button>
+              <button
+                type="button"
+                className={`filter-button ${
+                  activeTypeFilters?.includes("General Features")
+                    ? "active-button"
+                    : "inactive-button"
+                }`}
+                onClick={() =>
+                  onFilterToggle(
+                    "General Features",
+                    activeTypeFilters,
+                    setActiveTypeFilters
+                  )
+                }
+              >
+                General Features
+              </button>
+            </section>
+          </section>
+        )}
         {activeFilters?.includes("Arcanist") && (
           <>{deriveSection("Arcanist", ARCANIST_FEATURES)}</>
         )}

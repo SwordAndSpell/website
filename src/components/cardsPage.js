@@ -103,7 +103,7 @@ export const Wrapper = styled.section`
 
       .tags {
         justify-content: flex-start;
-        margin: 5px 0 0 20px;
+        margin: 0 0 10px 20px;
         display: flex;
         width: 100%;
 
@@ -140,7 +140,7 @@ export const Wrapper = styled.section`
         color: #999999;
         font-size: 0.7rem;
         padding: 0 0 0 20px;
-        margin: 0 0 10px;
+        margin: 0 0 5px;
       }
 
       .chevron {
@@ -433,6 +433,18 @@ export const Wrapper = styled.section`
 
     .value {
       margin-top: 5px;
+    }
+  }
+
+  .search-bar {
+    border: 1px solid #999999;
+    color: #6d56ff;
+    width: 80%;
+    padding: 5px;
+    margin: 15px 10px 10px;
+    &:hover {
+      border: 1px solid #6d56ff;
+      cursor: pointer;
     }
   }
 `

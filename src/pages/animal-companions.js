@@ -67,6 +67,7 @@ const CompanionsPage = () => {
 
   return (
     <Layout>
+      <Seo title="Animal Companions" />
       <Wrapper>
         <h2>Animal Companions</h2>
         <div className="card">
@@ -75,6 +76,12 @@ const CompanionsPage = () => {
             onClick={() =>
               onFilterToggle("Command", activeFilters, setActiveFilters)
             }
+            onKeyDown={event => {
+              // On enter, toggle expanded/expanded.
+              if (event.keyCode === 13) {
+                onFilterToggle("Command", activeFilters, setActiveFilters)
+              }
+            }}
           >
             Commanding your Companion
           </h2>
@@ -97,6 +104,12 @@ const CompanionsPage = () => {
             onClick={() =>
               onFilterToggle("Young", activeFilters, setActiveFilters)
             }
+            onKeyDown={event => {
+              // On enter, toggle expanded/expanded.
+              if (event.keyCode === 13) {
+                onFilterToggle("Young", activeFilters, setActiveFilters)
+              }
+            }}
           >
             Young Animal Companion
           </h2>
@@ -147,6 +160,12 @@ const CompanionsPage = () => {
                 onClick={() =>
                   onFilterToggle("Forms", activeFilters, setActiveFilters)
                 }
+                onKeyDown={event => {
+                  // On enter, toggle expanded/expanded.
+                  if (event.keyCode === 13) {
+                    onFilterToggle("Forms", activeFilters, setActiveFilters)
+                  }
+                }}
               >
                 Forms
               </h4>
@@ -207,6 +226,12 @@ const CompanionsPage = () => {
                 onClick={() =>
                   onFilterToggle("Abilities", activeFilters, setActiveFilters)
                 }
+                onKeyDown={event => {
+                  // On enter, toggle expanded/expanded.
+                  if (event.keyCode === 13) {
+                    onFilterToggle("Abilities", activeFilters, setActiveFilters)
+                  }
+                }}
               >
                 Abilities
               </h4>
@@ -272,6 +297,12 @@ const CompanionsPage = () => {
                 onClick={() =>
                   onFilterToggle("Skills", activeFilters, setActiveFilters)
                 }
+                onKeyDown={event => {
+                  // On enter, toggle expanded/expanded.
+                  if (event.keyCode === 13) {
+                    onFilterToggle("Skills", activeFilters, setActiveFilters)
+                  }
+                }}
               >
                 Skill Proficiencies
               </h4>
@@ -307,6 +338,12 @@ const CompanionsPage = () => {
             onClick={() =>
               onFilterToggle("Mature", activeFilters, setActiveFilters)
             }
+            onKeyDown={event => {
+              // On enter, toggle expanded/expanded.
+              if (event.keyCode === 13) {
+                onFilterToggle("Mature", activeFilters, setActiveFilters)
+              }
+            }}
           >
             Mature Companion
           </h2>
@@ -337,6 +374,12 @@ const CompanionsPage = () => {
             onClick={() =>
               onFilterToggle("Specialized", activeFilters, setActiveFilters)
             }
+            onKeyDown={event => {
+              // On enter, toggle expanded/expanded.
+              if (event.keyCode === 13) {
+                onFilterToggle("Specialized", activeFilters, setActiveFilters)
+              }
+            }}
           >
             Specialized Companion
           </h2>
@@ -381,6 +424,12 @@ const CompanionsPage = () => {
             onClick={() =>
               onFilterToggle("Apex", activeFilters, setActiveFilters)
             }
+            onKeyDown={event => {
+              // On enter, toggle expanded/expanded.
+              if (event.keyCode === 13) {
+                onFilterToggle("Apex", activeFilters, setActiveFilters)
+              }
+            }}
           >
             Apex Companion
           </h2>
@@ -418,7 +467,6 @@ const CompanionsPage = () => {
             <div className="card" key={id}>
               <CompanionStatBlock
                 data={companion}
-                isOpen={true}
                 isOpen={isExpanded}
                 clickHandler={() =>
                   onCollapseToggle(id, expandedBlocksIDs, setExpandedBlocksIDs)
