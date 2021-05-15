@@ -1,12 +1,43 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import map from "lodash/map"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
+
+const isBrowser = typeof window !== "undefined"
+
+// This will look like:
+// {
+//   'Empowered Bloodline': {
+//     id: 'Empowered Bloodline',
+//     options: [option1, option2, option3],
+//   },
+// }
+const deriveInstanceTypesLookup = (options = []) =>
+  options?.reduce((instanceTypesLookup, option) => {
+    const instanceType = instanceTypesLookup[option?.instanceType]
+
+    // If the instanceType already exists on our lookup table, just add the option to its `options` list.
+    if (instanceType) {
+      instanceTypesLookup[option?.instanceType] = {
+        ...instanceType,
+        options: [...instanceType.options, option],
+      }
+      return instanceTypesLookup
+    }
+
+    // Otherwise, add the new instanceType to our lookup table.
+    instanceTypesLookup[option?.instanceType] = {
+      id: option?.instanceType,
+      options: [option],
+    }
+    return instanceTypesLookup
+  }, {})
 
 const FeatureOptionsPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -27,20 +58,20 @@ const FeatureOptionsPage = () => {
   // Derive Races and Perks data from the graphql query above.
   const OPTIONS = queryResult?.site?.siteMetadata?.FEATURE_OPTIONS
 
-  const [collapsedHeadings, setCollapsedHeadings] = useState([
-    "EmpoweredBloodlines",
-    "Metamagics",
-    "FightingStyles",
-  ])
-  const [collapsedAbilityIDs, setCollapsedAbilityIDs] = useState([])
+  // Derive `?ids=1,2,3` query param.
+  const queryParams = new URLSearchParams(
+    isBrowser ? window.location.search : ""
+  )
+  const defaultExpandedIDs = queryParams.get("ids")?.split(",") || []
 
-  const BLOODLINES = OPTIONS?.filter(
-    item => item?.instanceType === "Empowered Bloodline"
+  // Create the IDs that should be expanded in state.
+  const [expandedInstanceTypeIDs, setExpandedInstanceTypeIDs] = useState(
+    defaultExpandedIDs
   )
-  const FIGHTING_STYLES = OPTIONS?.filter(
-    item => item?.instanceType === "Fighting Style"
-  )
-  const METAMAGICS = OPTIONS?.filter(item => item?.instanceType === "Metamagic")
+  const [expandedOptionIDs, setExpandedOptionIDs] = useState(defaultExpandedIDs)
+
+  // Derive the instance types lookup table.
+  const instanceTypesLookup = deriveInstanceTypesLookup(OPTIONS)
 
   return (
     <Layout>
@@ -48,230 +79,82 @@ const FeatureOptionsPage = () => {
       <Wrapper>
         <h2>Feature Options</h2>
 
-        {/* Filters */}
-
         {/* begin headings for abilities */}
         <ul>
-          <li key={"bloodlines"}>
-            {/*  NAME */}
-            {/* ===== */}
-            <header
-              className="no-background-image"
-              onKeyDown={event => {
-                // On enter, toggle expanded/expanded.
-                if (event.keyCode === 13) {
-                  onCollapseToggle(
-                    "EmpoweredBloodlines",
-                    collapsedHeadings,
-                    setCollapsedHeadings
-                  )
-                }
-              }}
-              onClick={() =>
-                onCollapseToggle(
-                  "EmpoweredBloodlines",
-                  collapsedHeadings,
-                  setCollapsedHeadings
-                )
-              }
-              role="button"
-              tabIndex="0"
-            >
-              <h3 id="EmpoweredBloodlines">Empowered Bloodlines</h3>
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("EmpoweredBloodlines")
-                    ? " expanded"
-                    : ""
-                }`}
-              />
-            </header>
+          {map(instanceTypesLookup, instanceTypeValue => {
+            const id = instanceTypeValue?.id
+            const options = instanceTypeValue?.options
 
-            {/* NAME end */}
-            {/* ======== */}
-
-            {!collapsedHeadings?.includes("EmpoweredBloodlines") && (
-              <>
-                <section className="collapsibles content">
-                  {BLOODLINES?.map(item => {
-                    // Derive ability properties.
-                    const name = item?.name
-                    const id = item?.id
-                    const description = item?.description
-
-                    return (
-                      <button
-                        className="collapsible"
-                        key={`filter-button ${id}`}
-                        onClick={() =>
-                          onCollapseToggle(
-                            id,
-                            collapsedAbilityIDs,
-                            setCollapsedAbilityIDs
-                          )
-                        }
-                        type="button"
-                      >
-                        {/* Ability Name */}
-                        <h4 id={name}>{name}</h4>
-
-                        {/* Ability Info */}
-                        {collapsedAbilityIDs?.includes(id) && (
-                          <p>{description}</p>
-                        )}
-                      </button>
+            return (
+              <li key={id} id={id}>
+                <header
+                  className="no-background-image"
+                  onKeyDown={event => {
+                    // On enter, toggle expanded/expanded.
+                    if (event.keyCode === 13) {
+                      onCollapseToggle(
+                        id,
+                        expandedInstanceTypeIDs,
+                        setExpandedInstanceTypeIDs
+                      )
+                    }
+                  }}
+                  onClick={() =>
+                    onCollapseToggle(
+                      id,
+                      expandedInstanceTypeIDs,
+                      setExpandedInstanceTypeIDs
                     )
-                  })}
-                </section>
-              </>
-            )}
-          </li>
-          <li key={"fightingStyles"}>
-            {/*  NAME */}
-            {/* ===== */}
-            <header
-              className="no-background-image"
-              onKeyDown={event => {
-                // On enter, toggle expanded/expanded.
-                if (event.keyCode === 13) {
-                  onCollapseToggle(
-                    "FightingStyles",
-                    collapsedHeadings,
-                    setCollapsedHeadings
-                  )
-                }
-              }}
-              onClick={() =>
-                onCollapseToggle(
-                  "FightingStyles",
-                  collapsedHeadings,
-                  setCollapsedHeadings
-                )
-              }
-              role="button"
-              tabIndex="0"
-            >
-              <h3 id="FightingStyles">Fighting Styles</h3>
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("FightingStyles")
-                    ? " expanded"
-                    : ""
-                }`}
-              />
-            </header>
+                  }
+                  role="button"
+                  tabIndex="0"
+                >
+                  <h3 id={id}>{id}</h3>
+                  <Chevron
+                    className={`chevron${
+                      expandedInstanceTypeIDs?.includes(id) ? " expanded" : ""
+                    }`}
+                  />
+                </header>
 
-            {/* NAME end */}
-            {/* ======== */}
+                {/* Options */}
+                {expandedInstanceTypeIDs?.includes(id) && (
+                  <section className="collapsibles content">
+                    {options?.map(option => {
+                      // Derive ability properties.
+                      const name = option?.name
+                      const id = option?.id
+                      const description = option?.description
 
-            {!collapsedHeadings?.includes("FightingStyles") && (
-              <>
-                <section className="collapsibles content">
-                  {FIGHTING_STYLES?.map(item => {
-                    // Derive ability properties.
-                    const name = item?.name
-                    const id = item?.id
-                    const description = item?.description
+                      return (
+                        <button
+                          className="collapsible"
+                          key={`filter-button ${id}`}
+                          id={id}
+                          onClick={() =>
+                            onCollapseToggle(
+                              id,
+                              expandedOptionIDs,
+                              setExpandedOptionIDs
+                            )
+                          }
+                          type="button"
+                        >
+                          {/* Ability Name */}
+                          <h4 id={name}>{name}</h4>
 
-                    return (
-                      <button
-                        className="collapsible"
-                        key={`filter-button ${id}`}
-                        onClick={() =>
-                          onCollapseToggle(
-                            id,
-                            collapsedAbilityIDs,
-                            setCollapsedAbilityIDs
-                          )
-                        }
-                        type="button"
-                      >
-                        {/* Ability Name */}
-                        <h4 id={name}>{name}</h4>
-
-                        {/* Ability Info */}
-                        {collapsedAbilityIDs?.includes(id) && (
-                          <p>{description}</p>
-                        )}
-                      </button>
-                    )
-                  })}
-                </section>
-              </>
-            )}
-          </li>
-          <li key={"metamagics"}>
-            {/*  NAME */}
-            {/* ===== */}
-            <header
-              className="no-background-image"
-              onKeyDown={event => {
-                // On enter, toggle expanded/expanded.
-                if (event.keyCode === 13) {
-                  onCollapseToggle(
-                    "Metamagics",
-                    collapsedHeadings,
-                    setCollapsedHeadings
-                  )
-                }
-              }}
-              onClick={() =>
-                onCollapseToggle(
-                  "Metamagics",
-                  collapsedHeadings,
-                  setCollapsedHeadings
-                )
-              }
-              role="button"
-              tabIndex="0"
-            >
-              <h3 id="Metamagics">Metamagics</h3>
-              <Chevron
-                className={`chevron${
-                  !collapsedHeadings?.includes("Metamagics") ? " expanded" : ""
-                }`}
-              />
-            </header>
-
-            {/* NAME end */}
-            {/* ======== */}
-
-            {!collapsedHeadings?.includes("Metamagics") && (
-              <>
-                <section className="collapsibles content">
-                  {METAMAGICS?.map(item => {
-                    // Derive ability properties.
-                    const name = item?.name
-                    const id = item?.id
-                    const description = item?.description
-
-                    return (
-                      <button
-                        className="collapsible"
-                        key={`filter-button ${id}`}
-                        onClick={() =>
-                          onCollapseToggle(
-                            id,
-                            collapsedAbilityIDs,
-                            setCollapsedAbilityIDs
-                          )
-                        }
-                        type="button"
-                      >
-                        {/* Ability Name */}
-                        <h4 id={name}>{name}</h4>
-
-                        {/* Ability Info */}
-                        {collapsedAbilityIDs?.includes(id) && (
-                          <p>{description}</p>
-                        )}
-                      </button>
-                    )
-                  })}
-                </section>
-              </>
-            )}
-          </li>
+                          {/* Ability Info */}
+                          {expandedOptionIDs?.includes(id) && (
+                            <p>{description}</p>
+                          )}
+                        </button>
+                      )
+                    })}
+                  </section>
+                )}
+              </li>
+            )
+          })}
         </ul>
       </Wrapper>
     </Layout>
