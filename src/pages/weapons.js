@@ -71,7 +71,9 @@ const WeaponsPage = () => {
         {/* Table of Contents */}
         <TableOfContents />
 
-        <h2 className="category">Simple Weapons</h2>
+        <h2 id="Simple Weapons" className="category">
+          Simple Weapons
+        </h2>
         <ul>
           {SIMPLE_WEAPONS?.map(item => {
             // Derive item properties.
@@ -109,7 +111,7 @@ const WeaponsPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>{name + " - " + cost}</h3>
+                  <h3 id={id}>{name + " - " + cost}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -120,16 +122,18 @@ const WeaponsPage = () => {
                     <section className="fields column">
                       <section className="fields">
                         <section className="field-group-gear">
-                          <h4>Range</h4>
+                          <h4 id={`${id}-range`}>Range</h4>
                           <p className="value">{range}</p>
                         </section>
                         <section className="field-group-gear">
-                          <h4>Damage</h4>
+                          <h4 id={`${id}-damage`}>Damage</h4>
                           <p className="value">{damage}</p>
                         </section>
                       </section>
                       <section className="field-group-gear-wide">
-                        <h4>Weapon Properties</h4>
+                        <h4 id={`${id}-weapon-properties`}>
+                          Weapon Properties
+                        </h4>
                         <p className="value">{weaponProperties}</p>
                       </section>
                     </section>
@@ -140,7 +144,9 @@ const WeaponsPage = () => {
           })}
         </ul>
 
-        <h2 className="category">Martial Weapons</h2>
+        <h2 id="Martial Weapons" className="category">
+          Martial Weapons
+        </h2>
         <ul>
           {MARTIAL_WEAPONS?.map(item => {
             // Derive item properties.
@@ -178,7 +184,7 @@ const WeaponsPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>{name + " - " + cost}</h3>
+                  <h3 id={id}>{name + " - " + cost}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -209,7 +215,9 @@ const WeaponsPage = () => {
           })}
         </ul>
 
-        <h2 className="category">Weapon Properties</h2>
+        <h2 id="Weapon Properties" className="category">
+          Weapon Properties
+        </h2>
         <ul>
           {WEAPON_PROPERTIES?.map(item => {
             // Derive item properties.
@@ -244,7 +252,7 @@ const WeaponsPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h3>{name}</h3>
+                  <h3 id={id}>{name}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
@@ -265,7 +273,9 @@ const WeaponsPage = () => {
           })}
         </ul>
 
-        <h2 className="category">Weapon Runes</h2>
+        <h2 id="Weapon Runes" className="category">
+          Weapon Runes
+        </h2>
         <ul>
           {WEAPON_RUNES?.map(item => {
             // Derive item properties.

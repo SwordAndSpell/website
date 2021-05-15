@@ -4,7 +4,8 @@ import styled from "styled-components"
 export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-  max-width: 700px;
+  max-width: 500px;
+  width: 100%;
 
   ul {
     align-items: flex-start;
