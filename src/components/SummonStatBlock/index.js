@@ -1,7 +1,7 @@
 // Node modules.
 import React, { Component } from "react"
 // Relative imports.
-import { Wrapper } from "./styles"
+import Chevron from "../icons/Chevron"
 
 class SummonStatBlock extends Component {
   constructor(props) {
@@ -15,132 +15,136 @@ class SummonStatBlock extends Component {
     const { summon } = this.state
 
     return (
-      <Wrapper>
-        <h2
-          className="name"
-          onClick={this.props.clickHandler}
+      <>
+        <header
+          className="no-background-image"
           onKeyDown={event => {
             // On enter, toggle expanded/expanded.
             if (event.keyCode === 13) {
               this.props.clickHandler()
             }
           }}
+          onClick={this.props.clickHandler}
+          role="button"
+          tabIndex="0"
         >
-          {summon?.name}
-        </h2>
+          <div className="header-column">
+            <h3 id={summon?.name}>{summon?.name}</h3>
+            {this.props.isOpen && <p className="extra-info">{summon?.type}</p>}
+          </div>
+          <Chevron
+            className={`chevron${this.props.isOpen ? " expanded" : ""}`}
+          />
+        </header>
         {this.props.isOpen && (
-          <section className="body">
-            <section className="type">{summon?.type}</section>
-            <div className="barrier" />
-            <section className="vitals">
-              <div className="vital-data">
-                <strong>Defense: </strong>
-                {summon?.defense}
-              </div>
-              <div className="vital-data">
-                <strong>Armor: </strong>
-                {summon?.armor}
-              </div>
-              <div className="vital-data">
-                <strong>Hit Points: </strong>
-                {summon?.hitPoints}
-              </div>
-              <div className="vital-data">
-                <strong>Speeds: </strong>
-                {summon?.speed}
-              </div>
+          <section className="content">
+            <section className="fields column">
+              <section className="field-group row">
+                <h4>Defense: </h4>
+                <p className="inline-value">{summon?.defense}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Armor: </h4>
+                <p className="inline-value">{summon?.armor}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Hit Points: </h4>
+                <p className="inline-value">{summon?.hitPoints}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Speeds: </h4>
+                <p className="inline-value">{summon?.speed}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Resistances: </h4>
+                <p className="inline-value">{summon?.resistances}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Immunities: </h4>
+                <p className="inline-value">{summon?.immunities}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Senses: </h4>
+                <p className="inline-value">{summon?.senses}</p>
+              </section>
             </section>
-            <div className="barrier" />
-            <h3 className="heading">Stats</h3>
-            <section className="stats">
-              <section className="stat">
+
+            <h4>Stats</h4>
+            <section className="stat-bar row">
+              <section className="stat-group">
                 <span className="label">STR</span>
-                <span>{summon?.strength}</span>
+                <p className="value">{summon?.strength}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">DEX</span>
-                <span>{summon?.dexterity}</span>
+                <p className="value">{summon?.dexterity}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">CON</span>
-                <span>{summon?.constitution}</span>
+                <p className="value">{summon?.constitution}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">INT</span>
-                <span>{summon?.intelligence}</span>
+                <p className="value">{summon?.intelligence}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">WIS</span>
-                <span>{summon?.wisdom}</span>
+                <p className="value">{summon?.wisdom}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">CHA</span>
-                <span>{summon?.charisma}</span>
+                <p className="value">{summon?.charisma}</p>
               </section>
             </section>
-            <div className="barrier" />
-            <section className="saves">
-              <h3 className="heading">Saves</h3>
-              <span>
-                <strong>Fortitude:</strong> {summon?.fortitude}
-              </span>
-              <span>
-                <strong>Reflex:</strong> {summon?.reflex}
-              </span>
-              <span>
-                <strong>Will:</strong> {summon?.will}
-              </span>
+
+            <h4>Saves</h4>
+            <section className="stat-bar row">
+              <section className="stat-group">
+                <span className="label">Fortitude</span>
+                <p className="value">{summon?.fortitude}</p>
+              </section>
+              <section className="stat-group">
+                <span className="label">Reflex</span>
+                <p className="value">{summon?.reflex}</p>
+              </section>
+              <section className="stat-group">
+                <span className="label">Will</span>
+                <p className="value">{summon?.will}</p>
+              </section>
             </section>
-            <div className="barrier" />
-            <section className="resistances">
-              <h3 className="heading">Resistances</h3>
-              <span>{summon?.resistances}</span>
-            </section>
-            <section className="immunities">
-              <h3 className="heading">Immunities</h3>
-              <span>{summon?.immunities}</span>
-            </section>
-            <section className="senses">
-              <h3 className="heading">Senses</h3>
-              <span>{summon?.senses}</span>
-            </section>
-            <div className="barrier" />
-            <section className="abilities">
-              <h3 className="heading">Abilities</h3>
+
+            <h4>Abilities</h4>
+            <section>
               {summon?.abilities.map(ability => {
                 return (
                   <section
-                    className="ability"
+                    className="field-group"
                     key={`${summon?.name}-${ability?.name}`}
                   >
-                    <div className="ability-name">{ability?.name}</div>
-                    <div className="ability-description">
-                      {ability?.description}
-                    </div>
+                    <h4>{ability?.name}</h4>
+                    <p className="value">{ability?.description}</p>
                   </section>
                 )
               })}
             </section>
-            <div className="barrier" />
-            <section className="actions">
-              <h3 className="heading">Actions</h3>
+
+            <h4>Actions</h4>
+            <section>
               {summon?.actions.map(action => {
                 return (
                   <section
-                    className="action"
+                    className="field-group"
                     key={`${summon?.name}-${action?.name}`}
                   >
-                    <div className="action-name">{action?.name}</div>
-                    <div className="action-description">
-                      {action?.description}
-                    </div>
+                    <h4>{action?.name}</h4>
+                    <p className="value">{action?.description}</p>
                   </section>
                 )
               })}
             </section>
           </section>
         )}
-      </Wrapper>
+      </>
     )
   }
 }

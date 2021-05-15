@@ -167,6 +167,7 @@ export const Wrapper = styled.section`
       background: linear-gradient(180deg, #151515 0%, #000000 100%);
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
+      padding-bottom: 10px;
       cursor: initial;
       width: 100%;
     }
@@ -175,7 +176,7 @@ export const Wrapper = styled.section`
       color: #ffffff;
       font-size: 1rem;
       font-weight: 700;
-      margin: 20px 0 0;
+      margin: 15px 0 0;
     }
 
     hr {
@@ -208,8 +209,8 @@ export const Wrapper = styled.section`
 
       h4 {
         color: #fbcea0;
-        font-size: 0.8rem;
-        margin: 10px 10px 5px;
+        font-size: 0.9rem;
+        margin: 5px 10px 5px;
         text-transform: uppercase;
         font-weight: 400;
         text-align: left;
@@ -227,20 +228,15 @@ export const Wrapper = styled.section`
         margin: 0;
         white-space: pre-line;
         text-align: left;
-        margin: 10px 10px 5px;
+        margin: 5px 10px 5px;
       }
-      .spell-label {
-        color: #fbcea0;
-        font-size: 0.8rem;
-        margin: 0;
-      }
-      .spell-value {
+      .inline-value {
         color: #ffffff;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         margin: 0;
         white-space: pre-line;
         text-align: left;
-        margin: 10px 10px 5px;
+        margin: 5px 10px 5px 0;
       }
 
       .description {
@@ -253,6 +249,36 @@ export const Wrapper = styled.section`
         margin: 0;
         white-space: pre-line;
         text-align: center;
+      }
+    }
+    .stat-bar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      margin: 0 10px 10px;
+
+      .stat-group {
+        display: flex;
+        flex-direction: column;
+        margin: 0 5px;
+        max-width: 30%;
+        flex-grow: 1;
+
+        .label {
+          color: #fbcea0;
+          font-size: 0.8rem;
+          margin: 0;
+        }
+
+        .value {
+          color: #ffffff;
+          font-size: 1rem;
+          margin: 0;
+          white-space: pre-line;
+          text-align: center;
+          margin: 5px 0;
+        }
       }
     }
 

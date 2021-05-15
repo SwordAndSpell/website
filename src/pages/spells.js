@@ -484,13 +484,13 @@ const SpellsPage = () => {
                               {castingSpeed && (
                                 <section className="field-group row">
                                   <h4>Casting Speed: </h4>
-                                  <p className="spell-value">{castingSpeed}</p>
+                                  <p className="inline-value">{castingSpeed}</p>
                                 </section>
                               )}
                               {duration && (
                                 <section className="field-group row">
                                   <h4>Duration: </h4>
-                                  <p className="spell-value">
+                                  <p className="inline-value">
                                     {duration}
                                     {concentration &&
                                       " (Requires concentration)"}
@@ -500,26 +500,26 @@ const SpellsPage = () => {
                               {range && (
                                 <section className="field-group row">
                                   <h4>Range: </h4>
-                                  <p className="spell-value">{range}</p>
+                                  <p className="inline-value">{range}</p>
                                 </section>
                               )}
                               {school && (
                                 <section className="field-group row">
                                   <h4>School: </h4>
-                                  <p className="spell-value">{school}</p>
+                                  <p className="inline-value">{school}</p>
                                 </section>
                               )}
                               {components && (
                                 <section className="field-group row">
                                   <h4>Components: </h4>
-                                  <p className="spell-value">
+                                  <p className="inline-value">
                                     {components?.join(", ")}
                                   </p>
                                 </section>
                               )}
                               {description && (
                                 <section className="field-group">
-                                  <p className="spell-value description">
+                                  <p className="inline-value description">
                                     {description}
                                   </p>
                                 </section>
@@ -527,7 +527,7 @@ const SpellsPage = () => {
                               {atHigherLevels && (
                                 <section className="field-group">
                                   <h4>At higher levels</h4>
-                                  <p className="spell-value description">
+                                  <p className="inline-value description">
                                     {atHigherLevels}
                                   </p>
                                 </section>
