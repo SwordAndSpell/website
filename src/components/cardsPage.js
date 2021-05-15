@@ -377,6 +377,10 @@ export const Wrapper = styled.section`
           margin: 10px 0 0;
           text-align: left;
 
+          strong {
+            color: #fbcea0;
+          }
+
           &:last-of-type {
             margin-bottom: 10px;
           }
