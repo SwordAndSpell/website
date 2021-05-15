@@ -89,6 +89,12 @@ export const Wrapper = styled.section`
             fill: #ffffff;
           }
         }
+
+        &.remove-bg {
+          background: transparent !important;
+          min-height: 60px;
+          margin: 0 !important;
+        }
       }
 
       img {
@@ -583,6 +589,16 @@ export const Wrapper = styled.section`
       text-align: center;
       padding: 5px;
       color: #ffffff;
+    }
+  }
+
+  .link {
+    width: 100%;
+    margin: 0 10px 10px;
+    text-align: left;
+    &:hover {
+      color: #ffffff;
+      transition: transform 0.3s ease;
     }
   }
 `

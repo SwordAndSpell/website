@@ -3,6 +3,7 @@ import React, { Fragment, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import find from "lodash/find"
 import uniq from "lodash/uniq"
+import map from "lodash/map"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
@@ -32,6 +33,10 @@ const IdentityFeaturesPage = () => {
             identity
             name
             requirementIDs
+            links {
+              description
+              url
+            }
           }
         }
       }
@@ -179,6 +184,7 @@ const IdentityFeaturesPage = () => {
               const identity = identityFeature?.identity
               const name = identityFeature?.name
               const requirementIDs = identityFeature?.requirementIDs
+              const links = identityFeature?.links
 
               // Derive requirements.
               const requirements = requirementIDs
@@ -237,6 +243,17 @@ const IdentityFeaturesPage = () => {
                       <section className="field-group">
                         <h4>Description</h4>
                         <p className="value">{description}</p>
+                        {map(links, link => {
+                          return (
+                            <a
+                              href={link?.url}
+                              key={`${name}--${link?.description}`}
+                              className="link"
+                            >
+                              {link?.description}
+                            </a>
+                          )
+                        })}
                       </section>
 
                       {firstLevelSpells && (

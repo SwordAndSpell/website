@@ -9,6 +9,7 @@ import Seo from "../components/seo"
 import defaultCoreIdentityImage from "../../static/images/defaultCoreIdentity.jpg"
 import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
+import { map } from "lodash"
 
 const CoreIdentitiesPage = () => {
   const queryResult = useStaticQuery(graphql`
@@ -24,6 +25,10 @@ const CoreIdentitiesPage = () => {
             description
             id
             name
+            links {
+              description
+              url
+            }
           }
         }
       }
@@ -104,31 +109,57 @@ const CoreIdentitiesPage = () => {
                           const description = coreAbility?.description
                           const name = coreAbility?.name
                           const coreAbilityID = coreAbility?.id
+                          const links = coreAbility?.links
+                          console.log(name, links)
 
                           // Derive the composite ID.
                           const coreIdentityAbilityID = `${id}--${coreAbilityID}`
 
                           return (
-                            <button
-                              className="collapsible"
-                              key={coreIdentityAbilityID}
-                              onClick={() =>
-                                onCollapseToggle(
-                                  coreIdentityAbilityID,
-                                  expandedCoreAbilityIDs,
-                                  setExpandedCoreAbilityIDs
-                                )
-                              }
-                              type="button"
-                            >
-                              {/* CoreAbility Name */}
-                              <h5>{name}</h5>
-
-                              {/* CoreAbility Info */}
-                              {expandedCoreAbilityIDs?.includes(
-                                coreIdentityAbilityID
-                              ) && <p>{description}</p>}
-                            </button>
+                            <>
+                              <header
+                                className="no-background-image remove-bg"
+                                onKeyDown={event => {
+                                  // On enter, toggle expanded/expanded.
+                                  if (event.keyCode === 13) {
+                                    onCollapseToggle(
+                                      coreAbilityID,
+                                      expandedCoreAbilityIDs,
+                                      setExpandedCoreAbilityIDs
+                                    )
+                                  }
+                                }}
+                                onClick={() =>
+                                  onCollapseToggle(
+                                    coreAbilityID,
+                                    expandedCoreAbilityIDs,
+                                    setExpandedCoreAbilityIDs
+                                  )
+                                }
+                                role="button"
+                                tabIndex="0"
+                              >
+                                <h3>{name}</h3>
+                              </header>
+                              {expandedCoreAbilityIDs.includes(
+                                coreAbilityID
+                              ) && (
+                                <section className="field-group remove-bg">
+                                  <p className="value">{description}</p>
+                                  {map(links, link => {
+                                    return (
+                                      <a
+                                        href={link?.url}
+                                        key={`${name}--${link?.description}`}
+                                        className="link"
+                                      >
+                                        {link?.description}
+                                      </a>
+                                    )
+                                  })}
+                                </section>
+                              )}
+                            </>
                           )
                         })}
                       </section>

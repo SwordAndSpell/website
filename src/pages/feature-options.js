@@ -28,9 +28,9 @@ const FeatureOptionsPage = () => {
   const OPTIONS = queryResult?.site?.siteMetadata?.FEATURE_OPTIONS
 
   const [collapsedHeadings, setCollapsedHeadings] = useState([
-    "Empowered Bloodlines",
+    "EmpoweredBloodlines",
     "Metamagics",
-    "Fighting Styles",
+    "FightingStyles",
   ])
   const [collapsedAbilityIDs, setCollapsedAbilityIDs] = useState([])
 
@@ -61,7 +61,7 @@ const FeatureOptionsPage = () => {
                 // On enter, toggle expanded/expanded.
                 if (event.keyCode === 13) {
                   onCollapseToggle(
-                    "Empowered Bloodlines",
+                    "EmpoweredBloodlines",
                     collapsedHeadings,
                     setCollapsedHeadings
                   )
@@ -69,7 +69,7 @@ const FeatureOptionsPage = () => {
               }}
               onClick={() =>
                 onCollapseToggle(
-                  "Empowered Bloodlines",
+                  "EmpoweredBloodlines",
                   collapsedHeadings,
                   setCollapsedHeadings
                 )
@@ -77,10 +77,10 @@ const FeatureOptionsPage = () => {
               role="button"
               tabIndex="0"
             >
-              <h3 id="Empowered Bloodlines">Empowered Bloodlines</h3>
+              <h3 id="EmpoweredBloodlines">Empowered Bloodlines</h3>
               <Chevron
                 className={`chevron${
-                  !collapsedHeadings?.includes("Empowered Bloodlines")
+                  !collapsedHeadings?.includes("EmpoweredBloodlines")
                     ? " expanded"
                     : ""
                 }`}
@@ -90,7 +90,7 @@ const FeatureOptionsPage = () => {
             {/* NAME end */}
             {/* ======== */}
 
-            {!collapsedHeadings?.includes("Empowered Bloodlines") && (
+            {!collapsedHeadings?.includes("EmpoweredBloodlines") && (
               <>
                 <section className="collapsibles content">
                   {BLOODLINES?.map(item => {
@@ -135,7 +135,7 @@ const FeatureOptionsPage = () => {
                 // On enter, toggle expanded/expanded.
                 if (event.keyCode === 13) {
                   onCollapseToggle(
-                    "Fighting Styles",
+                    "FightingStyles",
                     collapsedHeadings,
                     setCollapsedHeadings
                   )
@@ -143,7 +143,7 @@ const FeatureOptionsPage = () => {
               }}
               onClick={() =>
                 onCollapseToggle(
-                  "Fighting Styles",
+                  "FightingStyles",
                   collapsedHeadings,
                   setCollapsedHeadings
                 )
@@ -151,10 +151,10 @@ const FeatureOptionsPage = () => {
               role="button"
               tabIndex="0"
             >
-              <h3 id="Fighting Styles">Fighting Styles</h3>
+              <h3 id="FightingStyles">Fighting Styles</h3>
               <Chevron
                 className={`chevron${
-                  !collapsedHeadings?.includes("Fighting Styles")
+                  !collapsedHeadings?.includes("FightingStyles")
                     ? " expanded"
                     : ""
                 }`}
@@ -164,7 +164,7 @@ const FeatureOptionsPage = () => {
             {/* NAME end */}
             {/* ======== */}
 
-            {!collapsedHeadings?.includes("Fighting Styles") && (
+            {!collapsedHeadings?.includes("FightingStyles") && (
               <>
                 <section className="collapsibles content">
                   {FIGHTING_STYLES?.map(item => {
