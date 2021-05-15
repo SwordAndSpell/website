@@ -1,5 +1,5 @@
 // Node modules.
-import React, { useState } from "react"
+import React, { Fragment, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
@@ -36,7 +36,7 @@ const RulesPage = () => {
   `)
 
   // Derive data from the graphql query above.
-  const RULES_DATA = queryResult?.site?.siteMetadata?.RULES
+  const RULES = queryResult?.site?.siteMetadata?.RULES
 
   // Start with everything collapsed.
   const [expandedRulesIDs, setExpandedRulesIDs] = useState([])
@@ -63,8 +63,8 @@ const RulesPage = () => {
         <p>
           Showing{" "}
           {
-            filter(RULES_DATA, feature =>
-              JSON.stringify(feature)
+            filter(RULES, rule =>
+              JSON.stringify(rule)
                 .toLowerCase()
                 .includes(searchInput.toLowerCase())
             ).length
@@ -73,7 +73,7 @@ const RulesPage = () => {
         </p>
 
         <ul>
-          {RULES_DATA?.map(rule => {
+          {RULES?.map(rule => {
             // Derive rule properties.
             const id = rule?.id
             const name = rule?.name
@@ -89,106 +89,101 @@ const RulesPage = () => {
                 .toLowerCase()
                 .includes(searchInput.toLowerCase())
 
+            if (!isRelevant) {
+              return null
+            }
+
             return (
-              isRelevant && (
-                <li key={`${id}`}>
-                  {/* NAME */}
-                  {/* ============ */}
-                  <header
-                    className="no-background-image"
-                    onKeyDown={event => {
-                      // On enter, toggle expanded/expanded.
-                      if (event.keyCode === 13) {
-                        onCollapseToggle(
-                          id,
-                          expandedRulesIDs,
-                          setExpandedRulesIDs
-                        )
-                      }
-                    }}
-                    onClick={() =>
+              <li key={id}>
+                {/* NAME */}
+                {/* ============ */}
+                <header
+                  className="no-background-image"
+                  onKeyDown={event => {
+                    // On enter, toggle expanded/expanded.
+                    if (event.keyCode === 13) {
                       onCollapseToggle(
                         id,
                         expandedRulesIDs,
                         setExpandedRulesIDs
                       )
                     }
-                    role="button"
-                    tabIndex="0"
-                  >
-                    <h3 id={name}>{name}</h3>
-                    <Chevron
-                      className={`chevron${isExpanded ? " expanded" : ""}`}
-                    />
-                  </header>
-                  {/* IMAGE + NAME end */}
-                  {/* ============ */}
-
-                  {isExpanded && (
-                    <section className="content">
-                      <section className="fields column">
-                        <section className="field-group">
-                          <p className="value">{description}</p>
-                        </section>
-                        <section className="field-group">
-                          {subsections &&
-                            subsections.map(subsection => {
-                              const subsectionName = subsection?.name
-                              const subsectionDescription =
-                                subsection?.description
-                              return (
-                                <>
-                                  <h4>{subsectionName}</h4>
-                                  <p className="value">
-                                    {subsectionDescription}
-                                  </p>
-                                </>
-                              )
-                            })}
-                        </section>
-
-                        {chart && (
-                          <section className="leveling-chart">
-                            <table border="1">
-                              <thead>
-                                <tr>
-                                  <th>
-                                    {chart[0].modifier ? "Modifier" : "Level"}
-                                  </th>
-                                  <th>
-                                    {chart[1].result ? "Result" : "Description"}
-                                  </th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {chart.map(row => {
-                                  const col1 =
-                                    row?.modifier ||
-                                    undefined ||
-                                    row?.level ||
-                                    undefined
-                                  const col2 =
-                                    row?.result ||
-                                    undefined ||
-                                    row?.description ||
-                                    undefined
-
-                                  return (
-                                    <tr key={`${col1}-${col2}`}>
-                                      <td>{col1}</td>
-                                      <td>{col2}</td>
-                                    </tr>
-                                  )
-                                })}
-                              </tbody>
-                            </table>
-                          </section>
-                        )}
+                  }}
+                  onClick={() =>
+                    onCollapseToggle(id, expandedRulesIDs, setExpandedRulesIDs)
+                  }
+                  role="button"
+                  tabIndex="0"
+                >
+                  <h2 id={id}>{name}</h2>
+                  <Chevron
+                    className={`chevron${isExpanded ? " expanded" : ""}`}
+                  />
+                </header>
+                {isExpanded && (
+                  <section className="content">
+                    <section className="fields column">
+                      <section className="field-group">
+                        <p className="value">{description}</p>
                       </section>
+                      <section className="field-group">
+                        {subsections?.map(subsection => {
+                          const subsectionName = subsection?.name
+                          const subsectionDescription = subsection?.description
+                          return (
+                            <Fragment key={`${id}-${subsectionName}`}>
+                              <h3 id={`${id}-${subsectionName}`}>
+                                {subsectionName}
+                              </h3>
+                              <p className="value">{subsectionDescription}</p>
+                            </Fragment>
+                          )
+                        })}
+                      </section>
+
+                      {chart && (
+                        <section className="leveling-chart">
+                          <table border="1">
+                            <thead>
+                              <tr>
+                                <th>
+                                  {chart?.[0]?.modifier ? "Modifier" : "Level"}
+                                </th>
+                                <th>
+                                  {chart?.[1]?.result
+                                    ? "Result"
+                                    : "Description"}
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {chart?.map(row => {
+                                const col1 =
+                                  row?.modifier ||
+                                  undefined ||
+                                  row?.level ||
+                                  undefined
+                                const col2 =
+                                  row?.result ||
+                                  undefined ||
+                                  row?.description ||
+                                  undefined
+
+                                return (
+                                  <tr key={`${col1}-${col2}`}>
+                                    <td>{col1}</td>
+                                    <td>{col2}</td>
+                                  </tr>
+                                )
+                              })}
+                            </tbody>
+                          </table>
+                        </section>
+                      )}
                     </section>
-                  )}
-                </li>
-              )
+                  </section>
+                )}
+              </li>
             )
           })}
         </ul>
