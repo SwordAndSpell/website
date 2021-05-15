@@ -575,6 +575,7 @@ export const Wrapper = styled.section`
       padding: 5px;
       text-align: center;
       color: #ffffff;
+      flex-grow: 1;
     }
     tr {
       &:nth-of-type(even) {

@@ -147,17 +147,17 @@ const RulesPage = () => {
                             })}
                         </section>
 
-                        <section className="field-group">
-                          {chart && (
-                            <table>
+                        {chart && (
+                          <section className="leveling-chart">
+                            <table border="1">
                               <thead>
                                 <tr>
-                                  <td>
+                                  <th>
                                     {chart[0].modifier ? "Modifier" : "Level"}
-                                  </td>
-                                  <td>
+                                  </th>
+                                  <th>
                                     {chart[1].result ? "Result" : "Description"}
-                                  </td>
+                                  </th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -182,8 +182,8 @@ const RulesPage = () => {
                                 })}
                               </tbody>
                             </table>
-                          )}
-                        </section>
+                          </section>
+                        )}
                       </section>
                     </section>
                   )}
