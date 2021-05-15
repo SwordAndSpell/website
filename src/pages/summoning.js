@@ -8,6 +8,8 @@ import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
 import SummonStatBlock from "../components/SummonStatBlock"
 
+const isBrowser = typeof window !== "undefined"
+
 const SummoningPage = () => {
   const queryResult = useStaticQuery(graphql`
     query {
@@ -47,9 +49,18 @@ const SummoningPage = () => {
     }
   `)
 
-  // Derive Races and Perks data from the graphql query above.
+  // Derive data from the graphql query above.
   const SUMMONABLES = queryResult?.site?.siteMetadata?.SUMMONABLES
-  const [expandedBlocksIDs, setExpandedBlocksIDs] = useState([])
+
+  // Derive `?ids=1,2,3` query param.
+  const queryParams = new URLSearchParams(
+    isBrowser ? window.location.search : ""
+  )
+  const expandedIDs = queryParams.get("ids")?.split(",") || []
+
+  // Derive expanded block IDs state.
+  const [expandedBlocksIDs, setExpandedBlocksIDs] = useState(expandedIDs)
+
   return (
     <Layout>
       <Seo title="Summons" />
@@ -62,6 +73,7 @@ const SummoningPage = () => {
             // Derive if the details are expanded.
             const id = summon?.id
             const isExpanded = expandedBlocksIDs?.includes(id)
+
             return (
               <li key={id}>
                 <SummonStatBlock
