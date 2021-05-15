@@ -4,7 +4,6 @@ import PropTypes from "prop-types"
 import { Link, useStaticQuery, graphql } from "gatsby"
 // Relative imports.
 import Burger from "../icons/Burger"
-import logo from "../../../static/images/logo.svg"
 import { Header, NavItems } from "./styles"
 
 const isBrowser = typeof window !== "undefined"

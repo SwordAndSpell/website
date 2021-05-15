@@ -1,5 +1,5 @@
 // Node modules.
-import React, { useState } from "react"
+import React, { Fragment, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import find from "lodash/find"
 // Relative imports.
@@ -110,13 +110,12 @@ const CoreIdentitiesPage = () => {
                           const name = coreAbility?.name
                           const coreAbilityID = coreAbility?.id
                           const links = coreAbility?.links
-                          console.log(name, links)
 
                           // Derive the composite ID.
                           const coreIdentityAbilityID = `${id}--${coreAbilityID}`
 
                           return (
-                            <>
+                            <Fragment key={coreIdentityAbilityID}>
                               <header
                                 className="no-background-image remove-bg"
                                 onKeyDown={event => {
@@ -159,7 +158,7 @@ const CoreIdentitiesPage = () => {
                                   })}
                                 </section>
                               )}
-                            </>
+                            </Fragment>
                           )
                         })}
                       </section>
