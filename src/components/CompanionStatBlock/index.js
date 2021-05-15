@@ -1,7 +1,7 @@
 // Node modules.
 import React, { Component } from "react"
 // Relative imports.
-import { Wrapper } from "./styles"
+import Chevron from "../icons/Chevron"
 
 class CompanionStatBlock extends Component {
   constructor(props) {
@@ -15,128 +15,135 @@ class CompanionStatBlock extends Component {
     const { companion } = this.state
 
     return (
-      <Wrapper>
-        <h2
-          className="name"
-          onClick={this.props.clickHandler}
+      <>
+        <header
+          className="no-background-image"
           onKeyDown={event => {
             // On enter, toggle expanded/expanded.
             if (event.keyCode === 13) {
               this.props.clickHandler()
             }
           }}
+          onClick={this.props.clickHandler}
+          role="button"
+          tabIndex="0"
         >
-          {companion?.name}
-        </h2>
+          <div className="header-column">
+            <h3 id={companion?.name}>{companion?.name}</h3>
+            {this.props.isOpen && (
+              <p className="extra-info">{companion?.type}</p>
+            )}
+          </div>
+          <Chevron
+            className={`chevron${this.props.isOpen ? " expanded" : ""}`}
+          />
+        </header>
         {this.props.isOpen && (
-          <section className="body">
-            <section className="type">{companion?.type}</section>
-            <div className="barrier" />
-            <section className="vitals">
-              <div className="vital-data">
-                <strong>Defense: </strong>
-                {companion?.defense}
-              </div>
-              <div className="vital-data">
-                <strong>Armor: </strong>
-                {companion?.armor}
-              </div>
-              <div className="vital-data">
-                <strong>Hit Points: </strong>
-                {companion?.hitPoints}
-              </div>
-              <div className="vital-data">
-                <strong>Speeds: </strong>
-                {companion?.speed}
-              </div>
+          <section className="content">
+            <section className="fields column">
+              <section className="field-group row">
+                <h4>Defense: </h4>
+                <p className="inline-value">{companion?.defense}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Armor: </h4>
+                <p className="inline-value">{companion?.armor}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Hit Points: </h4>
+                <p className="inline-value">{companion?.hitPoints}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Speeds: </h4>
+                <p className="inline-value">{companion?.speed}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Senses: </h4>
+                <p className="inline-value">{companion?.senses}</p>
+              </section>
             </section>
-            <div className="barrier" />
-            <h3 className="heading">Stats</h3>
-            <section className="stats">
-              <section className="stat">
+
+            <h4>Stats</h4>
+            <section className="stat-bar row">
+              <section className="stat-group">
                 <span className="label">STR</span>
-                <span className="center">{companion?.strength}</span>
+                <p className="value">{companion?.strength}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">DEX</span>
-                <span className="center">{companion?.dexterity}</span>
+                <p className="value">{companion?.dexterity}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">CON</span>
-                <span className="center">{companion?.constitution}</span>
+                <p className="value">{companion?.constitution}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">INT</span>
-                <span className="center">{companion?.intelligence}</span>
+                <p className="value">{companion?.intelligence}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">WIS</span>
-                <span className="center">{companion?.wisdom}</span>
+                <p className="value">{companion?.wisdom}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">CHA</span>
-                <span className="center">{companion?.charisma}</span>
+                <p className="value">{companion?.charisma}</p>
               </section>
             </section>
-            <div className="barrier" />
-            <section className="saves">
-              <h3 className="heading">Saves</h3>
-              <span>
-                <strong>Fortitude:</strong> {companion?.fortitude}
-              </span>
-              <span>
-                <strong>Reflex:</strong> {companion?.reflex}
-              </span>
-              <span>
-                <strong>Will:</strong> {companion?.will}
-              </span>
+
+            <h4>Saves</h4>
+            <section className="stat-bar row">
+              <section className="stat-group">
+                <span className="label">Fortitude</span>
+                <p className="value">{companion?.fortitude}</p>
+              </section>
+              <section className="stat-group">
+                <span className="label">Reflex</span>
+                <p className="value">{companion?.reflex}</p>
+              </section>
+              <section className="stat-group">
+                <span className="label">Will</span>
+                <p className="value">{companion?.will}</p>
+              </section>
             </section>
-            <div className="barrier" />
-            <section className="skills">
-              <h3 className="heading">Skills - {companion?.skillLevel}</h3>
-              <div>{companion?.skills}</div>
+
+            <h4>Skills - {companion?.skillLevel} Proficiency</h4>
+            <section className="field-group ">
+              <p className="value-center">{companion?.skills}</p>
             </section>
-            <section className="senses">
-              <h3 className="heading">Senses</h3>
-              <div>{companion?.senses}</div>
-            </section>
-            <div className="barrier" />
-            <section className="abilities">
-              <h3 className="heading">Abilities</h3>
+
+            <h4>Abilities</h4>
+            <section>
               {companion?.abilities.map(ability => {
                 return (
                   <section
-                    className="ability"
+                    className="field-group"
                     key={`${companion?.name}-${ability?.name}`}
                   >
-                    <div className="ability-name">{ability?.name}</div>
-                    <div className="ability-description">
-                      {ability?.description}
-                    </div>
+                    <h4>{ability?.name}</h4>
+                    <p className="value">{ability?.description}</p>
                   </section>
                 )
               })}
             </section>
-            <div className="barrier" />
-            <section className="actions">
-              <h3 className="heading">Actions</h3>
+
+            <h4>Actions</h4>
+            <section>
               {companion?.actions.map(action => {
                 return (
                   <section
-                    className="action"
+                    className="field-group"
                     key={`${companion?.name}-${action?.name}`}
                   >
-                    <div className="action-name">{action?.name}</div>
-                    <div className="action-description">
-                      {action?.description}
-                    </div>
+                    <h4>{action?.name}</h4>
+                    <p className="value">{action?.description}</p>
                   </section>
                 )
               })}
             </section>
           </section>
         )}
-      </Wrapper>
+      </>
     )
   }
 }

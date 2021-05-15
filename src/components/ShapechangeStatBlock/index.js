@@ -1,7 +1,7 @@
 // Node modules.
 import React, { Component } from "react"
 // Relative imports.
-import { Wrapper } from "./styles"
+import Chevron from "../icons/Chevron"
 
 class ShapechangeStatBlock extends Component {
   constructor(props) {
@@ -15,129 +15,129 @@ class ShapechangeStatBlock extends Component {
     const { form } = this.state
 
     return (
-      <Wrapper>
-        <h2
-          className="name"
-          onClick={this.props.clickHandler}
+      <>
+        <header
+          className="no-background-image"
           onKeyDown={event => {
             // On enter, toggle expanded/expanded.
             if (event.keyCode === 13) {
               this.props.clickHandler()
             }
           }}
+          onClick={this.props.clickHandler}
+          role="button"
+          tabIndex="0"
         >
-          {form?.name}
-        </h2>
+          <div className="header-column">
+            <h3 id={form?.name}>{form?.name}</h3>
+            {this.props.isOpen && <p className="extra-info">{form?.type}</p>}
+          </div>
+          <Chevron
+            className={`chevron${this.props.isOpen ? " expanded" : ""}`}
+          />
+        </header>
         {this.props.isOpen && (
-          <section className="body">
-            <section className="type">{form?.type}</section>
-            <div className="barrier" />
-            <section className="vitals">
-              <div className="vital-data">
-                <strong>Defense: </strong>
-                {form?.defense}
-              </div>
-              <div className="vital-data">
-                <strong>Armor: </strong>
-                {form?.armor}
-              </div>
-              <div className="vital-data">
-                <strong>Temporary HP: </strong>
-                {form?.hitPoints}
-              </div>
-              <div className="vital-data">
-                <strong>Speeds: </strong>
-                {form?.speed}
-              </div>
+          <section className="content">
+            <section className="fields column">
+              <section className="field-group row">
+                <h4>Defense: </h4>
+                <p className="inline-value">{form?.defense}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Armor: </h4>
+                <p className="inline-value">{form?.armor}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Temp HP Gained: </h4>
+                <p className="inline-value">{form?.hitPoints}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Speeds: </h4>
+                <p className="inline-value">{form?.speed}</p>
+              </section>
+              <section className="field-group row">
+                <h4>Senses: </h4>
+                <p className="inline-value">{form?.senses}</p>
+              </section>
             </section>
-            <div className="barrier" />
-            <h3 className="heading">Stats</h3>
-            <section className="stats">
-              <section className="stat">
+
+            <h4>Stats</h4>
+            <section className="stat-bar row">
+              <section className="stat-group">
                 <span className="label">STR</span>
-                <span className="value">{form?.strength}</span>
+                <p className="value">{form?.strength}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">DEX</span>
-                <span className="value">{form?.dexterity}</span>
+                <p className="value">{form?.dexterity}</p>
               </section>
-              <section className="stat">
+              <section className="stat-group">
                 <span className="label">CON</span>
-                <span className="value">{form?.constitution}</span>
+                <p className="value">{form?.constitution}</p>
               </section>
             </section>
-            <div className="barrier" />
-            <section className="saves">
-              <h3 className="heading">Saves</h3>
-              <span>
-                <strong>Fortitude:</strong> {form?.fortitude}
-              </span>
-              <span>
-                <strong>Reflex:</strong> {form?.reflex}
-              </span>
-              <span>
-                <strong>Will:</strong> {form?.will}
-              </span>
+
+            <h4>Saves</h4>
+            <section className="stat-bar row">
+              <section className="stat-group">
+                <span className="label">Fortitude</span>
+                <p className="value">{form?.fortitude}</p>
+              </section>
+              <section className="stat-group">
+                <span className="label">Reflex</span>
+                <p className="value">{form?.reflex}</p>
+              </section>
+              <section className="stat-group">
+                <span className="label">Will</span>
+                <p className="value">{form?.will}</p>
+              </section>
             </section>
-            <div className="barrier" />
-            <section className="senses">
-              <h3 className="heading">Senses</h3>
-              <span>{form?.senses}</span>
-            </section>
-            <div className="barrier" />
-            <section className="Skills">
-              <h3 className="heading">Skills</h3>
+            <h4>Skill Bonuses</h4>
+            <section>
               {form?.skills.map(skill => {
                 return (
                   <section
-                    className="skill"
+                    className="field-group row"
                     key={`${form?.name}-${skill?.name}`}
                   >
-                    <div className="skill-row">
-                      <strong>{skill?.name}</strong>: {skill?.value}
-                    </div>
+                    <h4>{skill?.name} -</h4>
+                    <p className="inline-value">{skill?.value}</p>
+                  </section>
+                )
+              })}
+            </section>
+            <h4>Abilities - Choose {form?.choose}</h4>
+            <section>
+              {form?.abilities.map(ability => {
+                return (
+                  <section
+                    className="field-group"
+                    key={`${form?.name}-${ability?.name}`}
+                  >
+                    <h4>{ability?.name}</h4>
+                    <p className="value">{ability?.description}</p>
                   </section>
                 )
               })}
             </section>
 
-            <div className="barrier" />
-            <section className="abilities">
-              <h3 className="heading">Abilities - Choose {form?.choose}</h3>
-              {form?.abilities.map(ability => {
-                return (
-                  <section
-                    className="ability"
-                    key={`${form?.name}-${ability?.name}`}
-                  >
-                    <div className="ability-name">{ability?.name}</div>
-                    <div className="ability-description">
-                      {ability?.description}
-                    </div>
-                  </section>
-                )
-              })}
-            </section>
-            <div className="barrier" />
-            <section className="actions">
-              <h3 className="heading">Actions</h3>
+            <h4>Actions</h4>
+            <section>
               {form?.actions.map(action => {
                 return (
                   <section
-                    className="action"
+                    className="field-group"
                     key={`${form?.name}-${action?.name}`}
                   >
-                    <div className="action-name">{action?.name}</div>
-                    <div className="action-description">
-                      {action?.description}
-                    </div>
+                    <h4>{action?.name}</h4>
+                    <p className="value">{action?.description}</p>
                   </section>
                 )
               })}
             </section>
           </section>
         )}
-      </Wrapper>
+      </>
     )
   }
 }
