@@ -40,7 +40,7 @@ const SHAPECHANGE = require("sns-data/data/SHAPECHANGE.json")
 module.exports = {
   siteMetadata: {
     title: `Sword and Spell`,
-    description: `The main wiki website for the game Sword and Spell.`,
+    description: `The main website for the game Sword and Spell.`,
     author: `@SwordAndSpell`,
     navItems: [
       {
