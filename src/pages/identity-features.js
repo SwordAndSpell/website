@@ -2,8 +2,10 @@
 import React, { Fragment, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import find from "lodash/find"
-import uniq from "lodash/uniq"
+import isEmpty from "lodash/isEmpty"
 import map from "lodash/map"
+import orderBy from "lodash/orderBy"
+import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
@@ -160,145 +162,156 @@ const IdentityFeaturesPage = () => {
     const subclassActive = activeTypeFilters.includes("Subclass Features")
     const generalActive = activeTypeFilters.includes("General Features")
 
-    const relevantData = searchData.filter(
+    // Filter the identity features.
+    const filteredIdentityFeatures = searchData.filter(
       feature =>
         (coreActive && feature?.featureType === "Core") ||
         (subclassActive && feature?.featureType === "Subclass") ||
         (generalActive && feature?.featureType === "General")
     )
 
-    if (relevantData.length > 0) {
-      return (
-        <>
-          <h2 className="category">{title}</h2>
-          <ul>
-            {relevantData?.map(identityFeature => {
-              // Derive identityFeature properties.
-              const firstLevelSpells = identityFeature?.firstLevelSpells
-              const secondLevelSpells = identityFeature?.secondLevelSpells
-              const thirdLevelSpells = identityFeature?.thirdLevelSpells
-              const fourthLevelSpells = identityFeature?.fourthLevelSpells
-              const fifthLevelSpells = identityFeature?.fifthLevelSpells
-              const description = identityFeature?.description
-              const id = identityFeature?.id
-              const identity = identityFeature?.identity
-              const name = identityFeature?.name
-              const requirementIDs = identityFeature?.requirementIDs
-              const links = identityFeature?.links
+    // Sort the identity features.
+    const orderedIdentityFeatures = orderBy(
+      filteredIdentityFeatures,
+      ["featureType"],
+      ["asc"]
+    )
 
-              // Derive requirements.
-              const requirements = requirementIDs
-                ?.map(
-                  requirementID =>
-                    find(IDENTITY_FEATURE_REQUIREMENTS, ["id", requirementID])
-                      ?.name
-                )
-                ?.sort()
+    // Escape early if there is no data.
+    if (isEmpty(orderedIdentityFeatures)) {
+      return null
+    }
 
-              // Derive if the details are expanded.
-              const isExpanded = expandedIdentityFeatureIDs?.includes(id)
-              return (
-                <li key={`${id}--${identity}`}>
-                  {/* NAME */}
-                  {/* ============ */}
-                  <header
-                    className="no-background-image"
-                    onKeyDown={event => {
-                      // On enter, toggle expanded/expanded.
-                      if (event.keyCode === 13) {
-                        onCollapseToggle(
-                          id,
-                          expandedIdentityFeatureIDs,
-                          setExpandedIdentityFeatureIDs
-                        )
-                      }
-                    }}
-                    onClick={() =>
+    return (
+      <>
+        <h2 className="category">{title}</h2>
+        <ul>
+          {orderedIdentityFeatures?.map(identityFeature => {
+            // Derive identityFeature properties.
+            const firstLevelSpells = identityFeature?.firstLevelSpells
+            const secondLevelSpells = identityFeature?.secondLevelSpells
+            const thirdLevelSpells = identityFeature?.thirdLevelSpells
+            const fourthLevelSpells = identityFeature?.fourthLevelSpells
+            const fifthLevelSpells = identityFeature?.fifthLevelSpells
+            const description = identityFeature?.description
+            const id = identityFeature?.id
+            const identity = identityFeature?.identity
+            const name = identityFeature?.name
+            const requirementIDs = identityFeature?.requirementIDs
+            const links = identityFeature?.links
+
+            // Derive requirements.
+            const requirements = requirementIDs
+              ?.map(
+                requirementID =>
+                  find(IDENTITY_FEATURE_REQUIREMENTS, ["id", requirementID])
+                    ?.name
+              )
+              ?.sort()
+
+            // Derive if the details are expanded.
+            const isExpanded = expandedIdentityFeatureIDs?.includes(id)
+            return (
+              <li key={`${id}--${identity}`}>
+                {/* NAME */}
+                {/* ============ */}
+                <header
+                  className="no-background-image"
+                  onKeyDown={event => {
+                    // On enter, toggle expanded/expanded.
+                    if (event.keyCode === 13) {
                       onCollapseToggle(
                         id,
                         expandedIdentityFeatureIDs,
                         setExpandedIdentityFeatureIDs
                       )
                     }
-                    role="button"
-                    tabIndex="0"
-                  >
-                    <h3 id={`${identity}--${name}`}>{name}</h3>
-                    <Chevron
-                      className={`chevron${isExpanded ? " expanded" : ""}`}
-                    />
-                  </header>
-                  {/* IMAGE + NAME end */}
-                  {/* ============ */}
+                  }}
+                  onClick={() =>
+                    onCollapseToggle(
+                      id,
+                      expandedIdentityFeatureIDs,
+                      setExpandedIdentityFeatureIDs
+                    )
+                  }
+                  role="button"
+                  tabIndex="0"
+                >
+                  <h3 id={`${identity}--${name}`}>{name}</h3>
+                  <Chevron
+                    className={`chevron${isExpanded ? " expanded" : ""}`}
+                  />
+                </header>
+                {/* IMAGE + NAME end */}
+                {/* ============ */}
 
-                  {isExpanded && (
-                    <section className="fields column content">
-                      <section className="field-group">
-                        <h4>Requirements</h4>
-                        <p className="value">
-                          {requirements?.join(", ") || "None"}
-                        </p>
-                      </section>
-
-                      <section className="field-group">
-                        <h4>Description</h4>
-                        <p className="value">{description}</p>
-                        {map(links, link => {
-                          return (
-                            <a
-                              href={link?.url}
-                              key={`${name}--${link?.description}`}
-                              className="link"
-                            >
-                              {link?.description}
-                            </a>
-                          )
-                        })}
-                      </section>
-
-                      {firstLevelSpells && (
-                        <section className="field-group">
-                          <h4>1st Level Spells</h4>
-                          <p className="value">{firstLevelSpells}</p>
-                        </section>
-                      )}
-
-                      {secondLevelSpells && (
-                        <section className="field-group">
-                          <h4>2nd Level Spells</h4>
-                          <p className="value">{secondLevelSpells}</p>
-                        </section>
-                      )}
-
-                      {thirdLevelSpells && (
-                        <section className="field-group">
-                          <h4>3rd Level Spells</h4>
-                          <p className="value">{thirdLevelSpells}</p>
-                        </section>
-                      )}
-
-                      {fourthLevelSpells && (
-                        <section className="field-group">
-                          <h4>4th Level Spells</h4>
-                          <p className="value">{fourthLevelSpells}</p>
-                        </section>
-                      )}
-
-                      {fifthLevelSpells && (
-                        <section className="field-group">
-                          <h4>5th Level Spells</h4>
-                          <p className="value">{fifthLevelSpells}</p>
-                        </section>
-                      )}
+                {isExpanded && (
+                  <section className="fields column content">
+                    <section className="field-group">
+                      <h4>Requirements</h4>
+                      <p className="value">
+                        {requirements?.join(", ") || "None"}
+                      </p>
                     </section>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        </>
-      )
-    }
+
+                    <section className="field-group">
+                      <h4>Description</h4>
+                      <p className="value">{description}</p>
+                      {map(links, link => {
+                        return (
+                          <a
+                            href={link?.url}
+                            key={`${name}--${link?.description}`}
+                            className="link"
+                          >
+                            {link?.description}
+                          </a>
+                        )
+                      })}
+                    </section>
+
+                    {firstLevelSpells && (
+                      <section className="field-group">
+                        <h4>1st Level Spells</h4>
+                        <p className="value">{firstLevelSpells}</p>
+                      </section>
+                    )}
+
+                    {secondLevelSpells && (
+                      <section className="field-group">
+                        <h4>2nd Level Spells</h4>
+                        <p className="value">{secondLevelSpells}</p>
+                      </section>
+                    )}
+
+                    {thirdLevelSpells && (
+                      <section className="field-group">
+                        <h4>3rd Level Spells</h4>
+                        <p className="value">{thirdLevelSpells}</p>
+                      </section>
+                    )}
+
+                    {fourthLevelSpells && (
+                      <section className="field-group">
+                        <h4>4th Level Spells</h4>
+                        <p className="value">{fourthLevelSpells}</p>
+                      </section>
+                    )}
+
+                    {fifthLevelSpells && (
+                      <section className="field-group">
+                        <h4>5th Level Spells</h4>
+                        <p className="value">{fifthLevelSpells}</p>
+                      </section>
+                    )}
+                  </section>
+                )}
+              </li>
+            )
+          })}
+        </ul>
+      </>
+    )
   }
 
   // Start with everything collapsed.
@@ -725,63 +738,44 @@ const IdentityFeaturesPage = () => {
             </section>
           </section>
         )}
-        {activeFilters?.includes("Arcanist") && (
-          <>{deriveSection("Arcanist", ARCANIST_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Barbarian") && (
-          <>{deriveSection("Barbarian", BARBARIAN_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Bard") && (
-          <>{deriveSection("Bard", BARD_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Champion") && (
-          <>{deriveSection("Champion", CHAMPION_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Inheritor") && (
-          <>{deriveSection("Inheritor", INHERITOR_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Mystic") && (
-          <>{deriveSection("Mystic", MYSTIC_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Priest") && (
-          <>{deriveSection("Priest", PRIEST_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Scoundrel") && (
-          <>{deriveSection("Scoundrel", SCOUNDREL_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Spellblade") && (
-          <>{deriveSection("Spellblade", SPELLBLADE_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Warden") && (
-          <>{deriveSection("Warden", WARDEN_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Warrior") && (
-          <>{deriveSection("Warrior", WARRIOR_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Wildling") && (
-          <>{deriveSection("Wildling", WILDLING_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Mutliclass") && (
-          <>{deriveSection("Mutliclass", MUTLICLASS_FEATURES)}</>
-        )}
-        {activeFilters?.includes("General") && (
-          <>{deriveSection("General", GENERAL_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Armor") && (
-          <>{deriveSection("Armor", ARMOR_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Combat") && (
-          <>{deriveSection("Combat", COMBAT_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Spellcasting") && (
-          <>{deriveSection("Spellcasting", SPELLCASTING_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Patron-Sworn") && (
-          <>{deriveSection("Patron-Sworn", PATRON_SWORN_FEATURES)}</>
-        )}
-        {activeFilters?.includes("Animal Companion") && (
-          <>{deriveSection("Animal Companion", ANIMAL_COMPANION_FEATURES)}</>
-        )}
+        {activeFilters?.includes("Arcanist") &&
+          deriveSection("Arcanist", ARCANIST_FEATURES)}
+        {activeFilters?.includes("Barbarian") &&
+          deriveSection("Barbarian", BARBARIAN_FEATURES)}
+        {activeFilters?.includes("Bard") &&
+          deriveSection("Bard", BARD_FEATURES)}
+        {activeFilters?.includes("Champion") &&
+          deriveSection("Champion", CHAMPION_FEATURES)}
+        {activeFilters?.includes("Inheritor") &&
+          deriveSection("Inheritor", INHERITOR_FEATURES)}
+        {activeFilters?.includes("Mystic") &&
+          deriveSection("Mystic", MYSTIC_FEATURES)}
+        {activeFilters?.includes("Priest") &&
+          deriveSection("Priest", PRIEST_FEATURES)}
+        {activeFilters?.includes("Scoundrel") &&
+          deriveSection("Scoundrel", SCOUNDREL_FEATURES)}
+        {activeFilters?.includes("Spellblade") &&
+          deriveSection("Spellblade", SPELLBLADE_FEATURES)}
+        {activeFilters?.includes("Warden") &&
+          deriveSection("Warden", WARDEN_FEATURES)}
+        {activeFilters?.includes("Warrior") &&
+          deriveSection("Warrior", WARRIOR_FEATURES)}
+        {activeFilters?.includes("Wildling") &&
+          deriveSection("Wildling", WILDLING_FEATURES)}
+        {activeFilters?.includes("Mutliclass") &&
+          deriveSection("Mutliclass", MUTLICLASS_FEATURES)}
+        {activeFilters?.includes("General") &&
+          deriveSection("General", GENERAL_FEATURES)}
+        {activeFilters?.includes("Armor") &&
+          deriveSection("Armor", ARMOR_FEATURES)}
+        {activeFilters?.includes("Combat") &&
+          deriveSection("Combat", COMBAT_FEATURES)}
+        {activeFilters?.includes("Spellcasting") &&
+          deriveSection("Spellcasting", SPELLCASTING_FEATURES)}
+        {activeFilters?.includes("Patron-Sworn") &&
+          deriveSection("Patron-Sworn", PATRON_SWORN_FEATURES)}
+        {activeFilters?.includes("Animal Companion") &&
+          deriveSection("Animal Companion", ANIMAL_COMPANION_FEATURES)}
       </Wrapper>
     </Layout>
   )
