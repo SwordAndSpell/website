@@ -2,6 +2,7 @@
 import React, { Fragment, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import map from "lodash/map"
+import orderBy from "lodash/orderBy"
 import uniq from "lodash/uniq"
 // Relative imports.
 import Chevron from "../components/icons/Chevron"
@@ -86,12 +87,12 @@ const SpellsPage = () => {
   const spellCategories = [
     {
       label: "Cantrips",
-      items: CANTRIPS,
+      items: orderBy(CANTRIPS, "name"),
       level: 0,
     },
     {
       label: "1st Level",
-      items: FIRST_LEVEL_SPELLS,
+      items: orderBy(FIRST_LEVEL_SPELLS, "name"),
       level: 1,
     },
   ]
@@ -391,6 +392,7 @@ const SpellsPage = () => {
             </section>
           </section>
         )}
+
         {/* Spell Categories */}
         {map(spellCategories, spellCategory => {
           if (activeLevelFilters.includes(spellCategory.level))
