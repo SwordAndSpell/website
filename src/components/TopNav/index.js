@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { Link, useStaticQuery, graphql } from "gatsby"
 // Relative imports.
+import characterSheet from "../../../static/files/character-sheet.pdf"
 import Burger from "../icons/Burger"
 import { Header, NavItems } from "./styles"
 
@@ -70,6 +71,9 @@ const TopNav = ({ siteTitle }) => {
             <li>{navItem?.label}</li>
           </Link>
         ))}
+        <a download href={characterSheet}>
+          <li>Download Character Sheet (PDF)</li>
+        </a>
       </NavItems>
     </>
   )
