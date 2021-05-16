@@ -34,8 +34,9 @@ const Layout = ({ children }) => {
           <video
             autoPlay
             className="smoke-animation"
-            loop="loop"
-            muted="muted"
+            loop
+            muted
+            playsInline
             type="video/mp4"
           >
             <source src={fog} type="video/mp4" />
