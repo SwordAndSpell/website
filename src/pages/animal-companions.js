@@ -607,7 +607,7 @@ const CompanionsPage = () => {
                   </p>
                 </section>
                 <section className="field-group">
-                  <h4>Flyby</h4>
+                  <h4>Flyby (Requires Avian)</h4>
                   <p className="value">
                     2 Actions - Your companion flies up to its full movement
                     speed and makes a talon attack against any creature along
@@ -630,7 +630,7 @@ const CompanionsPage = () => {
                   <h4>Pack Hunter</h4>
                   <p className="value">
                     Your companion has advantage on all melee attacks when you
-                    or another ally is within 5’ of its target.
+                    or another ally is within 5 feet of its target.
                   </p>
                 </section>
                 <section className="field-group">
