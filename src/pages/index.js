@@ -6,21 +6,18 @@ import flameVideo from "../../static/videos/flame.mp4"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const IndexPage = () => {
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-  return (
-    <Layout>
-      <Seo title="Home" />
-      <section className="homepage">
-        <video autoPlay loop="loop" muted="muted" type="video/mp4">
-          <source src={flameVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <h1>Embark on your journey</h1>
-        <Link to="/races">Choose your race</Link>
-      </section>
-    </Layout>
-  )
-}
+const IndexPage = () => (
+  <Layout>
+    <Seo title="Home" />
+    <section className="homepage">
+      <video autoPlay loop="loop" muted="muted" type="video/mp4">
+        <source src={flameVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h1>Embark on your journey</h1>
+      <Link to="/races">Choose your race</Link>
+    </section>
+  </Layout>
+)
 
 export default IndexPage
