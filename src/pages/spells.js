@@ -281,6 +281,7 @@ const SpellsPage = () => {
               </button>
             </section>
             <hr />
+            <h4>Spell Levels</h4>
             <section className="filters">
               <button
                 type="button"

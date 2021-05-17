@@ -682,6 +682,7 @@ const IdentityFeaturesPage = () => {
                 Animal Companion
               </button>
             </section>
+            <hr />
             <h4>Feature Type</h4>
             <section className="filters">
               <button
