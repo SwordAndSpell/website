@@ -9,6 +9,7 @@ import Chevron from "../components/icons/Chevron"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
+import BackToTop from "../components/BackToTop"
 import { onCollapseToggle } from "../utils"
 
 const onFilterToggle = (
@@ -150,6 +151,7 @@ const SpellsPage = () => {
     <Layout>
       <Seo title="Spells" />
       <Wrapper>
+        <BackToTop />
         <h2>Spells</h2>
         <h3
           onClick={() =>
@@ -560,8 +562,7 @@ const SpellsPage = () => {
                                   </p>
                                 </section>
                               )}
-                              <section className="field-group remove-bg">
-                                <p className="value">{description}</p>
+                              <section className="field-group">
                                 {map(links, link => {
                                   return (
                                     <a
