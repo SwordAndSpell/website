@@ -11,6 +11,7 @@ import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
 import BackToTop from "../components/BackToTop"
 import { onCollapseToggle } from "../utils"
+import { isEmpty } from "lodash"
 
 const onFilterToggle = (
   filterToToggle,
@@ -146,6 +147,9 @@ const SpellsPage = () => {
     8,
     9,
   ])
+
+  const noSpellsShowing =
+    isEmpty(activeLevelFilters) || isEmpty(activeListFilters)
 
   return (
     <Layout>
@@ -418,6 +422,10 @@ const SpellsPage = () => {
               </button>
             </section>
           </section>
+        )}
+
+        {noSpellsShowing && (
+          <p>Enable at least one filter in each category to view spells...</p>
         )}
 
         {/* Spell Categories */}
