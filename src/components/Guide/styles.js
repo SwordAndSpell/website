@@ -43,7 +43,7 @@ export const Wrapper = styled.section`
   }
 
   p {
-    margin: 0;
+    margin: 0 0 10px;
   }
 
   .close {
@@ -64,8 +64,32 @@ export const Wrapper = styled.section`
       right: 5px;
     }
 
+    &:hover {
+      path {
+        fill: #fbcea0;
+      }
+    }
+
     path {
       fill: #ffffff;
+      transition: fill 1s ease;
+    }
+  }
+
+  a {
+    align-items: center;
+    display: flex;
+
+    svg {
+      height: 20px;
+      max-height: 20px;
+      max-width: 20px;
+      padding: 5px;
+      width: 20px;
+    }
+
+    path {
+      fill: #fbcea0;
     }
   }
 `

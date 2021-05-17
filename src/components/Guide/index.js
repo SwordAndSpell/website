@@ -3,19 +3,17 @@ import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import isEmpty from "lodash/isEmpty"
 // Relative imports.
-import CloseIcon from "../icons/Close"
+import Close from "../icons/Close"
+import ExternalLink from "../icons/ExternalLink"
 import { Wrapper } from "./styles"
 
 const isBrowser = typeof window !== "undefined"
 
 const Guide = () => {
   // Derive showGuide state.
-  const queryParams = new URLSearchParams(
-    isBrowser ? window.location.search : ""
-  )
-  const [showGuide, setShowGuide] = useState(
-    queryParams.get("showGuide") === "true"
-  )
+  const defaultShowGuide =
+    isBrowser && sessionStorage.getItem("showGuide") !== "false"
+  const [showGuide, setShowGuide] = useState(defaultShowGuide)
 
   // Derive the nav items from the graphql query.
   const queryResult = useStaticQuery(graphql`
@@ -30,6 +28,7 @@ const Guide = () => {
               label
               link
             }
+            showDefaultGuide
           }
         }
       }
@@ -41,59 +40,57 @@ const Guide = () => {
   const path = isBrowser ? window.location.pathname : ""
   const currentNavItem = navItems?.find(navItem => path?.includes(navItem.link))
 
+  const onClose = () => {
+    setShowGuide(false)
+    if (isBrowser) {
+      sessionStorage.setItem("showGuide", false)
+    }
+  }
+
   // Hide guide if we should not show it.
-  if (!showGuide) {
+  if (!showGuide || !currentNavItem) {
     return null
   }
 
-  // If we recognize the page, use the nav item's instructions.
-  if (currentNavItem) {
+  // Default guide.
+  if (currentNavItem?.showDefaultGuide) {
     return (
       <Wrapper>
-        {/* Close button */}
-        <button
-          className="close"
-          onClick={() => setShowGuide(false)}
-          type="button"
-        >
-          <CloseIcon />
+        <button className="close" onClick={onClose} type="button">
+          <Close />
         </button>
-
-        {/* Instructions */}
-        <p>
-          {currentNavItem?.instructions || "Ready to create your character?"}
-        </p>
-
-        {/* Default instruction link */}
-        {isEmpty(currentNavItem?.instructionsLinks) && (
-          <a href="/races?showGuide=true">Choose a race</a>
-        )}
-
-        {/* Instruction links */}
-        {currentNavItem?.instructionsLinks?.map(instructionLink => (
-          <a
-            key={instructionLink?.link}
-            href={`${instructionLink?.link}?showGuide=true`}
-          >
-            {instructionLink?.label}
-          </a>
-        ))}
+        <p>Need some help creating a character?</p>
+        <a href="/races?showGuide=true">Choose a race</a>
       </Wrapper>
     )
   }
 
-  // Default guide.
+  // If we recognize the page, use the nav item's instructions.
   return (
     <Wrapper>
-      <button
-        className="close"
-        onClick={() => setShowGuide(false)}
-        type="button"
-      >
-        <CloseIcon />
+      {/* Close button */}
+      <button className="close" onClick={onClose} type="button">
+        <Close />
       </button>
-      <p>Need some help creating a character?</p>
-      <a href="/races?showGuide=true">Choose a race</a>
+
+      {/* Instructions */}
+      <p>{currentNavItem?.instructions || "Ready to create your character?"}</p>
+
+      {/* Default instruction link */}
+      {isEmpty(currentNavItem?.instructionsLinks) && (
+        <a href="/races?showGuide=true">Choose a race</a>
+      )}
+
+      {/* Instruction links */}
+      {currentNavItem?.instructionsLinks?.map(instructionLink => (
+        <a
+          key={instructionLink?.link}
+          href={`${instructionLink?.link}?showGuide=true`}
+        >
+          {instructionLink?.label}
+          <ExternalLink />
+        </a>
+      ))}
     </Wrapper>
   )
 }
