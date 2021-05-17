@@ -280,6 +280,7 @@ const SpellsPage = () => {
                 Primal
               </button>
             </section>
+            <hr />
             <section className="filters">
               <button
                 type="button"
