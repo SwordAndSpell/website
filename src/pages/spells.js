@@ -1,6 +1,7 @@
 // Node modules.
 import React, { Fragment, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import isEmpty from "lodash/isEmpty"
 import map from "lodash/map"
 import orderBy from "lodash/orderBy"
 import uniq from "lodash/uniq"
@@ -11,7 +12,6 @@ import Seo from "../components/seo"
 import { Wrapper } from "../components/cardsPage"
 import BackToTop from "../components/BackToTop"
 import { onCollapseToggle } from "../utils"
-import { isEmpty } from "lodash"
 
 const onFilterToggle = (
   filterToToggle,
@@ -179,35 +179,38 @@ const SpellsPage = () => {
     <Layout>
       <Seo title="Spells" />
       <Wrapper>
+        {/* Back to top button */}
         <BackToTop />
+
+        {/* Title */}
         <h2>Spells</h2>
-        <h3
+
+        {/* Show/hide filters button */}
+        <button
+          className="search-bar"
           onClick={() =>
             onCollapseToggle("filters", expandedSpellIDs, setExpandedSpellIDs)
           }
-          onKeyDown={event => {
-            // On enter, toggle expanded/expanded.
-            if (event.keyCode === 13) {
-              onCollapseToggle("filters", expandedSpellIDs, setExpandedSpellIDs)
-            }
-          }}
-          className="search-bar"
+          type="button"
         >
-          Search and Filter
-        </h3>
+          {expandedSpellIDs?.includes("filters") ? "Hide" : "Show"} filters
+        </button>
+
+        {/* Filters */}
         {expandedSpellIDs.includes("filters") && (
           <section className="search-section">
-            <section>
-              <h4>Search</h4>
-              <input
-                className="filter-input"
-                name="search input"
-                onChange={event => setSearchInput(event.target.value)}
-                value={searchInput}
-                placeholder="Search for identity features..."
-              />
-            </section>
-            <h4>Spell Lists</h4>
+            {/* Search */}
+            <p className="filters-label">Search</p>
+            <input
+              className="filter-input"
+              name="search input"
+              onChange={event => setSearchInput(event.target.value)}
+              value={searchInput}
+              placeholder="e.g. 'bubble of acid'"
+            />
+
+            {/* Spell Tags */}
+            <p className="filters-label">Filter by spell tag</p>
             <section className="filters">
               <button
                 type="button"
@@ -280,8 +283,9 @@ const SpellsPage = () => {
                 Primal
               </button>
             </section>
-            <hr />
-            <h4>Spell Levels</h4>
+
+            {/* Spell Levels */}
+            <p className="filters-label">Filter by spell level</p>
             <section className="filters">
               <button
                 type="button"
@@ -450,173 +454,188 @@ const SpellsPage = () => {
           </section>
         )}
 
+        {/* No results */}
         {noSpellsShowing && (
           <p>Enable at least one filter in each category to view spells...</p>
         )}
 
         {/* Spell Categories */}
         {map(spellCategories, spellCategory => {
-          if (activeLevelFilters.includes(spellCategory.level))
-            return (
-              <Fragment key={spellCategory.label}>
-                <h2 className="category" id={spellCategory?.label}>
-                  {spellCategory?.label}
-                </h2>
-                <ul>
-                  {map(spellCategory?.items, spell => {
-                    // Derive spell properties.
-                    const atHigherLevels = spell?.atHigherLevels
-                    const castingSpeed = spell?.castingSpeed
-                    const components = spell?.components
-                    const concentration = spell?.concentration
-                    const description = spell?.description
-                    const duration = spell?.duration
-                    const id = spell?.id
-                    const level = spell?.level
-                    const name = spell?.name
-                    const range = spell?.range
-                    const school = spell?.school
-                    const tags = spell?.tags
-                    const links = spell?.links
+          const hasRelevantSpell = spellCategory?.items?.some(
+            spell =>
+              searchInput === "" ||
+              `${spell?.description},${spell?.name},${spell?.school},${spell?.school},${spell?.components}`
+                .toLowerCase()
+                .includes(searchInput.toLowerCase())
+          )
 
-                    // Derive if the details are expanded.
-                    const isExpanded = expandedSpellIDs?.includes(id)
+          if (!hasRelevantSpell) {
+            return null
+          }
 
-                    const isRelevant =
-                      searchInput === "" ||
-                      `${spell?.description},${spell?.name},${spell?.school},${spell?.school},${spell?.components}`
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase())
+          if (!activeLevelFilters.includes(spellCategory.level)) {
+            return null
+          }
 
-                    const arcaneActive = activeListFilters.includes("Arcane")
-                    const divineActive = activeListFilters.includes("Divine")
-                    const primalActive = activeListFilters.includes("Primal")
-                    const isPartOfList =
-                      (tags.includes("Arcane") && arcaneActive) ||
-                      (tags.includes("Divine") && divineActive) ||
-                      (tags.includes("Primal") && primalActive)
+          return (
+            <Fragment key={spellCategory.label}>
+              <h2 className="category" id={spellCategory?.label}>
+                {spellCategory?.label}
+              </h2>
+              <ul>
+                {map(spellCategory?.items, spell => {
+                  // Derive spell properties.
+                  const atHigherLevels = spell?.atHigherLevels
+                  const castingSpeed = spell?.castingSpeed
+                  const components = spell?.components
+                  const concentration = spell?.concentration
+                  const description = spell?.description
+                  const duration = spell?.duration
+                  const id = spell?.id
+                  const level = spell?.level
+                  const name = spell?.name
+                  const range = spell?.range
+                  const school = spell?.school
+                  const tags = spell?.tags
+                  const links = spell?.links
 
-                    if (isRelevant && isPartOfList)
-                      return (
-                        <li key={id}>
-                          {/* NAME */}
-                          {/* ============ */}
-                          <header
-                            className="no-background-image"
-                            onKeyDown={event => {
-                              // On enter, toggle expanded/expanded.
-                              if (event.keyCode === 13) {
-                                onCollapseToggle(
-                                  id,
-                                  expandedSpellIDs,
-                                  setExpandedSpellIDs
-                                )
-                              }
-                            }}
-                            onClick={() =>
+                  // Derive if the details are expanded.
+                  const isExpanded = expandedSpellIDs?.includes(id)
+
+                  const isRelevant =
+                    searchInput === "" ||
+                    `${spell?.description},${spell?.name},${spell?.school},${spell?.school},${spell?.components}`
+                      .toLowerCase()
+                      .includes(searchInput.toLowerCase())
+
+                  const arcaneActive = activeListFilters.includes("Arcane")
+                  const divineActive = activeListFilters.includes("Divine")
+                  const primalActive = activeListFilters.includes("Primal")
+                  const isPartOfList =
+                    (tags.includes("Arcane") && arcaneActive) ||
+                    (tags.includes("Divine") && divineActive) ||
+                    (tags.includes("Primal") && primalActive)
+
+                  if (isRelevant && isPartOfList)
+                    return (
+                      <li key={id}>
+                        {/* NAME */}
+                        {/* ============ */}
+                        <header
+                          className="no-background-image"
+                          onKeyDown={event => {
+                            // On enter, toggle expanded/expanded.
+                            if (event.keyCode === 13) {
                               onCollapseToggle(
                                 id,
                                 expandedSpellIDs,
                                 setExpandedSpellIDs
                               )
                             }
-                            role="button"
-                            tabIndex="0"
-                          >
-                            <div className="header-column">
-                              <h3 id={`${level}--${name}`}>{name}</h3>
-                              {!isExpanded && (
-                                <p className="extra-info">{castingSpeed}</p>
-                              )}
-                              <ul className="tags">
-                                {tags?.map(tag => (
-                                  <li key={tag}>{tag}</li>
-                                ))}
-                              </ul>
-                            </div>
-                            <Chevron
-                              className={`chevron${
-                                isExpanded ? " expanded" : ""
-                              }`}
-                            />
-                          </header>
-                          {/* NAME end */}
-                          {/* ============ */}
+                          }}
+                          onClick={() =>
+                            onCollapseToggle(
+                              id,
+                              expandedSpellIDs,
+                              setExpandedSpellIDs
+                            )
+                          }
+                          role="button"
+                          tabIndex="0"
+                        >
+                          <div className="header-column">
+                            <h3 id={`${level}--${name}`}>{name}</h3>
+                            {!isExpanded && (
+                              <p className="extra-info">{castingSpeed}</p>
+                            )}
+                            <ul className="tags">
+                              {tags?.map(tag => (
+                                <li key={tag}>{tag}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <Chevron
+                            className={`chevron${
+                              isExpanded ? " expanded" : ""
+                            }`}
+                          />
+                        </header>
+                        {/* NAME end */}
+                        {/* ============ */}
 
-                          {isExpanded && (
-                            <section className="fields column content">
-                              {castingSpeed && (
-                                <section className="field-group row">
-                                  <h4>Casting Speed: </h4>
-                                  <p className="inline-value">{castingSpeed}</p>
-                                </section>
-                              )}
-                              {duration && (
-                                <section className="field-group row">
-                                  <h4>Duration: </h4>
-                                  <p className="inline-value">
-                                    {duration}
-                                    {concentration &&
-                                      " (Requires concentration)"}
-                                  </p>
-                                </section>
-                              )}
-                              {range && (
-                                <section className="field-group row">
-                                  <h4>Range: </h4>
-                                  <p className="inline-value">{range}</p>
-                                </section>
-                              )}
-                              {school && (
-                                <section className="field-group row">
-                                  <h4>School: </h4>
-                                  <p className="inline-value">{school}</p>
-                                </section>
-                              )}
-                              {components && (
-                                <section className="field-group row">
-                                  <h4>Components: </h4>
-                                  <p className="inline-value">
-                                    {components?.join(", ")}
-                                  </p>
-                                </section>
-                              )}
-                              {description && (
-                                <section className="field-group">
-                                  <p className="inline-value description">
-                                    {description}
-                                  </p>
-                                </section>
-                              )}
-                              {atHigherLevels && (
-                                <section className="field-group">
-                                  <h4>At higher levels</h4>
-                                  <p className="inline-value description">
-                                    {atHigherLevels}
-                                  </p>
-                                </section>
-                              )}
-                              <section className="field-group">
-                                {map(links, link => {
-                                  return (
-                                    <a
-                                      href={link?.url}
-                                      key={`${name}--${link?.description}`}
-                                      className="link"
-                                    >
-                                      {link?.description}
-                                    </a>
-                                  )
-                                })}
+                        {isExpanded && (
+                          <section className="fields column content">
+                            {castingSpeed && (
+                              <section className="field-group row">
+                                <h4>Casting Speed: </h4>
+                                <p className="inline-value">{castingSpeed}</p>
                               </section>
+                            )}
+                            {duration && (
+                              <section className="field-group row">
+                                <h4>Duration: </h4>
+                                <p className="inline-value">
+                                  {duration}
+                                  {concentration && " (Requires concentration)"}
+                                </p>
+                              </section>
+                            )}
+                            {range && (
+                              <section className="field-group row">
+                                <h4>Range: </h4>
+                                <p className="inline-value">{range}</p>
+                              </section>
+                            )}
+                            {school && (
+                              <section className="field-group row">
+                                <h4>School: </h4>
+                                <p className="inline-value">{school}</p>
+                              </section>
+                            )}
+                            {components && (
+                              <section className="field-group row">
+                                <h4>Components: </h4>
+                                <p className="inline-value">
+                                  {components?.join(", ")}
+                                </p>
+                              </section>
+                            )}
+                            {description && (
+                              <section className="field-group">
+                                <p className="inline-value description">
+                                  {description}
+                                </p>
+                              </section>
+                            )}
+                            {atHigherLevels && (
+                              <section className="field-group">
+                                <h4>At higher levels</h4>
+                                <p className="inline-value description">
+                                  {atHigherLevels}
+                                </p>
+                              </section>
+                            )}
+                            <section className="field-group">
+                              {map(links, link => {
+                                return (
+                                  <a
+                                    href={link?.url}
+                                    key={`${name}--${link?.description}`}
+                                    className="link"
+                                  >
+                                    {link?.description}
+                                  </a>
+                                )
+                              })}
                             </section>
-                          )}
-                        </li>
-                      )
-                  })}
-                </ul>
-              </Fragment>
-            )
+                          </section>
+                        )}
+                      </li>
+                    )
+                })}
+              </ul>
+            </Fragment>
+          )
         })}
       </Wrapper>
     </Layout>

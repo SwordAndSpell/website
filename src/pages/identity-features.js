@@ -355,9 +355,15 @@ const IdentityFeaturesPage = () => {
     <Layout>
       <Seo title="Identity Features" />
       <Wrapper>
+        {/* Back to top component */}
         <BackToTop />
+
+        {/* Title */}
         <h2>Identity Features</h2>
-        <h3
+
+        {/* Show/hide filters button */}
+        <button
+          className="search-bar"
           onClick={() =>
             onCollapseToggle(
               "filters",
@@ -365,31 +371,27 @@ const IdentityFeaturesPage = () => {
               setExpandedIdentityFeatureIDs
             )
           }
-          onKeyDown={event => {
-            // On enter, toggle expanded/expanded.
-            if (event.keyCode === 13) {
-              onCollapseToggle(
-                "filters",
-                expandedIdentityFeatureIDs,
-                setExpandedIdentityFeatureIDs
-              )
-            }
-          }}
-          className="search-bar"
+          type="button"
         >
-          Search and Filter
-        </h3>
+          {expandedIdentityFeatureIDs?.includes("filters") ? "Hide" : "Show"}{" "}
+          filters
+        </button>
+
+        {/* Filters */}
         {expandedIdentityFeatureIDs.includes("filters") && (
           <section className="search-section">
-            <h4>Search</h4>
+            {/* Search */}
+            <p className="filters-label">Search</p>
             <input
               className="filter-input"
               name="search input"
               onChange={event => setSearchInput(event.target.value)}
               value={searchInput}
-              placeholder="Search for identity features..."
+              placeholder="e.g. 'fire'"
             />
-            <h4>Feature Category</h4>
+
+            {/* Categories */}
+            <p className="filters-label">Filter by feature categories</p>
             <section className="filters">
               <button
                 type="button"
@@ -682,8 +684,9 @@ const IdentityFeaturesPage = () => {
                 Animal Companion
               </button>
             </section>
-            <hr />
-            <h4>Feature Type</h4>
+
+            {/* Types */}
+            <p className="filters-label">Filter by feature types</p>
             <section className="filters">
               <button
                 type="button"
@@ -739,6 +742,8 @@ const IdentityFeaturesPage = () => {
             </section>
           </section>
         )}
+
+        {/* Identity features */}
         {activeFilters?.includes("Arcanist") &&
           deriveSection("Arcanist", ARCANIST_FEATURES)}
         {activeFilters?.includes("Barbarian") &&
