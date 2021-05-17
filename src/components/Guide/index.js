@@ -60,7 +60,7 @@ const Guide = () => {
           <Close />
         </button>
         <p>Need some help creating a character?</p>
-        <a href="/races?showGuide=true">Choose a race</a>
+        <a href="/races">Choose a race</a>
       </Wrapper>
     )
   }
@@ -78,15 +78,12 @@ const Guide = () => {
 
       {/* Default instruction link */}
       {isEmpty(currentNavItem?.instructionsLinks) && (
-        <a href="/races?showGuide=true">Choose a race</a>
+        <a href="/races">Choose a race</a>
       )}
 
       {/* Instruction links */}
       {currentNavItem?.instructionsLinks?.map(instructionLink => (
-        <a
-          key={instructionLink?.link}
-          href={`${instructionLink?.link}?showGuide=true`}
-        >
+        <a key={instructionLink?.link} href={`${instructionLink?.link}`}>
           {instructionLink?.label}
           <ExternalLink />
         </a>
