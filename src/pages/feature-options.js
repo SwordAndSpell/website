@@ -62,8 +62,10 @@ const FeatureOptionsPage = () => {
   const queryParams = new URLSearchParams(
     isBrowser ? window.location.search : ""
   )
-  const defaultExpandedIDs = queryParams.get("ids")?.split(",") || []
+  const defaultExpandedIDs =
+    queryParams.get("ids")?.split("%20")?.join(" ")?.split(",") || []
 
+  console.log(defaultExpandedIDs)
   // Create the IDs that should be expanded in state.
   const [expandedInstanceTypeIDs, setExpandedInstanceTypeIDs] = useState(
     defaultExpandedIDs

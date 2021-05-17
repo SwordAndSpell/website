@@ -75,6 +75,24 @@ const SpellsPage = () => {
             school
             tags
           }
+          SECOND_LEVEL_SPELLS {
+            atHigherLevels
+            castingSpeed
+            components
+            concentration
+            description
+            duration
+            id
+            level
+            name
+            range
+            school
+            tags
+            links {
+              description
+              url
+            }
+          }
         }
       }
     }
@@ -83,6 +101,8 @@ const SpellsPage = () => {
   // Derive Races and Perks data from the graphql query above.
   const CANTRIPS = queryResult?.site?.siteMetadata?.CANTRIPS
   const FIRST_LEVEL_SPELLS = queryResult?.site?.siteMetadata?.FIRST_LEVEL_SPELLS
+  const SECOND_LEVEL_SPELLS =
+    queryResult?.site?.siteMetadata?.SECOND_LEVEL_SPELLS
 
   const spellCategories = [
     {
@@ -94,6 +114,11 @@ const SpellsPage = () => {
       label: "1st Level",
       items: orderBy(FIRST_LEVEL_SPELLS, "name"),
       level: 1,
+    },
+    {
+      label: "2nd Level",
+      items: orderBy(SECOND_LEVEL_SPELLS, "name"),
+      level: 2,
     },
   ]
 
@@ -416,6 +441,7 @@ const SpellsPage = () => {
                     const range = spell?.range
                     const school = spell?.school
                     const tags = spell?.tags
+                    const links = spell?.links
 
                     // Derive if the details are expanded.
                     const isExpanded = expandedSpellIDs?.includes(id)
@@ -534,6 +560,20 @@ const SpellsPage = () => {
                                   </p>
                                 </section>
                               )}
+                              <section className="field-group remove-bg">
+                                <p className="value">{description}</p>
+                                {map(links, link => {
+                                  return (
+                                    <a
+                                      href={link?.url}
+                                      key={`${name}--${link?.description}`}
+                                      className="link"
+                                    >
+                                      {link?.description}
+                                    </a>
+                                  )
+                                })}
+                              </section>
                             </section>
                           )}
                         </li>

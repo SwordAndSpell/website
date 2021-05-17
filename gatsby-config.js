@@ -32,6 +32,7 @@ const WEAPON_RUNES = require("sns-data/data/GEAR/WEAPON_RUNES.json")
 // Spells
 const CANTRIPS = require("sns-data/data/SPELLS/CANTRIPS.json")
 const FIRST_LEVEL_SPELLS = require("sns-data/data/SPELLS/FIRST_LEVEL.json")
+const SECOND_LEVEL_SPELLS = require("sns-data/data/SPELLS/SECOND_LEVEL.json")
 // Extra
 const SUMMONABLES = require("sns-data/data/SUMMONABLES.json")
 const COMPANIONS = require("sns-data/data/COMPANIONS.json")
@@ -144,6 +145,7 @@ module.exports = {
     // Spells.
     CANTRIPS,
     FIRST_LEVEL_SPELLS,
+    SECOND_LEVEL_SPELLS,
     // Extra
     SUMMONABLES,
     COMPANIONS,
