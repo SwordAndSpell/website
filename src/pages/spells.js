@@ -95,6 +95,24 @@ const SpellsPage = () => {
               url
             }
           }
+          THIRD_LEVEL_SPELLS {
+            atHigherLevels
+            castingSpeed
+            components
+            concentration
+            description
+            duration
+            id
+            level
+            name
+            range
+            school
+            tags
+            links {
+              description
+              url
+            }
+          }
         }
       }
     }
@@ -105,6 +123,7 @@ const SpellsPage = () => {
   const FIRST_LEVEL_SPELLS = queryResult?.site?.siteMetadata?.FIRST_LEVEL_SPELLS
   const SECOND_LEVEL_SPELLS =
     queryResult?.site?.siteMetadata?.SECOND_LEVEL_SPELLS
+  const THIRD_LEVEL_SPELLS = queryResult?.site?.siteMetadata?.THIRD_LEVEL_SPELLS
 
   const spellCategories = [
     {
@@ -121,6 +140,11 @@ const SpellsPage = () => {
       label: "2nd Level",
       items: orderBy(SECOND_LEVEL_SPELLS, "name"),
       level: 2,
+    },
+    {
+      label: "3rd Level (In Work)",
+      items: orderBy(THIRD_LEVEL_SPELLS, "name"),
+      level: 3,
     },
   ]
 
