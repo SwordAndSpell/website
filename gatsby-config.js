@@ -38,78 +38,15 @@ const THIRD_LEVEL_SPELLS = require("sns-data/data/SPELLS/THIRD_LEVEL.json")
 const SUMMONABLES = require("sns-data/data/SUMMONABLES.json")
 const COMPANIONS = require("sns-data/data/COMPANIONS.json")
 const SHAPECHANGE = require("sns-data/data/SHAPECHANGE.json")
+// Relative imports.
+const NAV_ITEMS = require("./src/components/TopNav/NAV_ITEMS")
 
 module.exports = {
   siteMetadata: {
     title: `Sword and Spell`,
     description: `The main website for the game Sword and Spell.`,
     author: `@SwordAndSpell`,
-    navItems: [
-      {
-        link: "/leveling-chart",
-        label: "Leveling Chart",
-      },
-      {
-        link: "/races",
-        label: "Races",
-      },
-      {
-        link: "/backgrounds",
-        label: "Backgrounds",
-      },
-      {
-        link: "/core-identities",
-        label: "Core Identities",
-      },
-      {
-        link: "/identity-features",
-        label: "Identity Features",
-      },
-      {
-        link: "/feature-options",
-        label: "Feature Options",
-      },
-      {
-        link: "/ability-features",
-        label: "Ability Features",
-      },
-      {
-        link: "/armor",
-        label: "Armor",
-      },
-      {
-        link: "/weapons",
-        label: "Weapons",
-      },
-      {
-        link: "/spellcasting-charts",
-        label: "Spellcasting Charts",
-      },
-      {
-        link: "/spells",
-        label: "Spells",
-      },
-      {
-        link: "/rules",
-        label: "Rules",
-      },
-      {
-        link: "/summoning",
-        label: "Summoning",
-      },
-      {
-        link: "/animal-companions",
-        label: "Animal Companions",
-      },
-      {
-        link: "/shapechange-forms",
-        label: "Shapechange Forms",
-      },
-      {
-        link: "/reference-charts",
-        label: "Quick Reference",
-      },
-    ],
+    navItems: NAV_ITEMS,
     // Raw CMS Data Start
     // ========
     // Main.

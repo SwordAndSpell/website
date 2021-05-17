@@ -12,6 +12,7 @@ const isBrowser = typeof window !== "undefined"
 const TopNav = ({ siteTitle }) => {
   const [showNavItems, setShowNavItems] = useState(false)
 
+  // Derive the nav items from the graphql query.
   const queryResult = useStaticQuery(graphql`
     query {
       site {
@@ -19,15 +20,17 @@ const TopNav = ({ siteTitle }) => {
           navItems {
             label
             link
+            instructions
+            instructionsLinks {
+              label
+              link
+            }
           }
         }
       }
     }
   `)
-
-  const onNavItemClick = () => {
-    setShowNavItems(false)
-  }
+  const navItems = queryResult?.site?.siteMetadata?.navItems
 
   return (
     <>
@@ -57,7 +60,7 @@ const TopNav = ({ siteTitle }) => {
 
       {/* Nav Items */}
       <NavItems className={showNavItems ? "expanded" : ""}>
-        {queryResult?.site?.siteMetadata?.navItems?.map(navItem => (
+        {navItems?.map(navItem => (
           <Link
             className={
               isBrowser && navItem?.link === window.location.pathname
@@ -66,7 +69,7 @@ const TopNav = ({ siteTitle }) => {
             }
             key={navItem?.link}
             to={navItem?.link}
-            onClick={onNavItemClick}
+            onClick={() => setShowNavItems(false)}
           >
             <li>{navItem?.label}</li>
           </Link>

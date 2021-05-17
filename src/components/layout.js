@@ -6,6 +6,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import fog from "../../static/videos/fog.mp4"
 import smokeImage from "../../static/images/smoke.jpeg"
 import Footer from "./Footer"
+import Guide from "./Guide"
 import TopNav from "./TopNav"
 import "./layout.css"
 
@@ -26,6 +27,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      {!isHomepage && <Guide />}
       <TopNav siteTitle={data?.site?.siteMetadata?.title} />
       <main>{children}</main>
       <Footer />

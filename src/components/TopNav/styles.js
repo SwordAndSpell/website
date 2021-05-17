@@ -137,7 +137,7 @@ export const NavItems = styled.ul`
   padding: 0 0 10px;
   top: 100px;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
 
   &.expanded {
     display: flex;
