@@ -11360,7 +11360,7 @@ snapdragon@^0.8.1:
 
 "sns-data@git+https://github.com/SwordAndSpell/data.git":
   version "1.6.0"
-  resolved "git+https://github.com/SwordAndSpell/data.git#76e24be4b2f05b0967dbd7b2eec83960f2a18444"
+  resolved "git+https://github.com/SwordAndSpell/data.git#c2b391d4eb5c164343306338766d6d2605f2bddc"
 
 socket.io-adapter@~2.1.0:
   version "2.1.0"

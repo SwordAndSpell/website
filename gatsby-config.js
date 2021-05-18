@@ -6,7 +6,6 @@ const CORE_IDENTITIES = require("sns-data/data/CORE_IDENTITIES.json")
 const FEATURE_OPTIONS = require("sns-data/data/FEATURE_OPTIONS.json")
 const IDENTITY_FEATURES = require("sns-data/data/IDENTITY_FEATURES.json")
 const IDENTITY_FEATURE_REQUIREMENTS = require("sns-data/data/IDENTITY_FEATURE_REQUIREMENTS.json")
-const LANGUAGES = require("sns-data/data/LANGUAGES.json")
 const PERKS = require("sns-data/data/PERKS.json")
 const RACES = require("sns-data/data/RACES.json")
 const SUBRACES = require("sns-data/data/SUBRACES.json")
@@ -57,7 +56,6 @@ module.exports = {
     FEATURE_OPTIONS,
     IDENTITY_FEATURES,
     IDENTITY_FEATURE_REQUIREMENTS,
-    LANGUAGES,
     PERKS,
     RACES,
     SUBRACES,
