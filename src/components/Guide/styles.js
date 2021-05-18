@@ -82,6 +82,7 @@ export const Wrapper = styled.section`
     display: flex;
 
     svg {
+      flex-shrink: 0;
       height: 20px;
       max-height: 20px;
       max-width: 20px;
