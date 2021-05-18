@@ -115,7 +115,7 @@ const RulesPage = () => {
                   role="button"
                   tabIndex="0"
                 >
-                  <h2 id={id}>{name}</h2>
+                  <h3 id={id}>{name}</h3>
                   <Chevron
                     className={`chevron${isExpanded ? " expanded" : ""}`}
                   />
