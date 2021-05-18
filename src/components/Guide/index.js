@@ -79,11 +79,6 @@ const Guide = () => {
       {/* Instructions */}
       <p>{currentNavItem?.instructions || "Ready to create your character?"}</p>
 
-      {/* Default instruction link */}
-      {isEmpty(currentNavItem?.instructionsLinks) && (
-        <a href="/races">Choose a race</a>
-      )}
-
       {/* Instruction links */}
       {currentNavItem?.instructionsLinks?.map(instructionLink => (
         <a key={instructionLink?.link} href={`${instructionLink?.link}`}>

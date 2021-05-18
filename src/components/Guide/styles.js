@@ -44,6 +44,7 @@ export const Wrapper = styled.section`
 
   p {
     margin: 0 0 10px;
+    white-space: pre-line;
   }
 
   .close {
