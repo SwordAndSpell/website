@@ -60,7 +60,10 @@ const Guide = () => {
           <Close />
         </button>
         <p>Need some help creating a character?</p>
-        <a href="/races">Choose a race</a>
+        <a href="/races">
+          Choose a race
+          <ExternalLink />
+        </a>
       </Wrapper>
     )
   }

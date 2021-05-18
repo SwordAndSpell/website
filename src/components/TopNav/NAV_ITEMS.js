@@ -1,12 +1,5 @@
 module.exports = [
   {
-    link: "/leveling-chart",
-    label: "Leveling Chart",
-    instructions: "",
-    instructionsLinks: [],
-    showDefaultGuide: true,
-  },
-  {
     link: "/races",
     label: "Races",
     instructions:
@@ -106,6 +99,13 @@ module.exports = [
   {
     link: "/shapechange-forms",
     label: "Shapechange Forms",
+    instructions: "",
+    instructionsLinks: [],
+    showDefaultGuide: true,
+  },
+  {
+    link: "/leveling-chart",
+    label: "Leveling Chart",
     instructions: "",
     instructionsLinks: [],
     showDefaultGuide: true,

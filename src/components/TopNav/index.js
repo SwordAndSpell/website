@@ -60,6 +60,9 @@ const TopNav = ({ siteTitle }) => {
 
       {/* Nav Items */}
       <NavItems className={showNavItems ? "expanded" : ""}>
+        <a download href={characterSheet}>
+          <li>Download Character Sheet (PDF)</li>
+        </a>
         {navItems?.map(navItem => (
           <Link
             className={
@@ -74,9 +77,6 @@ const TopNav = ({ siteTitle }) => {
             <li>{navItem?.label}</li>
           </Link>
         ))}
-        <a download href={characterSheet}>
-          <li>Download Character Sheet (PDF)</li>
-        </a>
       </NavItems>
     </>
   )
