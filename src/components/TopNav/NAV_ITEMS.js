@@ -129,8 +129,14 @@ module.exports = [
   {
     link: "/summoning",
     label: "Summoning",
-    instructions: "",
-    instructionsLinks: [],
+    instructions:
+      "These stat blocks are associated with various summoning spells available to players.\n\n Don't forget to add the spell's level where highlighted to maximize their capabilities",
+    instructionsLinks: [
+      {
+        link: "https://sword-and-spell.com/spells",
+        label: "Explore your spell options",
+      },
+    ],
     showDefaultGuide: true,
   },
   {
@@ -143,8 +149,14 @@ module.exports = [
   {
     link: "/shapechange-forms",
     label: "Shapechange Forms",
-    instructions: "",
-    instructionsLinks: [],
+    instructions:
+      "Wildlings, or characters who take the Shapechange multi-class feat are capable of using the following forms. These form's abilities can be further enhanced with wildling feats.",
+    instructionsLinks: [
+      {
+        link: "https://sword-and-spell.com/core-identities",
+        label: "Check out the Wildling Shapechange rules",
+      },
+    ],
     showDefaultGuide: true,
   },
   {
