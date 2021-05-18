@@ -482,19 +482,6 @@ export const Wrapper = styled.section`
       margin: 0;
     }
 
-    .filter-input {
-      background: #000000;
-      border-radius: 5px;
-      border: none;
-      color: #ffffff;
-      font-size: 1rem;
-      margin: 10px 0;
-      max-width: 500px;
-      outline: none;
-      padding: 12px 15px;
-      width: calc(100% - 40px);
-    }
-
     .filters {
       align-items: center;
       justify-content: center;
@@ -627,16 +614,17 @@ export const Wrapper = styled.section`
       transition: transform 0.3s ease;
     }
   }
+
   .filter-input {
     background: #000000;
     border-radius: 5px;
     border: none;
     color: #ffffff;
     font-size: 1rem;
-    margin: 20px 0 5px;
+    margin: 10px 0;
+    max-width: 500px;
     outline: none;
     padding: 12px 15px;
-    width: 90%;
-    max-width: 500px;
+    width: calc(100% - 40px);
   }
 `
