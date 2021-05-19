@@ -3757,9 +3757,9 @@ content-type@^1.0.4, content-type@~1.0.4:
   integrity sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==
 
 contentful-management@^7.5.1:
-  version "7.20.0"
-  resolved "https://registry.yarnpkg.com/contentful-management/-/contentful-management-7.20.0.tgz#2e06506f73d4dad75bb486c82ff217287acf3cf6"
-  integrity sha512-SGCbQ5ngLtsWprZzjnnFmOO2fMxR+GtXfBrZaExMeZyZW7Q9QZ6irLHsChxktCQBteTCn1ecHs+HJ/hzGPby8g==
+  version "7.20.1"
+  resolved "https://registry.yarnpkg.com/contentful-management/-/contentful-management-7.20.1.tgz#d4f9af419ce1a8c1b8a0ce8717bd38f29b3f9287"
+  integrity sha512-t5IYXZ58Ffq84bb1/FaY5F5UlIXbdtFwegjR1mGYByjXU/AKRDdBLArZGm2Hn9ZPoJfYy2aZQqFfXsyuY3tSBA==
   dependencies:
     "@types/json-patch" "0.0.30"
     axios "^0.21.0"
@@ -6687,9 +6687,9 @@ graphql-type-json@0.3.2, graphql-type-json@^0.3.2:
   integrity sha512-J+vjof74oMlCWXSvt0DOf2APEdZOCdubEvGDUAlqH//VBYcOYsGgRW7Xzorr44LvkjiuvecWc8fChxuZZbChtg==
 
 graphql-ws@^4.4.1:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-4.5.0.tgz#c71c6eed34850c375156c29b1ed45cea2f9aee6b"
-  integrity sha512-J3PuSfOKX2y9ryOtWxOcKlizkFWyhCvPAc3hhMKMVSTcPxtWiv9oNzvAZp1HKfuQng32YQduHeX+lRDy2+F6VQ==
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-4.5.1.tgz#d9dc6e047c6d4ddb928ccbfb3ca3022580a89925"
+  integrity sha512-GE7vCMKe2D7fc0ugkM1V8QMneHcbV9c3BpPBzdlW/Uzkqv0F/zZq9DDHxLzg55ZhE5OSLL+n/gyqAMPgH59hcw==
 
 graphql@^15.4.0:
   version "15.5.0"
@@ -11360,8 +11360,8 @@ snapdragon@^0.8.1:
     use "^3.1.0"
 
 "sns-data@git+https://github.com/SwordAndSpell/data.git":
-  version "1.6.1"
-  resolved "git+https://github.com/SwordAndSpell/data.git#9bf5d5e5f202508ac339024cef66ab0f95be26d2"
+  version "1.6.2"
+  resolved "git+https://github.com/SwordAndSpell/data.git#2e983cd1e4178918d7db7983c1e55cbcc04d220e"
 
 socket.io-adapter@~2.1.0:
   version "2.1.0"
