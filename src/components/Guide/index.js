@@ -1,7 +1,6 @@
 // Node modules.
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import isEmpty from "lodash/isEmpty"
 // Relative imports.
 import Close from "../icons/Close"
 import ExternalLink from "../icons/ExternalLink"
