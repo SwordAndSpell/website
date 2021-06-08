@@ -31,25 +31,21 @@ const Layout = ({ children }) => {
       <TopNav siteTitle={data?.site?.siteMetadata?.title} />
       <main>{children}</main>
       <Footer />
-      {!isHomepage && (
-        <>
-          <video
-            autoPlay
-            className="smoke-animation"
-            loop
-            muted
-            playsInline
-            type="video/mp4"
-          >
-            <source src={fog} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <div
-            className="smoke-background"
-            style={{ backgroundImage: `url('${smokeImage}')` }}
-          />
-        </>
-      )}
+      <video
+        autoPlay
+        className="smoke-animation"
+        loop
+        muted
+        playsInline
+        type="video/mp4"
+      >
+        <source src={fog} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div
+        className="smoke-background"
+        style={{ backgroundImage: `url('${smokeImage}')` }}
+      />
     </>
   )
 }
