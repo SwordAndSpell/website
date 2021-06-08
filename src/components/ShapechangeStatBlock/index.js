@@ -61,22 +61,6 @@ class ShapechangeStatBlock extends Component {
               </section>
             </section>
 
-            <h4>Stats</h4>
-            <section className="stat-bar row">
-              <section className="stat-group">
-                <span className="label">STR</span>
-                <p className="value">{form?.strength}</p>
-              </section>
-              <section className="stat-group">
-                <span className="label">DEX</span>
-                <p className="value">{form?.dexterity}</p>
-              </section>
-              <section className="stat-group">
-                <span className="label">CON</span>
-                <p className="value">{form?.constitution}</p>
-              </section>
-            </section>
-
             <h4>Saves</h4>
             <section className="stat-bar row">
               <section className="stat-group">

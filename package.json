@@ -2,7 +2,7 @@
   "name": "sword-and-spell",
   "private": true,
   "description": "The main website for the game Sword and Spell.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "SwordAndSpell <https://github.com/SwordAndSpell>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.12.0",
