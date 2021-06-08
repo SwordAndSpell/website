@@ -24,9 +24,7 @@ const ShapechangePage = () => {
             }
             armor
             choose
-            constitution
             defense
-            dexterity
             fortitude
             hitPoints
             id
@@ -38,7 +36,6 @@ const ShapechangePage = () => {
               value
             }
             speed
-            strength
             type
             will
           }
