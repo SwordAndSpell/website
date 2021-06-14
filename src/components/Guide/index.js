@@ -58,7 +58,7 @@ const Guide = () => {
         <button className="close" onClick={onClose} type="button">
           <Close />
         </button>
-        <p>Need some help creating a character?</p>
+        <p>Ready to start building a character?</p>
         <a href="/races">
           Choose a race
           <ExternalLink />
@@ -76,7 +76,7 @@ const Guide = () => {
       </button>
 
       {/* Instructions */}
-      <p>{currentNavItem?.instructions || "Ready to create your character?"}</p>
+      <p>{currentNavItem?.instructions}</p>
 
       {/* Instruction links */}
       {currentNavItem?.instructionsLinks?.map(instructionLink => (
