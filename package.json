@@ -38,7 +38,7 @@
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "deploy": "curl --location --request POST 'https://webhook.gatsbyjs.com/hooks/data_source/publish/c1fdf4b2-9b62-4a71-abae-b9d7ccf46c51'",
+    "deploy": "curl --location --request POST 'https://webhook.gatsbyjs.com/hooks/data_source/publish/f7d872c2-6cfd-4add-91a3-abbac5618467'",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "refresh:content": "rm yarn.lock && rm -rf node_modules && yarn",
