@@ -15,7 +15,7 @@ const IndexPage = () => (
         Your browser does not support the video tag.
       </video> */}
       <h1>Embark on your journey</h1>
-      <Link to="/races">Choose your race</Link>
+      <Link to="/leveling-chart">Start building a character</Link>
     </section>
   </Layout>
 )

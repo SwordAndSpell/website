@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from "gatsby"
 // Relative imports.
 import Close from "../icons/Close"
 import ExternalLink from "../icons/ExternalLink"
+import characterSheet from "../../../static/files/character-sheet.pdf"
 import { Wrapper } from "./styles"
 
 const isBrowser = typeof window !== "undefined"
@@ -26,6 +27,7 @@ const Guide = () => {
             instructionsLinks {
               label
               link
+              isCharSheetDownload
             }
             showDefaultGuide
           }
@@ -79,12 +81,23 @@ const Guide = () => {
       <p>{currentNavItem?.instructions}</p>
 
       {/* Instruction links */}
-      {currentNavItem?.instructionsLinks?.map(instructionLink => (
-        <a key={instructionLink?.link} href={`${instructionLink?.link}`}>
-          {instructionLink?.label}
-          <ExternalLink />
-        </a>
-      ))}
+      {currentNavItem?.instructionsLinks?.map(instructionLink => {
+        console.log(instructionLink)
+        if (instructionLink?.isCharSheetDownload) {
+          return (
+            <a download key="characterSheet" href={characterSheet}>
+              {"Download the character sheet"}
+              <ExternalLink />
+            </a>
+          )
+        } else
+          return (
+            <a key={instructionLink?.link} href={`${instructionLink?.link}`}>
+              {instructionLink?.label}
+              <ExternalLink />
+            </a>
+          )
+      })}
     </Wrapper>
   )
 }

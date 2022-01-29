@@ -74,7 +74,8 @@ module.exports = [
   {
     link: "/feature-options",
     label: "Feature Options",
-    instructions: "",
+    instructions:
+      "If you are playing an inheritor,  you will have to choose a bloodline and meta-magics, which are presented here",
     instructionsLinks: [],
     showDefaultGuide: false,
   },
@@ -108,21 +109,24 @@ module.exports = [
   {
     link: "/spellcasting-charts",
     label: "Spellcasting Charts",
-    instructions: "",
+    instructions:
+      "If your character is capable of spellcasting, these charts detail the spell charges or points available to you for your casting abilities.",
     instructionsLinks: [],
     showDefaultGuide: false,
   },
   {
     link: "/spells",
     label: "Spells",
-    instructions: "",
+    instructions:
+      "Use the filters above to filter spells by their level or list they belong to for easy quick reference.",
     instructionsLinks: [],
     showDefaultGuide: false,
   },
   {
     link: "/rules",
     label: "Rules",
-    instructions: "",
+    instructions:
+      "If you have a question on a how a particular part of gameplay works, search here for rules details.",
     instructionsLinks: [],
     showDefaultGuide: false,
   },
@@ -142,7 +146,8 @@ module.exports = [
   {
     link: "/animal-companions",
     label: "Animal Companions",
-    instructions: "",
+    instructions:
+      "If you take an animal companion feat during level up, their rules, forms, and features are available on this page.",
     instructionsLinks: [],
     showDefaultGuide: false,
   },
@@ -162,14 +167,24 @@ module.exports = [
   {
     link: "/leveling-chart",
     label: "Leveling Chart",
-    instructions: "",
-    instructionsLinks: [],
-    showDefaultGuide: true,
+    instructions:
+      "Ready to start building a character?\n\n Each row of the Leveling Chart specifies what choices you need to make or perks you gain as part of each step. To create a character, start by making the choices associated with Race selection, then Background selection, and then finally Level 1.",
+    instructionsLinks: [
+      {
+        isCharSheetDownload: true,
+      },
+      {
+        link: "https://sword-and-spell.com/races",
+        label: "Then, start making your race selections",
+      },
+    ],
+    showDefaultGuide: false,
   },
   {
     link: "/reference-charts",
     label: "Quick Reference",
-    instructions: "",
+    instructions:
+      "If you need to lookup what an relevant DC would be for a character's level, or what a given modifier or bonus might be, these reference charts will be helpful!",
     instructionsLinks: [],
     showDefaultGuide: false,
   },
