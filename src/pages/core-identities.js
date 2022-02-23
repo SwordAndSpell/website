@@ -11,6 +11,19 @@ import { Wrapper } from "../components/cardsPage"
 import { onCollapseToggle } from "../utils"
 import { map } from "lodash"
 
+import arcanistIcon from "../../static/images/classIcons/arcanistIcon.svg"
+import barbarianIcon from "../../static/images/classIcons/barbarianIcon.svg"
+import bardIcon from "../../static/images/classIcons/bardIcon.svg"
+import championIcon from "../../static/images/classIcons/championIcon.svg"
+import inheritorIcon from "../../static/images/classIcons/inheritorIcon.svg"
+import mysticIcon from "../../static/images/classIcons/mysticIcon.svg"
+import priestIcon from "../../static/images/classIcons/priestIcon.svg"
+import scoundrelIcon from "../../static/images/classIcons/scoundrelIcon.svg"
+import spellbladeIcon from "../../static/images/classIcons/spellbladeIcon.svg"
+import wardenIcon from "../../static/images/classIcons/wardenIcon.svg"
+import warriorIcon from "../../static/images/classIcons/warriorIcon.svg"
+import wildlingIcon from "../../static/images/classIcons/wildlingIcon.svg"
+
 const CoreIdentitiesPage = () => {
   const queryResult = useStaticQuery(graphql`
     query {
@@ -43,6 +56,21 @@ const CoreIdentitiesPage = () => {
   const [expandedCoreIdentityIDs, setExpandedCoreIdentityIDs] = useState([])
   const [expandedCoreAbilityIDs, setExpandedCoreAbilityIDs] = useState([])
 
+  const iconSources = {
+    Arcanist: arcanistIcon,
+    Barbarian: barbarianIcon,
+    Bard: bardIcon,
+    Champion: championIcon,
+    Inheritor: inheritorIcon,
+    Mystic: mysticIcon,
+    Priest: priestIcon,
+    Scoundrel: scoundrelIcon,
+    Spellblade: spellbladeIcon,
+    Warden: wardenIcon,
+    Warrior: warriorIcon,
+    Wildling: wildlingIcon,
+  }
+
   return (
     <Layout>
       <Seo title="Identities" />
@@ -53,7 +81,8 @@ const CoreIdentitiesPage = () => {
             // Derive coreIdentity properties.
             const coreAbilityIDs = coreIdentity?.coreAbilityIDs
             const id = coreIdentity?.id
-            const imageURL = coreIdentity?.imageURL || defaultCoreIdentityImage
+            const imageURL =
+              iconSources[coreIdentity?.name] || defaultCoreIdentityImage
             const name = coreIdentity?.name
 
             // Derive the coreAbilities.
